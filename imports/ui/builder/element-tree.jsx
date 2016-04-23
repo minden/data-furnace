@@ -1,6 +1,6 @@
 import React, {Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
-import { ElementsCollection } from '../imports/api/elements.js';
+import { ElementsCollection } from '../../api/elements.js';
 import Element from './element.jsx';
 
 

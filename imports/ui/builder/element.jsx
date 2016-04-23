@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Button} from 'react-bootstrap';
-import { ElementsCollection} from '../imports/api/elements.js';
+import { ElementsCollection} from '../../api/elements.js';
 import { createContainer } from 'meteor/react-meteor-data';
 import AddElementButton from './add-element-button.jsx';
 
@@ -43,7 +43,7 @@ export default Element = React.createClass({
         this.setState({childrenVisible: !this.state.childrenVisible});
       };
       return (
-        <span className={togglerClasses()} onClick={toggleChildrenVisible}></span>
+        <span className={togglerClasses()} onClick={toggleChildrenVisible} style={{paddingRight: '10px'}}></span>
       );
     }
 
