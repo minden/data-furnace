@@ -1,6 +1,6 @@
 import React, {Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
-import { ElementsCollection } from '../../api/elements.js';
+import Elements from '../../api/elements.js';
 import Element from './element.jsx';
 
 
@@ -27,6 +27,6 @@ ElementTree.propTypes = {
 
 export default createContainer(() => {
   return {
-    elements: ElementsCollection.find({parentId: {$exists: false}}).fetch(),
+    elements: Elements.collection.find({parentId: {$exists: false}}).fetch(),
   };
 }, ElementTree);

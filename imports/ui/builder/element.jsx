@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Button} from 'react-bootstrap';
-import { ElementsCollection} from '../../api/elements.js';
+import Elements from '../../api/elements.js';
 import { createContainer } from 'meteor/react-meteor-data';
 import AddElementButton from './add-element-button.jsx';
 
@@ -8,7 +8,7 @@ export default Element = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
     return {
-      subElements: ElementsCollection.find({parentId: this.props.data._id}).fetch(),
+      subElements: Elements.collection.find({parentId: this.props.data._id}).fetch(),
     }
   },
 
@@ -17,13 +17,13 @@ export default Element = React.createClass({
   },
 
   removeElement(event) {
-    ElementsCollection.update({_id: this.props.data.parent}, {$pull: {children: this.props.data._id}});
-    ElementsCollection.remove(this.props.data._id);
+    Elements.collection.update({_id: this.props.data.parent}, {$pull: {children: this.props.data._id}});
+    Elements.collection.remove(this.props.data._id);
   },
 
   addSubElement(event) {
-    var childId = ElementsCollection.insert({parent: this.props.data._id})
-    ElementsCollection.update(this.props.data._id, {$addToSet: {children: childId}});
+    var childId = Elements.collection.insert({parent: this.props.data._id})
+    Elements.collection.update(this.props.data._id, {$addToSet: {children: childId}});
   },
 
   render() {

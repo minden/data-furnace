@@ -1,15 +1,19 @@
 import { Meteor } from 'meteor/meteor';
 
-export const ElementsCollection = new Meteor.Collection('elements');
+const Elements = {};
 
-export const ElementTypes = [
+Elements.collection = new Meteor.Collection('Elements');
+
+Elements.types = [
   {humanName: 'Reference Object', name: 'referenceObject'},
   {humanName: 'Hierarchy', name: 'hierarchy'},
 ];
 
-export const addElement = function addElement(parentId, typeName) {
-  let elementId = ElementsCollection.insert(
+Elements.add = function add(parentId, typeName) {
+  let elementId = Elements.collection.insert(
     {parentId: parentId, typeName: typeName});
-  ElementsCollection.update(
+  Elements.collection.update(
     {_id: parentId}, {$addToSet: {childrenIds: elementId}});
 };
+
+export default Elements;

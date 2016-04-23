@@ -1,10 +1,10 @@
 import React from 'react';
 import {DropdownButton, MenuItem} from 'react-bootstrap';
-import {ElementTypes, addElement} from '../../api/elements.js';
+import Elements from '../../api/elements.js';
 
 export default class AddElementButton extends React.Component {
   handleAddElement(typeName) {
-    addElement(this.props.elementId, typeName);
+    Elements.add(this.props.elementId, typeName);
   }
   render() {
     const dropDownButtonStyle = {
@@ -20,7 +20,7 @@ export default class AddElementButton extends React.Component {
         title="" 
         style={dropDownButtonStyle}
       >
-        {ElementTypes.map(function(elementType) {
+        {Elements.types.map(function(elementType) {
           return <MenuItem eventKey={elementType.name} key={elementType.name}>{elementType.humanName}</MenuItem>;
         })}
       </DropdownButton>
