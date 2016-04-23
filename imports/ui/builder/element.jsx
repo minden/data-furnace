@@ -91,15 +91,6 @@ export default Element = React.createClass({
       }
     }
 
-    const elementStyle = {
-      paddingTop: '5px',
-    };
-     
-    const elementItselfStyle = {
-      border: '1px solid #ddd',
-      padding: '10px',
-    };
-
     const makeButtonsVisible = () => {
       this.setState({buttonsVisible: true});
     }
@@ -109,8 +100,12 @@ export default Element = React.createClass({
     }
 
     return (
-      <div className="element" style={elementStyle}>
-        <div onMouseEnter={makeButtonsVisible} onMouseLeave={makeButtonsNotVisible} style={elementItselfStyle}>
+      <div className="element" style={{paddingTop: '5px'}}>
+        <div 
+          onMouseEnter={makeButtonsVisible} 
+          onMouseLeave={makeButtonsNotVisible} 
+          style={{border: '1px solid #ddd', padding: '10px'}}
+        >
           {toggleButton()}
           {this.props.data.typeName}
           {buttons()}
