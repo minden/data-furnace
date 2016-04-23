@@ -107,7 +107,7 @@ export default Element = React.createClass({
           style={{border: '1px solid #ddd', padding: '10px'}}
         >
           {toggleButton()}
-          {this.props.data.typeName}
+          {Elements.types.nameToHumanName(this.props.data.typeName)}
           {buttons()}
         </div>
         {children()}
