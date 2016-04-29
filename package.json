@@ -5,11 +5,15 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "jquery": "^2.2.3",
     "meteor-node-stubs": "~0.2.0",
     "mocha": "^2.4.5",
     "react": "^15.0.1",
     "react-addons-pure-render-mixin": "^15.0.1",
     "react-bootstrap": "^0.29.0",
     "react-dom": "^15.0.1"
+  },
+  "devDependencies": {
+    "react-addons-test-utils": "^15.0.1"
   }
 }
