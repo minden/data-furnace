@@ -1,5 +1,5 @@
 import React from 'react';
-import {DropdownButton, MenuItem} from 'react-bootstrap';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 import Elements from '../../api/elements.js';
 
 export default class AddElementButton extends React.Component {
