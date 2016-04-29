@@ -6,13 +6,17 @@
       "jsx": true
     }
   },
-  "plugins": ["react"],
+  "plugins": ["react", "meteor"],
   "env": {
     "browser": true,
     "node": true
   },
-  "extends": "airbnb",
+  "extends": ["airbnb", "plugin:meteor/recommended"],
   "rules": {
-    "indent": [2, "tab"]
+    "indent": ["error", 2],
+    "import/no-unresolved": [
+      2, { "ignore": ["^meteor/"] }
+    ],
+    "no-unused-expressions": 0
   }
 }
