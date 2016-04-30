@@ -8,18 +8,20 @@ import { after, before, describe, it } from 'meteor/practicalmeteor:mocha';
 import { render } from 'react-dom';
 import { should, expect } from 'meteor/practicalmeteor:chai';
 should();
+import { createContainer } from 'meteor/react-meteor-data';
 
 if (Meteor.isClient) {
-  describe('Element.jsx', () => {
+  describe.only('Element.jsx', () => {
     let elementId;
+    let childElementId;
     let element;
     before(() => {
       const testEnvironment = document.createElement('div');
       testEnvironment.setAttribute('id', 'test-environment');
       document.body.appendChild(testEnvironment);
 
-      elementId = Elements.collection.insert(
-        { typeName: 'hierarchy' });
+      elementId = Elements.add(undefined, 'hierarchy');
+      childElementId = Elements.add(elementId, 'hierarchy');
       element = Elements.collection.findOne(elementId);
 
       render(<Element key={elementId} data={element} />,
@@ -27,7 +29,7 @@ if (Meteor.isClient) {
     });
 
     after(() => {
-      $('#test-environment').remove();
+      //$('#test-environment').remove();
     });
 
     it('should exist', () => {
@@ -40,19 +42,17 @@ if (Meteor.isClient) {
       $('.element .buttons .remove-element-button').length.should.be.above(0);
     });
 
-    describe('when adding a child element', () => {
-      let childElementId;
+    describe('with a child element', () => {
       before((done) => {
-        childElementId = Elements.add(elementId, 'hierarchy');
         const interval = setInterval(() => {
-          if ($('.element .element').length >= 0) {
+          if ($('.element .element').length > 0) {
             clearInterval(interval);
             done();
           }
         }, 100);
       });
 
-      it('the child element appears', () => {
+      it('the child element is shown', () => {
         $('.element .element').length.should.not.equal(0);
       });
 
@@ -77,8 +77,8 @@ if (Meteor.isClient) {
         });
 
         it('the element is deleted from the database', () => {
-          childElementId = Elements.collection.findOne(childElementId);
-          expect(childElementId).to.equal(undefined);
+          let childElement = Elements.collection.findOne(childElementId);
+          expect(childElement).to.equal(undefined);
         });
 
         it('the element is not visible in the UI', (done) => {
@@ -94,3 +94,7 @@ if (Meteor.isClient) {
     });
   });
 }
+
+export default createContainer(() => {
+  return { Elements: Elements.collection.find().fetch() };
+}, Element);

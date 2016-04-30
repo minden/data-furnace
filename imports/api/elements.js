@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 
 const Elements = {};
 
+Meteor.Elements = Elements;
+
 Elements.collection = new Meteor.Collection('Elements');
 
 Elements.types = [

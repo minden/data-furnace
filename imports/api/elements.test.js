@@ -19,7 +19,7 @@ if (Meteor.isServer) {
     });
   });
 
-  describe('Elements.add', () => {
+  describe.skip('Elements.add', () => {
     it('should insert an element into the MongoDB', () => {
       const element = { parentId: null, typeName: 'hierarchy' };
       element._id = Elements.add(element.parentId, element.typeName);

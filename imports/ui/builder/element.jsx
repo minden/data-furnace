@@ -11,7 +11,7 @@ class Element extends React.Component {
       childrenVisible: true,
       buttonsVisible: false,
     };
-    console.log(this);
+    this.removeElement = this.removeElement.bind(this);
   }
 
   removeElement() {
@@ -21,7 +21,7 @@ class Element extends React.Component {
   render() {
     const toggleButton = () => {
       const togglerClasses = () => {
-        if (this.props.data.childIds.length === 0) {
+        if (this.props.data.childIds && this.props.data.childIds.length === 0) {
           return '';
         } else {
           if (this.state.childrenVisible) {
@@ -35,7 +35,11 @@ class Element extends React.Component {
         this.setState({ childrenVisible: !this.state.childrenVisible });
       };
       return (
-        <span className={togglerClasses()} onClick={toggleChildrenVisible} style={{ paddingRight: '10px' }}></span>
+        <span
+          className={togglerClasses()}
+          onClick={toggleChildrenVisible}
+          style={{ paddingRight: '10px' }}
+        ></span>
       );
     };
 
@@ -79,9 +83,9 @@ class Element extends React.Component {
             <AddElementButton elementId={this.props.data._id} />
             <Button
               className="glyphicon glyphicon-remove remove-element-button"
-              onClick={this.removeElement.bind(this)}
+              onClick={this.removeElement}
               style={removeButtonStyle}
-            ></Button>
+             />
           </div>
         );
       }
@@ -117,9 +121,9 @@ Element.propTypes = {
   subElements: React.PropTypes.array,
 };
 
-export default createContainer((props) => {
+export default createContainer(() => {
   return {
-    subElements: Elements.collection.find({ parentId: props.data._id }).fetch(),
+    elements: Elements.collection.find().fetch(),
   };
 }, Element);
 
