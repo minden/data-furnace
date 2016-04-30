@@ -82,7 +82,7 @@ export default Element = React.createClass({
           <div className="buttons" style={buttonsStyle}>
             <AddElementButton elementId={this.props.data._id}/>
             <Button
-              className="glyphicon glyphicon-remove" 
+              className="glyphicon glyphicon-remove remove-element-button" 
               onClick={this.removeElement}
               style={removeButtonStyle}
             ></Button>
