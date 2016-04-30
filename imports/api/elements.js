@@ -11,20 +11,27 @@ Elements.types = [
 
 Elements.add = function add(parentId, typeName) {
   const elementId = Elements.collection.insert(
-    { parentId: parentId, typeName: typeName });
+    { parentId, typeName });
   Elements.collection.update(
     { _id: parentId }, { $addToSet: { childrenIds: elementId } }
   );
   return elementId;
 };
 
+Elements.remove = function remove(elementId, parentId) {
+  Elements.collection.update({ _id: parentId }, { $pull: { children: elementId } });
+  Elements.collection.remove(elementId);
+};
+
+
 Elements.types.nameToHumanName = (name) => {
-  const type = Elements.types.find(function(type) {
+  const returnType = Elements.types.find((type) => {
     if (type.name === name) {
       return true;
     }
+    return false;
   });
-  return type.humanName;
+  return returnType.humanName;
 };
 
 export default Elements;

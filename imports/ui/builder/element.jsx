@@ -1,38 +1,31 @@
-import React, {PropTypes} from 'react';
-import {Button} from 'react-bootstrap';
+import React from 'react';
+import { Button } from 'react-bootstrap';
 import Elements from '../../api/elements.js';
-import { createContainer } from 'meteor/react-meteor-data';
 import AddElementButton from './add-element-button.jsx';
 
 export default Element = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
     return {
-      subElements: Elements.collection.find({parentId: this.props.data._id}).fetch(),
-    }
+      subElements: Elements.collection.find({ parentId: this.props.data._id }).fetch(),
+    };
   },
 
-  getInitialState: function() {
-    return {childrenVisible: true, buttonsVisible: false};
+  getInitialState: function () {
+    return { childrenVisible: true, buttonsVisible: false };
   },
 
-  removeElement(event) {
-    Elements.collection.update({_id: this.props.data.parent}, {$pull: {children: this.props.data._id}});
-    Elements.collection.remove(this.props.data._id);
-  },
-
-  addSubElement(event) {
-    var childId = Elements.collection.insert({parent: this.props.data._id})
-    Elements.collection.update(this.props.data._id, {$addToSet: {children: childId}});
+  removeElement() {
+    Elements.remove(this.props.data._id, this.props.data.parentId);
   },
 
   render() {
     const toggleButton = () => {
       const togglerClasses = () => {
-        if(this.data.subElements.length === 0){
+        if (this.data.subElements.length === 0) {
           return '';
         } else {
-          if(this.state.childrenVisible){
+          if (this.state.childrenVisible) {
             return 'glyphicon glyphicon-chevron-down';
           } else {
             return 'glyphicon glyphicon-chevron-right';
@@ -40,12 +33,12 @@ export default Element = React.createClass({
         }
       };
       const toggleChildrenVisible = () => {
-        this.setState({childrenVisible: !this.state.childrenVisible});
+        this.setState({ childrenVisible: !this.state.childrenVisible });
       };
       return (
-        <span className={togglerClasses()} onClick={toggleChildrenVisible} style={{paddingRight: '10px'}}></span>
+        <span className={togglerClasses()} onClick={toggleChildrenVisible} style={{ paddingRight: '10px' }}></span>
       );
-    }
+    };
 
     const children = () => {
       const subElementsListStyle = {
@@ -53,14 +46,14 @@ export default Element = React.createClass({
         paddingLeft: '20px',
       };
 
-      if(this.state.childrenVisible === true) {
+      if (this.state.childrenVisible === true) {
         return (
           <div className="list-group sub-elements-list" style={subElementsListStyle}>
-            {this.data.subElements.map(function(element) {
-              return <Element key={element._id} data={element}/>;
+            {this.data.subElements.map(function (element) {
+              return <Element key={element._id} data={element} />;
             })}
           </div >
-        )
+        );
       }
     };
 
@@ -77,34 +70,34 @@ export default Element = React.createClass({
         paddingLeft: '2px',
       };
 
-      if(this.state.buttonsVisible) {
-        return(
+      if (this.state.buttonsVisible) {
+        return (
           <div className="buttons" style={buttonsStyle}>
-            <AddElementButton elementId={this.props.data._id}/>
+            <AddElementButton elementId={this.props.data._id} />
             <Button
-              className="glyphicon glyphicon-remove remove-element-button" 
+              className="glyphicon glyphicon-remove remove-element-button"
               onClick={this.removeElement}
               style={removeButtonStyle}
             ></Button>
           </div>
         );
       }
-    }
+    };
 
     const makeButtonsVisible = () => {
-      this.setState({buttonsVisible: true});
-    }
+      this.setState({ buttonsVisible: true });
+    };
 
     const makeButtonsNotVisible = () => {
-      this.setState({buttonsVisible: false});
-    }
+      this.setState({ buttonsVisible: false });
+    };
 
     return (
-      <div className="element" style={{paddingTop: '5px'}}>
-        <div 
-          onMouseEnter={makeButtonsVisible} 
-          onMouseLeave={makeButtonsNotVisible} 
-          style={{border: '1px solid #ddd', padding: '10px'}}
+      <div className="element" style={{ paddingTop: '5px' }}>
+        <div
+          onMouseEnter={makeButtonsVisible}
+          onMouseLeave={makeButtonsNotVisible}
+          style={{ border: '1px solid #ddd', padding: '10px' }}
         >
           {toggleButton()}
           {Elements.types.nameToHumanName(this.props.data.typeName)}
@@ -112,6 +105,6 @@ export default Element = React.createClass({
         </div>
         {children()}
       </div>
-    )
+    );
   }
 });
