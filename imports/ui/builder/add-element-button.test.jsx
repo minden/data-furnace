@@ -10,29 +10,30 @@ should();
 
 if (Meteor.isClient) {
   describe('AddElementButton', () => {
+    let addElementButton;
     before(() => {
       const testEnvironment = document.createElement('div');
       testEnvironment.setAttribute('id', 'test-environment');
       document.body.appendChild(testEnvironment);
       render(<AddElementButton />, document.getElementById('test-environment'));
+      addElementButton = $('.add-element-button');
     });
 
     after(() => {
       $('#test-environment').remove();
     });
 
-    const addElementButton = $('.test-environment .dropdown.btn-group');
     it('should exist', () => {
-      addElementButton.should.exist;
+      addElementButton.length.should.be.above(0);
     });
 
     describe('click on "plus" and "Referece object" button', () => {
       let amountBefore;
       let amountAfter;
 
-      before( () => {
+      before(() => {
         amountBefore = Elements.collection.find().count();
-        $('.btn-group')[0].click();
+        addElementButton[0].click();
         $('a:contains("Hierarchy")')[0].click();
         amountAfter = Elements.collection.find().count();
       });
