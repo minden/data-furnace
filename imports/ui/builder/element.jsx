@@ -1,28 +1,27 @@
 import React from 'react';
+import { createContainer } from 'meteor/react-meteor-data';
 import { Button } from 'react-bootstrap';
 import Elements from '../../api/elements.js';
 import AddElementButton from './add-element-button.jsx';
 
-export default Element = React.createClass({
-  mixins: [ReactMeteorData],
-  getMeteorData() {
-    return {
-      subElements: Elements.collection.find({ parentId: this.props.data._id }).fetch(),
+class Element extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      childrenVisible: true,
+      buttonsVisible: false,
     };
-  },
-
-  getInitialState: function () {
-    return { childrenVisible: true, buttonsVisible: false };
-  },
+    console.log(this);
+  }
 
   removeElement() {
     Elements.remove(this.props.data._id, this.props.data.parentId);
-  },
+  }
 
   render() {
     const toggleButton = () => {
       const togglerClasses = () => {
-        if (this.data.subElements.length === 0) {
+        if (this.props.data.childIds.length === 0) {
           return '';
         } else {
           if (this.state.childrenVisible) {
@@ -46,10 +45,14 @@ export default Element = React.createClass({
         paddingLeft: '20px',
       };
 
+      const getChildren = (childIds) => {
+        return Elements.collection.find({ _id: { $in: childIds } }).fetch();
+      };
+
       if (this.state.childrenVisible === true) {
         return (
           <div className="list-group sub-elements-list" style={subElementsListStyle}>
-            {this.data.subElements.map(function (element) {
+            {getChildren(this.props.data.childIds).map(function (element) {
               return <Element key={element._id} data={element} />;
             })}
           </div >
@@ -76,7 +79,7 @@ export default Element = React.createClass({
             <AddElementButton elementId={this.props.data._id} />
             <Button
               className="glyphicon glyphicon-remove remove-element-button"
-              onClick={this.removeElement}
+              onClick={this.removeElement.bind(this)}
               style={removeButtonStyle}
             ></Button>
           </div>
@@ -107,4 +110,16 @@ export default Element = React.createClass({
       </div>
     );
   }
-});
+}
+
+Element.propTypes = {
+  data: React.PropTypes.object.isRequired,
+  subElements: React.PropTypes.array,
+};
+
+export default createContainer((props) => {
+  return {
+    subElements: Elements.collection.find({ parentId: props.data._id }).fetch(),
+  };
+}, Element);
+

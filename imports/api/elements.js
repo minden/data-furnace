@@ -11,15 +11,15 @@ Elements.types = [
 
 Elements.add = function add(parentId, typeName) {
   const elementId = Elements.collection.insert(
-    { parentId, typeName });
+    { parentId, typeName, childIds: [] });
   Elements.collection.update(
-    { _id: parentId }, { $addToSet: { childrenIds: elementId } }
+    { _id: parentId }, { $addToSet: { childIds: elementId } }
   );
   return elementId;
 };
 
 Elements.remove = function remove(elementId, parentId) {
-  Elements.collection.update({ _id: parentId }, { $pull: { children: elementId } });
+  Elements.collection.update({ _id: parentId }, { $pull: { childIds: elementId } });
   Elements.collection.remove(elementId);
 };
 
