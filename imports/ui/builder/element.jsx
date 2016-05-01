@@ -77,15 +77,28 @@ class Element extends React.Component {
         paddingLeft: '2px',
       };
 
+      const possibleChildTypes = () => {
+        const currentType = Elements.types.find((element) => element.name === this.props.data.typeName);
+        return Elements.types.filter((type) => {
+          if (currentType.possibleChildren.indexOf(type.name) === -1) {
+            return false;
+          }
+          return true;
+        });
+      };
+
       if (this.state.buttonsVisible) {
         return (
           <div className="buttons" style={buttonsStyle}>
-            <AddElementButton elementId={this.props.data._id} />
+            <AddElementButton
+              elementId={this.props.data._id}
+              possibleTypes={possibleChildTypes()}
+            />
             <Button
               className="glyphicon glyphicon-remove remove-element-button"
               onClick={this.removeElement}
               style={removeButtonStyle}
-             />
+            />
           </div>
         );
       }

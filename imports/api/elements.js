@@ -7,8 +7,11 @@ Meteor.Elements = Elements;
 Elements.collection = new Meteor.Collection('Elements');
 
 Elements.types = [
-  { humanName: 'Reference object', name: 'referenceObject' },
-  { humanName: 'Hierarchy', name: 'hierarchy' },
+  { humanName: 'Reference object', name: 'referenceObject', possibleChildren: [] },
+  { humanName: 'Hierarchy', name: 'hierarchy', possibleChildren: ['hiearchy', 'referenceObject'] },
+  { humanName: 'Aggregate', name: 'aggregate', possibleChildren: [] },
+  { humanName: 'Dimension', name: 'dimension', possibleChildren: [] },
+  { humanName: 'Dimensions group', name: 'dimensionGroup', possibleChildren: [] },
 ];
 
 Elements.add = function add(parentId, typeName) {
@@ -24,7 +27,6 @@ Elements.remove = function remove(elementId, parentId) {
   Elements.collection.update({ _id: parentId }, { $pull: { childIds: elementId } });
   Elements.collection.remove(elementId);
 };
-
 
 Elements.types.nameToHumanName = (name) => {
   const returnType = Elements.types.find((type) => {

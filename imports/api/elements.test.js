@@ -48,9 +48,15 @@ if (Meteor.isServer) {
           type.should.have.property('humanName');
           type.humanName.should.be.a('string');
         });
+
         it('should have property name of type string', function() {
           type.should.have.property('name');
           type.name.should.be.a('string');
+        });
+
+        it('should have property possibleChildren of type array', () => {
+          type.should.have.property('possibleChildren');
+          type.possibleChildren.should.be.an('array');
         });
       });
     }
