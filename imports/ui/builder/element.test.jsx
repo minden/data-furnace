@@ -8,13 +8,14 @@ import { after, before, describe, it } from 'meteor/practicalmeteor:mocha';
 import { render } from 'react-dom';
 import { should, expect } from 'meteor/practicalmeteor:chai';
 should();
-import { createContainer } from 'meteor/react-meteor-data';
 
 if (Meteor.isClient) {
-  describe.only('Element.jsx', () => {
-    let elementId;
-    let childElementId;
-    let element;
+  let elementId;
+  let element;
+  let childElementId;
+  let childChildElementId;
+
+  describe('Element.jsx', () => {
     before(() => {
       const testEnvironment = document.createElement('div');
       testEnvironment.setAttribute('id', 'test-environment');
@@ -29,7 +30,7 @@ if (Meteor.isClient) {
     });
 
     after(() => {
-      //$('#test-environment').remove();
+      $('#test-environment').remove();
     });
 
     it('should exist', () => {
@@ -42,49 +43,50 @@ if (Meteor.isClient) {
       $('.element .buttons .remove-element-button').length.should.be.above(0);
     });
 
-    describe('with a child element', () => {
+    describe('when adding a child child element', () => {
       before((done) => {
+        childChildElementId = Elements.add(childElementId, 'hierarchy');
         const interval = setInterval(() => {
-          if ($('.element .element').length > 0) {
+          if ($('.element .element .element').length > 0) {
             clearInterval(interval);
             done();
           }
         }, 100);
       });
 
-      it('the child element is shown', () => {
-        $('.element .element').length.should.not.equal(0);
+      it('the child child element is shown', () => {
+        $('.element .element .element').length.should.not.equal(0);
       });
 
       describe('when clicking the tree toggle button', () => {
         before(() => {
-          TestUtils.Simulate.click($('.element div span')[0]);
+          TestUtils.Simulate.click($('.element .element div span')[0]);
         });
 
         after(() => {
-          TestUtils.Simulate.click($('.element div span')[0]);
+          TestUtils.Simulate.click($('.element .element div span')[0]);
         });
 
-        it('the child element disappears', () => {
-          $('.element .element').length.should.equal(0);
+        it('the child child element disappears', () => {
+          $('.element .element .element').length.should.equal(0);
         });
       });
 
-      describe('when clicking the remove-element-button on the child element', () => {
+      describe('when clicking the remove-element-button on the child child element', () => {
         before(() => {
-          TestUtils.Simulate.mouseEnter($('.element .element div')[0]);
-          TestUtils.Simulate.click($('.element .element .remove-element-button')[0]);
+          TestUtils.Simulate.mouseEnter($('.element .element .element div')[0]);
+          TestUtils.Simulate.click($('.element .element .element .remove-element-button')[0]);
         });
 
-        it('the element is deleted from the database', () => {
-          let childElement = Elements.collection.findOne(childElementId);
-          expect(childElement).to.equal(undefined);
+        it('the child child element is deleted from the database', () => {
+          let childChildElement = Elements.collection.findOne(childChildElementId);
+          expect(childChildElement).to.equal(undefined);
         });
 
-        it('the element is not visible in the UI', (done) => {
+        it('the child child element is not visible in the UI', (done) => {
           const interval = setInterval(() => {
-            if ($('.element .element').length === 0) {
-              $('.element .element').length.should.equal(0);
+            if ($('.element .element .element').length === 0) {
+              $('.element .element .element').length.should.equal(0);
               done();
               clearInterval(interval);
             }
@@ -94,7 +96,3 @@ if (Meteor.isClient) {
     });
   });
 }
-
-export default createContainer(() => {
-  return { Elements: Elements.collection.find().fetch() };
-}, Element);
