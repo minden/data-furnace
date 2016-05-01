@@ -3,6 +3,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Button } from 'react-bootstrap';
 import Elements from '../../api/elements.js';
 import AddElementButton from './add-element-button.jsx';
+import ElementName from './element-name.jsx';
 
 class Element extends React.Component {
   constructor(props) {
@@ -120,7 +121,10 @@ class Element extends React.Component {
           style={{ border: '1px solid #ddd', padding: '10px' }}
         >
           {toggleButton()}
-          {Elements.types.nameToHumanName(this.props.data.typeName)}
+          <span className="label label-default">
+            {Elements.types.nameToHumanName(this.props.data.typeName)}
+          </span>
+          <ElementName elementName={this.props.data.name} elementId={this.props.data._id} />
           {buttons()}
         </div>
         {children()}

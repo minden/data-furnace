@@ -16,7 +16,7 @@ Elements.types = [
 
 Elements.add = function add(parentId, typeName) {
   const elementId = Elements.collection.insert(
-    { parentId, typeName, childIds: [] });
+    { parentId, typeName, childIds: [], name: '' });
   Elements.collection.update(
     { _id: parentId }, { $addToSet: { childIds: elementId } }
   );
@@ -26,6 +26,10 @@ Elements.add = function add(parentId, typeName) {
 Elements.remove = function remove(elementId, parentId) {
   Elements.collection.update({ _id: parentId }, { $pull: { childIds: elementId } });
   Elements.collection.remove(elementId);
+};
+
+Elements.setName = (elementId, name) => {
+  Elements.collection.update(elementId, { $set: {name }});
 };
 
 Elements.types.nameToHumanName = (name) => {
