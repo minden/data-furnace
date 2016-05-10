@@ -1,27 +1,29 @@
 import React from 'react';
 import ElementTree from './element-tree.jsx';
-import AddElementButton from './add-element-button.jsx'; 
+import AddElementButton from './add-element-button.jsx';
 import Elements from '../../api/elements.js';
 
-export default class Builder extends React.Component {
-  render() {
-    const addElementButtonDivStyle = {
-      border: '1px solid #ddd',
-      backgroundColor: '#F8F8F8',
-      padding: '10px',
-    };
+const addElementButtonDivStyle = {
+  border: '1px solid #ddd',
+  backgroundColor: '#F8F8F8',
+  padding: '10px',
+};
 
-    return (
-      <div id="builder" className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <div style={addElementButtonDivStyle}>
-              <AddElementButton possibleTypes={Elements.types} />
-            </div>
-            <ElementTree></ElementTree>
-          </div>
+const addElementButtonPossibleTypes =
+  [Elements.types.find((element) => element.name === 'dimension')];
+
+const Builder = () =>
+  <div id="builder" className="container">
+    <div className="row">
+      <div className="col-md-6">
+        <div style={addElementButtonDivStyle}>
+          <AddElementButton
+            possibleTypes={addElementButtonPossibleTypes}
+          />
         </div>
+        <ElementTree />
       </div>
-    );
-  }
-}
+    </div>
+  </div>;
+
+export default Builder;

@@ -9,9 +9,7 @@ Elements.collection = new Meteor.Collection('Elements');
 Elements.types = [
   { humanName: 'Reference object', name: 'referenceObject', possibleChildren: [] },
   { humanName: 'Hierarchy', name: 'hierarchy', possibleChildren: ['hiearchy', 'referenceObject'] },
-  { humanName: 'Aggregate', name: 'aggregate', possibleChildren: [] },
-  { humanName: 'Dimension', name: 'dimension', possibleChildren: [] },
-  { humanName: 'Dimensions group', name: 'dimensionGroup', possibleChildren: [] },
+  { humanName: 'Dimension', name: 'dimension', possibleChildren: ['referenceObject', 'hierarchy'] },
 ];
 
 Elements.add = function add(parentId, typeName) {
