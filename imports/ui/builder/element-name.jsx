@@ -7,6 +7,13 @@ export default class ElementName extends React.Component {
     this.state = {
       editing: false,
     };
+    this.setName = this.setName.bind(this);
+    this.editName = this.editName.bind(this);
+  }
+
+  setName() {
+    Elements.setName(this.props.elementId, this.refs.nameInput.value);
+    this.setState({ editing: false });
   }
 
   editName() {
@@ -15,12 +22,14 @@ export default class ElementName extends React.Component {
     });
   }
 
-  setName() {
-    Elements.setName(this.props.elementId, this.refs.nameInput.value);
-    this.setState({ editing: false });
-  }
-
   render() {
+    let elementName;
+    if (this.props.elementName.length === 0) {
+      elementName = 'name';
+    } else {
+      elementName = this.props.elementName;
+    }
+
     if (this.state.editing) {
       return (
         <input
@@ -29,7 +38,7 @@ export default class ElementName extends React.Component {
           type="text"
           defaultValue={this.props.elementName}
           ref="nameInput"
-          onBlur={this.setName.bind(this)}
+          onBlur={this.setName}
         />
       );
     }
@@ -37,10 +46,13 @@ export default class ElementName extends React.Component {
     return (
       <div
         className="elementName"
-        style={{ display: 'inline-block', paddingLeft: '7px', paddingTop: '3px', paddingBottom: '3px'}}
-        onClick={this.editName.bind(this)}
+        style={{ display: 'inline-block',
+          paddingLeft: '7px',
+          paddingTop: '3px',
+          paddingBottom: '3px' }}
+        onClick={this.editName}
       >
-        {this.props.elementName}
+        {elementName}
       </div>
     );
   }
@@ -48,5 +60,5 @@ export default class ElementName extends React.Component {
 
 ElementName.propTypes = {
   elementName: React.PropTypes.string.isRequired,
-  elementId: React.PropTypes.string.isRequired
+  elementId: React.PropTypes.string.isRequired,
 };
