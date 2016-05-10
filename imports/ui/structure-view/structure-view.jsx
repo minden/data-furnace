@@ -12,8 +12,8 @@ const addElementButtonDivStyle = {
 const addElementButtonPossibleTypes =
   [Elements.types.find((element) => element.name === 'dimension')];
 
-const Builder = () =>
-  <div id="builder" className="container">
+const StructureView = () =>
+  <div id="structure-view" className="container">
     <div className="row">
       <div className="col-md-6">
         <div style={addElementButtonDivStyle}>
@@ -26,4 +26,4 @@ const Builder = () =>
     </div>
   </div>;
 
-export default Builder;
+export default StructureView;

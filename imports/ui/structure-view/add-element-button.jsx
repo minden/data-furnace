@@ -24,7 +24,7 @@ export default class AddElementButton extends React.Component {
         <DropdownButton
           className="glyphicon glyphicon-plus add-element-button"
           id="add-element-dropdown"
-          onSelect={this.handleAddElement.bind(this)}
+          onSelect={this.handleAddElement}
           title=""
           style={dropDownButtonStyle}
         >
