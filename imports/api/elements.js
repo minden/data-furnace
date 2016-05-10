@@ -29,7 +29,7 @@ Elements.remove = function remove(elementId, parentId) {
 };
 
 Elements.setName = (elementId, name) => {
-  Elements.collection.update(elementId, { $set: {name }});
+  Elements.collection.update(elementId, { $set: { name } });
 };
 
 Elements.types.nameToHumanName = (name) => {
