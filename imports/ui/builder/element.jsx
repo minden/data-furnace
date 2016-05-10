@@ -24,13 +24,11 @@ class Element extends React.Component {
       const togglerClasses = () => {
         if (this.props.data.childIds && this.props.data.childIds.length === 0) {
           return '';
-        } else {
-          if (this.state.childrenVisible) {
-            return 'glyphicon glyphicon-chevron-down';
-          } else {
-            return 'glyphicon glyphicon-chevron-right';
-          }
         }
+        if (this.state.childrenVisible) {
+          return 'glyphicon glyphicon-chevron-down';
+        }
+        return 'glyphicon glyphicon-chevron-right';
       };
       const toggleChildrenVisible = () => {
         this.setState({ childrenVisible: !this.state.childrenVisible });
@@ -57,7 +55,7 @@ class Element extends React.Component {
       if (this.state.childrenVisible === true) {
         return (
           <div className="list-group sub-elements-list" style={subElementsListStyle}>
-            {getChildren(this.props.data.childIds).map(function (element) {
+            {getChildren(this.props.data.childIds).map((element) => {
               return <Element key={element._id} data={element} />;
             })}
           </div >
@@ -79,7 +77,8 @@ class Element extends React.Component {
       };
 
       const possibleChildTypes = () => {
-        const currentType = Elements.types.find((element) => element.name === this.props.data.typeName);
+        const currentType =
+          Elements.types.find((element) => element.name === this.props.data.typeName);
         return Elements.types.filter((type) => {
           if (currentType.possibleChildren.indexOf(type.name) === -1) {
             return false;
