@@ -24,6 +24,7 @@ export default class ElementName extends React.Component {
     if (this.state.editing) {
       return (
         <input
+          className="elementName"
           style={{ marginLeft: '5px' }}
           type="text"
           defaultValue={this.props.elementName}
@@ -34,7 +35,8 @@ export default class ElementName extends React.Component {
     }
 
     return (
-      <div 
+      <div
+        className="elementName"
         style={{ display: 'inline-block', paddingLeft: '7px', paddingTop: '3px', paddingBottom: '3px'}}
         onClick={this.editName.bind(this)}
       >

@@ -58,6 +58,19 @@ if (Meteor.isClient) {
         $('.element .element .element').length.should.not.equal(0);
       });
 
+      describe('when changing the name', () => {
+        let newElementName = 'newElementName';
+        before(() => {
+          TestUtils.Simulate.click($('.element .element .element div.elementName')[0]);
+          $('input.elementName').val(newElementName);
+          TestUtils.Simulate.blur($('.element .element .element input.elementName')[0]);
+        });
+
+        it('should change the name in the mongo db', () => {
+          Elements.collection.findOne(childChildElementId).name.should.equal(newElementName);
+        });
+      });
+
       describe('when clicking the tree toggle button', () => {
         before(() => {
           TestUtils.Simulate.click($('.element .element div span')[0]);
