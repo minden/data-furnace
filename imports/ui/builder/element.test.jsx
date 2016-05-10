@@ -79,7 +79,7 @@ if (Meteor.isClient) {
         });
 
         it('the child child element is deleted from the database', () => {
-          let childChildElement = Elements.collection.findOne(childChildElementId);
+          const childChildElement = Elements.collection.findOne(childChildElementId);
           expect(childChildElement).to.equal(undefined);
         });
 
