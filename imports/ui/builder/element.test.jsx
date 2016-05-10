@@ -59,7 +59,7 @@ if (Meteor.isClient) {
       });
 
       describe('when changing the name', () => {
-        let newElementName = 'newElementName';
+        const newElementName = 'newElementName';
         before(() => {
           TestUtils.Simulate.click($('.element .element .element div.elementName')[0]);
           $('input.elementName').val(newElementName);
