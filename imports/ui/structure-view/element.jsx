@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import Elements from '../../api/elements.js';
 import AddElementButton from './add-element-button.jsx';
 import ElementName from './element-name.jsx';
+import ElementTypeNameLabel from './element-type-name-label.jsx';
 
 class Element extends React.Component {
   constructor(props) {
@@ -127,9 +128,7 @@ class Element extends React.Component {
           style={{ border: '1px solid #ddd', padding: '10px' }}
         >
           {toggleButton()}
-          <span className="label label-default">
-            {Elements.types.nameToHumanName(this.props.data.typeName)}
-          </span>
+          <ElementTypeNameLabel typeName={this.props.data.typeName} />
           <ElementName elementName={this.props.data.name} elementId={this.props.data._id} />
           {buttons()}
         </div>

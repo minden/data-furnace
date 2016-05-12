@@ -4,6 +4,7 @@ import { Form, FormGroup, Col, Panel } from 'react-bootstrap';
 
 import Elements from '../../../api/elements.js';
 import ElementDetailsTitle from './element-details-title.jsx';
+import ElementTypeNameLabel from '../element-type-name-label.jsx';
 
 const elementDetailsTitle = (props) => {
   return new ElementDetailsTitle({ elementName: props.element.name, elementId: props.elementId });
@@ -19,7 +20,7 @@ const ElementDetails = (props) => (
           Type
         </Col>
         <Col sm={10}>
-          {props.element.typeName}
+          <ElementTypeNameLabel typeName={props.element.typeName} />
         </Col>
       </FormGroup>
     </Form>
