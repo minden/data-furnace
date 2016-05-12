@@ -39,9 +39,8 @@ export default class AddElementButton extends React.Component {
           })}
         </DropdownButton>
       );
-    } else {
-      return (<div></div>);
     }
+    return (<div></div>);
   }
 }
 
