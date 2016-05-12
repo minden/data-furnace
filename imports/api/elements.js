@@ -1,4 +1,6 @@
 import { Meteor } from 'meteor/meteor';
+import { Random } from 'meteor/random';
+import { check } from 'meteor/check';
 
 const Elements = {};
 
@@ -14,7 +16,8 @@ Elements.types = [
 
 Elements.add = function add(parentId, typeName) {
   const elementId = Elements.collection.insert(
-    { parentId, typeName, childIds: [], name: '' });
+    { parentId, typeName, childIds: [], name: '', attributes: [] }
+  );
   Elements.collection.update(
     { _id: parentId }, { $addToSet: { childIds: elementId } }
   );
@@ -33,6 +36,32 @@ Elements.setName = (elementId, name) => {
 Elements.setDescription = (elementId, description) => {
   Elements.collection.update(elementId, { $set: { description } });
 };
+
+Elements.addAttribute = (elementId) => {
+  Elements.collection.update(elementId, { $push: { attributes: { _id: Random.id(), name: '', type: '' } } });
+};
+
+Meteor.methods({
+  'elements.setAttributeName': (elementId, attributeId, name) => {
+    check(elementId, String);
+    check(attributeId, String);
+    check(name, String);
+    Elements.collection.update(
+      { _id: elementId, 'attributes._id': attributeId },
+      { $set: { 'attributes.$.name': name } }
+    );
+  },
+
+  'elements.setAttributeType': (elementId, attributeId, type) => {
+    check(elementId, String);
+    check(attributeId, String);
+    check(type, String);
+    Elements.collection.update(
+      { _id: elementId, 'attributes._id': attributeId },
+      { $set: { 'attributes.$.type': type } }
+    );
+  },
+});
 
 Elements.types.nameToHumanName = (name) => {
   const returnType = Elements.types.find((type) => {

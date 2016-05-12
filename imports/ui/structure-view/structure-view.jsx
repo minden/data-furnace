@@ -25,12 +25,12 @@ class StructureView extends React.Component {
     return (
       <div id="structure-view" className="container">
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-8">
             <ElementTree
               setSelectedElementId={this.setSelectedElementId}
             />
           </div>
-          <div className="col-md-6">
+          <div className="col-md-4">
             {elementDetails()}
           </div>
         </div>

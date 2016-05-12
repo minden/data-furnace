@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Form, FormGroup, Col, Panel } from 'react-bootstrap';
+import ElementDetailsAttributes from './element-details-attributes.jsx';
 
 import Elements from '../../../api/elements.js';
 import ElementDetailsTitle from './element-details-title.jsx';
@@ -18,19 +19,19 @@ const ElementDetails = (props) => (
   >
     <Form horizontal>
       <FormGroup>
-        <Col sm={2} style={{ textAlign: 'right' }}>
+        <Col sm={4} style={{ textAlign: 'right' }}>
           Type
         </Col>
-        <Col sm={10}>
+        <Col sm={8}>
           <ElementTypeNameLabel typeName={props.element.typeName} />
         </Col>
       </FormGroup>
 
       <FormGroup>
-        <Col sm={2} style={{ textAlign: 'right' }}>
+        <Col sm={4} style={{ textAlign: 'right' }}>
           Description
         </Col>
-        <Col sm={10}>
+        <Col sm={8}>
           <InplaceEdit
             text={props.element.description}
             onChange={(text) => Elements.setDescription(props.element._id, text)}
@@ -38,6 +39,8 @@ const ElementDetails = (props) => (
         </Col>
       </FormGroup>
     </Form>
+    <hr />
+    <ElementDetailsAttributes attributes={props.element.attributes} elementId={props.element._id} />
   </Panel>
 );
 
