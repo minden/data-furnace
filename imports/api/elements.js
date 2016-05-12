@@ -15,12 +15,19 @@ Elements.types = [
 ];
 
 Elements.add = function add(parentId, typeName) {
-  const elementId = Elements.collection.insert(
-    { parentId, typeName, childIds: [], name: '', attributes: [] }
-  );
+  const elementId = Elements.collection.insert({
+    attributes: [],
+    childIds: [],
+    description: '',
+    name: 'unnamed',
+    parentId,
+    typeName,
+  });
+
   Elements.collection.update(
     { _id: parentId }, { $addToSet: { childIds: elementId } }
   );
+
   return elementId;
 };
 
