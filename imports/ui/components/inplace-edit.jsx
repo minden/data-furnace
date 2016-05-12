@@ -23,9 +23,9 @@ export default class InplaceEdit extends React.Component {
 
   editIcon() {
     if (!this.props.text) {
-    return (
-      <span className="glyphicon glyphicon-pencil"></span>
-    );
+      return (
+        <span className="glyphicon glyphicon-pencil"></span>
+      );
     }
   }
 
@@ -45,7 +45,7 @@ export default class InplaceEdit extends React.Component {
 
     return (
       <div
-        style={{ display: 'inline-block' }}
+        style={{ display: 'inline-block', paddingLeft: '2px' }}
         onClick={this.edit}
       >
         {this.editIcon()}
