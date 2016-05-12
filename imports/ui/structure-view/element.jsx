@@ -56,7 +56,13 @@ class Element extends React.Component {
         return (
           <div className="list-group sub-elements-list" style={subElementsListStyle}>
             {getChildren(this.props.data.childIds).map((element) => {
-              return <Element key={element._id} data={element} />;
+              return (
+                <Element
+                  setSelectedElementId={this.props.setSelectedElementId}
+                  key={element._id}
+                  data={element}
+                />
+                );
             })}
           </div >
         );
@@ -115,6 +121,7 @@ class Element extends React.Component {
     return (
       <div className="element" style={{ paddingTop: '5px' }}>
         <div
+          onClick={() => this.props.setSelectedElementId(this.props.data._id)}
           onMouseEnter={makeButtonsVisible}
           onMouseLeave={makeButtonsNotVisible}
           style={{ border: '1px solid #ddd', padding: '10px' }}
@@ -135,6 +142,7 @@ class Element extends React.Component {
 Element.propTypes = {
   data: React.PropTypes.object.isRequired,
   subElements: React.PropTypes.array,
+  setSelectedElementId: React.PropTypes.func.isRequired,
 };
 
 export default createContainer(() => {

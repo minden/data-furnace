@@ -1,29 +1,42 @@
 import React from 'react';
 import ElementTree from './element-tree.jsx';
-import AddElementButton from './add-element-button.jsx';
-import Elements from '../../api/elements.js';
+import ElementDetails from './element-details/element-details.jsx';
 
-const addElementButtonDivStyle = {
-  border: '1px solid #ddd',
-  backgroundColor: '#F8F8F8',
-  padding: '10px',
-};
+class StructureView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedElementId: undefined,
+    };
+    this.setSelectedElementId = this.setSelectedElementId.bind(this);
+  }
 
-const addElementButtonPossibleTypes =
-  [Elements.types.find((element) => element.name === 'dimension')];
+  setSelectedElementId(elementId) {
+    this.setState({ selectedElementId: elementId });
+  }
 
-const StructureView = () =>
-  <div id="structure-view" className="container">
-    <div className="row">
-      <div className="col-md-6">
-        <div style={addElementButtonDivStyle}>
-          <AddElementButton
-            possibleTypes={addElementButtonPossibleTypes}
-          />
+  render() {
+    const elementDetails = () => {
+      if (this.state.selectedElementId) {
+        return <ElementDetails elementId={this.state.selectedElementId} />;
+      }
+    };
+
+    return (
+      <div id="structure-view" className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <ElementTree
+              setSelectedElementId={this.setSelectedElementId}
+            />
+          </div>
+          <div className="col-md-6">
+            {elementDetails()}
+          </div>
         </div>
-        <ElementTree />
       </div>
-    </div>
-  </div>;
+    );
+  }
+}
 
 export default StructureView;
