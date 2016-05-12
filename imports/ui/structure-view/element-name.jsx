@@ -2,37 +2,32 @@ import React from 'react';
 import Elements from '../../api/elements.js';
 import InplaceEdit from '../components/inplace-edit.jsx';
 
-export default class ElementName extends React.Component {
-  constructor(props) {
-    super(props);
-    this.setName = this.setName.bind(this);
-  }
+const setName = (elementId, text) => {
+  Elements.setName(elementId, text);
+};
 
-  setName(text) {
-    Elements.setName(this.props.elementId, text);
-    this.setState({ editing: false });
+const elementName = (name) => {
+  if (name.length === 0) {
+    return 'name';
   }
+  return name;
+};
 
-  render() {
-    let elementName;
-    if (this.props.elementName.length === 0) {
-      elementName = 'name';
-    } else {
-      elementName = this.props.elementName;
-    }
-
-    return (
-      <div
-        className="elementName"
-        style= {{ display: 'inline-block' }}
-      >
-        <InplaceEdit onChange={this.setName} text={elementName} />
-      </div>
-    );
-  }
-}
+const ElementName = (props) => (
+  <div
+    className="elementName"
+    style={{ display: 'inline-block' }}
+  >
+    <InplaceEdit
+      onChange={(text) => setName(props.elementId, text)}
+      text={elementName(props.elementName)}
+    />
+  </div>
+);
 
 ElementName.propTypes = {
   elementName: React.PropTypes.string.isRequired,
   elementId: React.PropTypes.string.isRequired,
 };
+
+export default ElementName;
