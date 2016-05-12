@@ -21,27 +21,34 @@ export default class InplaceEdit extends React.Component {
     });
   }
 
+  editIcon() {
+    if (!this.props.text) {
+    return (
+      <span className="glyphicon glyphicon-pencil"></span>
+    );
+    }
+  }
+
   render() {
     if (this.state.editing) {
       return (
         <input
-          style={{ marginLeft: '5px' }}
+          style={{ marginTop: '-3px', marginBottom: '-3px' }}
           type="text"
           defaultValue={this.props.text}
           ref="input"
           onBlur={this.view}
+          size={this.props.text.length}
         />
       );
     }
 
     return (
       <div
-        style={{ display: 'inline-block',
-          paddingLeft: '7px',
-          paddingTop: '3px',
-          paddingBottom: '3px' }}
+        style={{ display: 'inline-block' }}
         onClick={this.edit}
       >
+        {this.editIcon()}
         {this.props.text}
       </div>
     );
@@ -49,6 +56,6 @@ export default class InplaceEdit extends React.Component {
 }
 
 InplaceEdit.propTypes = {
-  text: React.PropTypes.string.isRequired,
+  text: React.PropTypes.string,
   onChange: React.PropTypes.func.isRequired,
 };
