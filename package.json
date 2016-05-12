@@ -5,6 +5,7 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "eslint-plugin-meteor": "^3.5.2",
     "jquery": "^2.2.3",
     "meteor-node-stubs": "~0.2.0",
     "mocha": "^2.4.5",
