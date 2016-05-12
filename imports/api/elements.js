@@ -30,6 +30,10 @@ Elements.setName = (elementId, name) => {
   Elements.collection.update(elementId, { $set: { name } });
 };
 
+Elements.setDescription = (elementId, description) => {
+  Elements.collection.update(elementId, { $set: { description } });
+};
+
 Elements.types.nameToHumanName = (name) => {
   const returnType = Elements.types.find((type) => {
     if (type.name === name) {
