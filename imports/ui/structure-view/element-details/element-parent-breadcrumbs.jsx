@@ -19,7 +19,7 @@ const ElementParentBreadCrumbs = (props) => (
     {getParents(props.elementId).map((parent) => {
       return (
         <Breadcrumb.Item>
-          {parent.name}
+          {parent.name.substring(0,4)}
         </Breadcrumb.Item>
         );
     })}
