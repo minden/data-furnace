@@ -10,7 +10,7 @@ Elements.collection = new Meteor.Collection('Elements');
 
 Elements.types = [
   { humanName: 'Reference object', name: 'referenceObject', possibleChildren: [] },
-  { humanName: 'Hierarchy', name: 'hierarchy', possibleChildren: ['hiearchy', 'referenceObject'] },
+  { humanName: 'Hierarchy', name: 'hierarchy', possibleChildren: ['hierarchy', 'referenceObject'] },
   { humanName: 'Dimension', name: 'dimension', possibleChildren: ['referenceObject', 'hierarchy'] },
 ];
 
