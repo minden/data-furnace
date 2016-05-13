@@ -128,7 +128,9 @@ class Element extends React.Component {
           style={{ border: '1px solid #ddd', padding: '10px' }}
         >
           {toggleButton()}
-          <ElementTypeNameLabel typeName={this.props.data.typeName} />
+          <div style={{ display: 'inline', paddingRight: '10px' }}>
+            <ElementTypeNameLabel typeName={this.props.data.typeName} />
+          </div>
           <ElementName elementName={this.props.data.name} elementId={this.props.data._id} />
           {buttons()}
         </div>
