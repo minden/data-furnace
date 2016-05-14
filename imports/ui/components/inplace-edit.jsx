@@ -33,6 +33,7 @@ export default class InplaceEdit extends React.Component {
     if (this.state.editing) {
       return (
         <input
+          className="inplace-edit-inputfield"
           style={{ marginTop: '-3px', marginBottom: '-3px' }}
           type="text"
           defaultValue={this.props.text}
@@ -45,6 +46,7 @@ export default class InplaceEdit extends React.Component {
 
     return (
       <div
+        className="inplace-edit-textfield"
         style={{ display: 'inline-block', paddingLeft: '2px' }}
         onClick={this.edit}
       >

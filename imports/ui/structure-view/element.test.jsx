@@ -61,9 +61,9 @@ if (Meteor.isClient) {
       describe('when changing the name', () => {
         const newElementName = 'newElementName';
         before(() => {
-          TestUtils.Simulate.click($('.element .element .element div.elementName')[0]);
-          $('input.elementName').val(newElementName);
-          TestUtils.Simulate.blur($('.element .element .element input.elementName')[0]);
+          TestUtils.Simulate.click($('.element .element .element div.inplace-edit-textfield')[0]);
+          $('input.inplace-edit-inputfield').val(newElementName);
+          TestUtils.Simulate.blur($('.element .element .element input.inplace-edit-inputfield')[0]);
         });
 
         it('should change the name in the mongo db', () => {
