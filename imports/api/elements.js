@@ -9,9 +9,21 @@ Meteor.Elements = Elements;
 Elements.collection = new Meteor.Collection('Elements');
 
 Elements.types = [
-  { humanName: 'Reference object', name: 'referenceObject', possibleChildren: [] },
-  { humanName: 'Hierarchy', name: 'hierarchy', possibleChildren: ['hierarchy', 'referenceObject'] },
-  { humanName: 'Dimension', name: 'dimension', possibleChildren: ['referenceObject', 'hierarchy'] },
+  {
+    humanName: 'Reference object',
+    name: 'referenceObject',
+    possibleChildren: [],
+  },
+  {
+    humanName: 'Hierarchy',
+    name: 'hierarchy',
+    possibleChildren: ['hierarchy', 'referenceObject'],
+  },
+  {
+    humanName: 'Dimension',
+    name: 'dimension',
+    possibleChildren: ['referenceObject', 'hierarchy'],
+  },
 ];
 
 Elements.add = function add(parentId, typeName) {
@@ -45,7 +57,10 @@ Elements.setDescription = (elementId, description) => {
 };
 
 Elements.addAttribute = (elementId) => {
-  Elements.collection.update(elementId, { $push: { attributes: { _id: Random.id(), name: '', type: '' } } });
+  Elements.collection.update(
+    elementId,
+    { $push: { attributes: { _id: Random.id(), name: '', type: '' } } }
+  );
 };
 
 Meteor.methods({
