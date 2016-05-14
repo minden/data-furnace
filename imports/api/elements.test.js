@@ -13,8 +13,8 @@ if (Meteor.isServer) {
     });
   });
 
-  describe('Elements.collection', function() {
-    it('should be a collection', function() {
+  describe('Elements.collection', () => {
+    it('should be a collection', () => {
       Elements.collection.should.have.property('_collection');
     });
   });
@@ -41,15 +41,15 @@ if (Meteor.isServer) {
     });
   });
 
-  describe('Elements.types', function() {
-    for(type of Elements.types) {
-      describe(type.humanName, function() {
-        it('should have property humanName of type string', function() {
+  describe('Elements.types', () => {
+    for (const type of Elements.types) {
+      describe(type.humanName, () => {
+        it('should have property humanName of type string', () => {
           type.should.have.property('humanName');
           type.humanName.should.be.a('string');
         });
 
-        it('should have property name of type string', function() {
+        it('should have property name of type string', () => {
           type.should.have.property('name');
           type.name.should.be.a('string');
         });
@@ -62,8 +62,8 @@ if (Meteor.isServer) {
     }
   });
 
-  describe('Elements.types.nameToHumanName', function() {
-    it('should return "Reference object" on "referenceObject"', function() {
+  describe('Elements.types.nameToHumanName', () => {
+    it('should return "Reference object" on "referenceObject"', () => {
       Elements.types.nameToHumanName('referenceObject').should.equal('Reference object');
     });
   });
