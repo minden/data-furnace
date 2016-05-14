@@ -8,7 +8,6 @@ export default class MainNavBar extends React.Component {
     this.isActive = this.isActive.bind(this);
   }
 
-
   isActive(view) {
     return this.context.router.isActive(view);
   }
@@ -41,6 +40,5 @@ export default class MainNavBar extends React.Component {
 }
 
 MainNavBar.contextTypes = {
-  router: React.PropTypes.func.isRequired,
-  history: React.PropTypes.object.isRequired,
+  router: React.PropTypes.object.isRequired,
 };
