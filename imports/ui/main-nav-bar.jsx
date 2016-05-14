@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import { Link, withRouter } from 'react-router';
+import { Link } from 'react-router';
 
 export default class MainNavBar extends React.Component {
   constructor(props, context) {
@@ -22,8 +22,18 @@ export default class MainNavBar extends React.Component {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <NavItem active={this.isActive('structure-view')} eventKey={'structure'}><Link to="/structure-view">Structure View</Link></NavItem>
-          <NavItem active={this.isActive('measure-view')} eventKey={'measure'}><Link to="measure-view">Measure View</Link></NavItem>
+          <NavItem
+            active={this.isActive('structure-view')}
+            eventKey={'structure'}
+          >
+            <Link to="/structure-view">Structure View</Link>
+          </NavItem>
+          <NavItem
+            active={this.isActive('measure-view')}
+            eventKey={'measure'}
+          >
+            <Link to="measure-view">Measure View</Link>
+          </NavItem>
         </Nav>
       </Navbar>
     );
@@ -31,6 +41,6 @@ export default class MainNavBar extends React.Component {
 }
 
 MainNavBar.contextTypes = {
-      router: React.PropTypes.func.isRequired,
-      history: React.PropTypes.object.isRequired,
+  router: React.PropTypes.func.isRequired,
+  history: React.PropTypes.object.isRequired,
 };
