@@ -16,10 +16,10 @@ const getParents = (elementId) => {
 
 const ElementParentBreadCrumbs = (props) => (
   <Breadcrumb style={{ display: 'inline' }}>
-    {getParents(props.elementId).map((parent) => {
+    {getParents(props.elementId).map((parent, index) => {
       return (
-        <Breadcrumb.Item>
-          {parent.name.substring(0,4)}
+        <Breadcrumb.Item key={index}>
+          {parent.name.substring(0, 4)}
         </Breadcrumb.Item>
         );
     })}

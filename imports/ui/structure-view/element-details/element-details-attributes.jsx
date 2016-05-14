@@ -13,9 +13,9 @@ const setAttributeType = (elementId, attributeId, text) => {
 
 const ElementDetailsAttributes = (props) => (
   <Form horizontal>
-    {props.attributes.map((attribute) => {
+    {props.attributes.map((attribute, index) => {
       return (
-        <FormGroup>
+        <FormGroup key={index}>
           <Col sm={4} style={{ textAlign: 'right' }}>
             <InplaceEdit
               text={attribute.name}
