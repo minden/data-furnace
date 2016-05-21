@@ -12,17 +12,17 @@ const setAttributeType = (elementId, attributeId, text) => {
 };
 
 const ElementDetailsAttributes = (props) => (
-  <Form horizontal>
+  <Form horizontal id="element-attributes">
     {props.attributes.map((attribute, index) => {
       return (
         <FormGroup key={index}>
-          <Col sm={4} style={{ textAlign: 'right' }}>
+          <Col sm={4} style={{ textAlign: 'right' }} className="attribute-name">
             <InplaceEdit
               text={attribute.name}
               onChange={(text) => setAttributeName(props.elementId, attribute._id, text)}
             />
           </Col>
-          <Col sm={8}>
+          <Col sm={8} className="attribute-type">
             <InplaceEdit
               text={attribute.type}
               onChange={(text) => setAttributeType(props.elementId, attribute._id, text)}
