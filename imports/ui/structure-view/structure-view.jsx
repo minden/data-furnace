@@ -18,7 +18,12 @@ class StructureView extends React.Component {
   render() {
     const elementDetails = () => {
       if (this.state.selectedElementId) {
-        return <ElementDetails elementId={this.state.selectedElementId} />;
+        return (
+          <ElementDetails
+            elementId={this.state.selectedElementId}
+            setSelectedElementId={this.setSelectedElementId}
+          />
+        );
       }
     };
 

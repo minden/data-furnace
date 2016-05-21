@@ -18,7 +18,7 @@ const ElementParentBreadCrumbs = (props) => (
   <Breadcrumb style={{ display: 'inline' }}>
     {getParents(props.elementId).map((parent, index) => {
       return (
-        <Breadcrumb.Item key={index}>
+        <Breadcrumb.Item key={index} onClick={() => props.setSelectedElementId(parent._id)}>
           {parent.name.substring(0, 4)}
         </Breadcrumb.Item>
         );
@@ -28,6 +28,7 @@ const ElementParentBreadCrumbs = (props) => (
 
 ElementParentBreadCrumbs.propTypes = {
   elementId: PropTypes.string.isRequired,
+  setSelectedElementId: PropTypes.func.isRequired,
 };
 
 export default ElementParentBreadCrumbs;

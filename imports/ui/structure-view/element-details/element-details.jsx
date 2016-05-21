@@ -9,7 +9,13 @@ import ElementTypeNameLabel from '../element-type-name-label.jsx';
 import InplaceEdit from '../../components/inplace-edit.jsx';
 
 const elementDetailsTitle = (props) => {
-  return new ElementDetailsTitle({ elementName: props.element.name, elementId: props.elementId });
+  return new ElementDetailsTitle(
+    {
+      elementName: props.element.name,
+      elementId: props.elementId,
+      setSelectedElementId: props.setSelectedElementId,
+    }
+  );
 };
 
 
@@ -47,6 +53,7 @@ const ElementDetails = (props) => (
 ElementDetails.propTypes = {
   elementId: PropTypes.string.isRequired,
   element: PropTypes.object.isRequired,
+  setSelectedElementId: PropTypes.func.isRequired,
 };
 
 export default createContainer((props) => {

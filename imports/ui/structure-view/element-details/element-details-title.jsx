@@ -12,7 +12,10 @@ const addAttribute = (elementId) => {
 
 const ElementDetailsTitle = (props) => (
   <div>
-    <ElementParentBreadCrumbs elementId={props.elementId} />
+    <ElementParentBreadCrumbs
+      elementId={props.elementId}
+      setSelectedElementId={props.setSelectedElementId}
+    />
     <ElementName elementName={props.elementName} elementId={props.elementId} />
     <Button
       className="glyphicon glyphicon-plus pull-right"
@@ -25,6 +28,7 @@ const ElementDetailsTitle = (props) => (
 ElementDetailsTitle.propTypes = {
   elementName: PropTypes.string,
   elementId: PropTypes.string.isRequired,
+  setSelectedElementId: PropTypes.func.isRequired,
 };
 
 export default ElementDetailsTitle;
