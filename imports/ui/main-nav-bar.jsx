@@ -12,26 +12,32 @@ export default class MainNavBar extends React.Component {
     return this.context.router.isActive(view);
   }
 
+  goTo(location) {
+    this.context.router.push(location);
+  }
+
   render() {
     return (
       <Navbar>
         <Navbar.Header>
-          <Navbar.Brand>
-            Blueprint
+          <Navbar.Brand style={{ color: '#DE4646' }}>
+            DataFurnace
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
           <NavItem
+            style={{ color: 'white' }}
             active={this.isActive('structure-view')}
-            eventKey={'structure'}
+            onClick={() => this.goTo('/structure-view')}
           >
-            <Link to="/structure-view">Structure View</Link>
+            Structure View
           </NavItem>
           <NavItem
+            style={{ color: 'white' }}
             active={this.isActive('measure-view')}
-            eventKey={'measure'}
+            onClick={() => this.goTo('/measure-view')}
           >
-            <Link to="measure-view">Measure View</Link>
+            Measure View
           </NavItem>
         </Nav>
       </Navbar>

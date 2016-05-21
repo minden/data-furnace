@@ -6,9 +6,9 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-      <MainNavBar />
-      {this.props.children}
-    </div>
+        <MainNavBar />
+        {this.props.children}
+      </div>
     );
   }
 }
