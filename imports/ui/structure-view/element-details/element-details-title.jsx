@@ -7,7 +7,7 @@ import Elements from '../../../api/elements.js';
 import ElementParentBreadCrumbs from './element-parent-breadcrumbs.jsx';
 
 const addAttribute = (elementId) => {
-  Elements.addAttribute(elementId);
+  Elements.attributes.add(elementId);
 };
 
 const ElementDetailsTitle = (props) => (
