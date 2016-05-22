@@ -19,7 +19,10 @@ const MeasureExplorer = (props) => (
     <ListGroup>
       {props.measures.map((measure) => {
         return (
-          <ListGroupItem>{measure.name}</ListGroupItem>
+          <ListGroupItem
+            active={props.selectedMeasureId === measure._id}
+            onClick={() => props.setSelectedMeasureId(measure._id)}
+          >{measure.name}</ListGroupItem>
           );
       })}
     </ListGroup>
@@ -28,6 +31,8 @@ const MeasureExplorer = (props) => (
 
 MeasureExplorer.propTypes = {
   measures: PropTypes.array.isRequired,
+  selectedMeasureId: PropTypes.string,
+  setSelectedMeasureId: PropTypes.func.isRequired,
 };
 
 export default createContainer(() => {
