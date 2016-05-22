@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import InplaceEdit from '../components/inplace-edit.jsx';
-import Measures from '../../api/measures/measures.js';
+import InplaceEdit from '../../components/inplace-edit.jsx';
+import Measures from '../../../api/measures/measures.js';
 
 const MeasureDetailsHeader = (props) => (
   <InplaceEdit

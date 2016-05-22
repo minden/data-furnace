@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import MeasureExplorer from './measure-explorer.jsx';
-import MeasureDetails from './measure-details.jsx';
+import MeasureEditor from './measure-editor/measure-editor.jsx';
 
 class MeasureView extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class MeasureView extends React.Component {
             />
           </Col>
           <Col md={8}>
-            <MeasureDetails
+            <MeasureEditor
               selectedMeasureId={this.state.selectedMeasureId}
             />
           </Col>
