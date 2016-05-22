@@ -18,8 +18,12 @@ const ElementParentBreadCrumbs = (props) => (
   <Breadcrumb style={{ display: 'inline' }}>
     {getParents(props.elementId).map((parent, index) => {
       return (
-        <Breadcrumb.Item key={index} onClick={() => props.setSelectedElementId(parent._id)}>
-          {parent.name.substring(0, 4)}
+        <Breadcrumb.Item
+          key={index}
+          onClick={() => props.setSelectedElementId(parent._id)}
+          style={{ color: 'grey' }}
+        >
+          {parent.name.substring(0, 6)}
         </Breadcrumb.Item>
         );
     })}
