@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import AddElementButton from './add-element-button.jsx';
-import Elements from '../../api/elements.js';
+import Elements from '../../api/elements/elements.js';
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { after, before, describe, it } from 'meteor/practicalmeteor:mocha';

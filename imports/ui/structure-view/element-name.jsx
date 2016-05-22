@@ -1,5 +1,5 @@
 import React from 'react';
-import Elements from '../../api/elements.js';
+import Elements from '../../api/elements/elements.js';
 import InplaceEdit from '../components/inplace-edit.jsx';
 
 const setName = (elementId, text) => {

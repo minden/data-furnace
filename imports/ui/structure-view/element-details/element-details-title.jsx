@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 
 
 import ElementName from '../element-name.jsx';
-import Elements from '../../../api/elements.js';
+import Elements from '../../../api/elements/elements.js';
 import ElementParentBreadCrumbs from './element-parent-breadcrumbs.jsx';
 
 const addAttribute = (elementId) => {

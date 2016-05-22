@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
-import Elements from '../../api/elements.js';
+import Elements from '../../api/elements/elements.js';
 import Element from './element.jsx';
 import AddElementButton from './add-element-button.jsx';
 import { Panel } from 'react-bootstrap';

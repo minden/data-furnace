@@ -1,7 +1,7 @@
 import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Button } from 'react-bootstrap';
-import Elements from '../../api/elements.js';
+import Elements from '../../api/elements/elements.js';
 import AddElementButton from './add-element-button.jsx';
 import ElementName from './element-name.jsx';
 import ElementTypeNameLabel from './element-type-name-label.jsx';

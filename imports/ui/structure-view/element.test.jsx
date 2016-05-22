@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import Element from './element.jsx';
-import Elements from '../../api/elements.js';
+import Elements from '../../api/elements/elements.js';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import { Meteor } from 'meteor/meteor';

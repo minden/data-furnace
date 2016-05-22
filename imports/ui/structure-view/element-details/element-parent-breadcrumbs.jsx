@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Elements from '../../../api/elements.js';
+import Elements from '../../../api/elements/elements.js';
 import { Breadcrumb } from 'react-bootstrap';
 
 const getParents = (elementId) => {

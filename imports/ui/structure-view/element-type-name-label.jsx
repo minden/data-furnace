@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Elements from '../../api/elements.js';
+import Elements from '../../api/elements/elements.js';
 
 const ElementTypeNameLabel = (props) => (
   <span className="label label-default">

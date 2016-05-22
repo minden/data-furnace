@@ -3,7 +3,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Form, FormGroup, Col, Panel } from 'react-bootstrap';
 import ElementDetailsAttributes from './element-details-attributes.jsx';
 
-import Elements from '../../../api/elements.js';
+import Elements from '../../../api/elements/elements.js';
 import ElementDetailsTitle from './element-details-title.jsx';
 import ElementTypeNameLabel from '../element-type-name-label.jsx';
 import InplaceEdit from '../../components/inplace-edit.jsx';
