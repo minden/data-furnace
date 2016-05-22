@@ -24,3 +24,4 @@ twbs:bootstrap
 less
 practicalmeteor:mocha
 random
+fortawesome:fontawesome
