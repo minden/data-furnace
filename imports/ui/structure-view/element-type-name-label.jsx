@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Elements from '../../api/elements.js';
 
 const ElementTypeNameLabel = (props) => (
@@ -6,5 +6,9 @@ const ElementTypeNameLabel = (props) => (
     {Elements.types.nameToHumanName(props.typeName)}
   </span>
 );
+
+ElementTypeNameLabel.propTypes = {
+  typeName: PropTypes.string.isRequired,
+};
 
 export default ElementTypeNameLabel;
