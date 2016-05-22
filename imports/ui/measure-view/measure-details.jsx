@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { Panel } from 'react-bootstrap';
 import { createContainer } from 'meteor/react-meteor-data';
 import measureDetailsHeader from './measure-details-header.js';
-import MeasureEditor from './measure-editor.js';
+import MeasureEditor from './measure-editor.jsx';
 
 const MeasureDetails = (props) => {
   if (!props.measure) {
