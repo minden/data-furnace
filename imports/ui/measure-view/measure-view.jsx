@@ -27,7 +27,9 @@ class MeasureView extends React.Component {
             />
           </Col>
           <Col md={8}>
-            <MeasureDetails />
+            <MeasureDetails
+              selectedMeasureId={this.state.selectedMeasureId}
+            />
           </Col>
         </Row>
       </div>

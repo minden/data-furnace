@@ -22,7 +22,10 @@ const MeasureExplorer = (props) => (
           <ListGroupItem
             active={props.selectedMeasureId === measure._id}
             onClick={() => props.setSelectedMeasureId(measure._id)}
-          >{measure.name}</ListGroupItem>
+            key={measure._id}
+          >
+            {measure.name}
+          </ListGroupItem>
           );
       })}
     </ListGroup>

@@ -10,4 +10,8 @@ Measures.add = () => {
   });
 };
 
+Measures.setName = (elementId, name) => {
+  Measures.collection.update(elementId, { $set: { name } });
+};
+
 export default Measures;
