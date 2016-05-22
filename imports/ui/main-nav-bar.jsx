@@ -36,6 +36,7 @@ export default class MainNavBar extends React.Component {
             active={this.isActive('measure-view')}
             onClick={() => this.goTo('/measure-view')}
           >
+            <i className="fa fa-balance-scale"></i> &nbsp;
             Measure View
           </NavItem>
         </Nav>
