@@ -27,6 +27,13 @@ Expressions.add = (measureId, typeName) => {
   );
 };
 
+Expressions.removeLast = (measureId) => {
+  Measures.collection.update(
+    measureId,
+    { $pop: { expressions: 1 } }
+  );
+};
+
 Meteor.methods({
   'Measures.Expressions.setName': (measureId, expressionId, name) => {
     check(measureId, String);

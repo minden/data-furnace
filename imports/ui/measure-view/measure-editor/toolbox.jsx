@@ -16,6 +16,11 @@ const Toolbox = (props) => {
             );
         })}
       </ButtonGroup>
+      <Button
+        className="fa fa-trash"
+        style={{ marginLeft: '5px' }}
+        onClick={() => Measures.Expressions.removeLast(props.measureId)}
+      />
     </div>
   );
 };
