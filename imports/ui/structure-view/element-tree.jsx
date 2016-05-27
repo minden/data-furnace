@@ -19,6 +19,7 @@ const ElementTree = (props) => (
           return (
             <Element
               setSelectedElementId={props.setSelectedElementId}
+              selectedElementId={props.selectedElementId}
               key={element._id}
               data={element}
             />
@@ -32,6 +33,7 @@ const ElementTree = (props) => (
 ElementTree.propTypes = {
   elements: PropTypes.array.isRequired,
   setSelectedElementId: PropTypes.func.isRequired,
+  selectedElementId: PropTypes.string,
 };
 
 export default createContainer(() => {

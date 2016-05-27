@@ -33,6 +33,7 @@ class StructureView extends React.Component {
           <div className="col-md-8">
             <ElementTree
               setSelectedElementId={this.setSelectedElementId}
+              selectedElementId={this.state.selectedElementId}
             />
           </div>
           <div className="col-md-4">

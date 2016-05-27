@@ -34,7 +34,7 @@ export default class InplaceEdit extends React.Component {
       return (
         <input
           className="inplace-edit-inputfield"
-          style={{ marginTop: '-3px', marginBottom: '-3px' }}
+          style={{ marginTop: '-3px', marginBottom: '-3px', color: 'black' }}
           type="text"
           defaultValue={this.props.text}
           ref="input"

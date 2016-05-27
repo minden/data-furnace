@@ -60,6 +60,7 @@ class Element extends React.Component {
               return (
                 <Element
                   setSelectedElementId={this.props.setSelectedElementId}
+                  selectedElementId={this.props.selectedElementId}
                   key={element._id}
                   data={element}
                 />
@@ -80,7 +81,8 @@ class Element extends React.Component {
         border: 'none',
         padding: '0px',
         paddingTop: '1px',
-        paddingLeft: '2px',
+        paddingLeft: '5px',
+        backgroundColor: 'transparent',
       };
 
       const possibleChildTypes = () => {
@@ -119,13 +121,28 @@ class Element extends React.Component {
       this.setState({ buttonsVisible: false });
     };
 
+    const elementItselfStyle = () => {
+      const style = {
+        border: '1px solid #ddd',
+        padding: '10px',
+        borderRadius: '4px',
+      };
+      if (this.props.data._id === this.props.selectedElementId) {
+        style.backgroundColor = '#337ab7';
+        style.color = 'white';
+        style.border = 'none';
+      }
+      return style;
+    };
+
+
     return (
       <div className="element" style={{ paddingTop: '5px' }}>
         <div
           onClick={() => this.props.setSelectedElementId(this.props.data._id)}
           onMouseEnter={makeButtonsVisible}
           onMouseLeave={makeButtonsNotVisible}
-          style={{ border: '1px solid #ddd', padding: '10px' }}
+          style={elementItselfStyle()}
         >
           {toggleButton()}
           <div style={{ display: 'inline', paddingRight: '10px' }}>
@@ -144,6 +161,7 @@ Element.propTypes = {
   data: React.PropTypes.object.isRequired,
   subElements: React.PropTypes.array,
   setSelectedElementId: React.PropTypes.func.isRequired,
+  selectedElementId: React.PropTypes.string,
 };
 
 export default createContainer(() => {
