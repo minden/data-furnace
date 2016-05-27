@@ -72,6 +72,8 @@ const operator = (props) => {
     icon = 'fa fa-calculator';
   }
 
+  const type = Measures.Expressions.types.get(props.expression.typeName);
+
   return (
     <DropdownButton
       id={props.expression._id}
@@ -86,9 +88,13 @@ const operator = (props) => {
       )}
       noCaret
     >
-      {Measures.Expressions.operators.types.map((type) => {
+      {type.characteristics.map((characteristic) => {
         return (
-          <MenuItem key={type.name} eventKey={type.name}>{type.name}</MenuItem>
+          <MenuItem
+            key={characteristic.name}
+            eventKey={characteristic.name}
+          >
+            {characteristic.name}</MenuItem>
           );
       })}
     </DropdownButton>

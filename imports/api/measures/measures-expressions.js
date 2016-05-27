@@ -5,15 +5,31 @@ import { Meteor } from 'meteor/meteor';
 const Expressions = {};
 
 Expressions.types = [
-  { name: 'attribute', icon: 'fa fa-tag' },
-  { name: 'measure', icon: 'fa fa-balance-scale' },
-  { name: 'operator', icon: 'fa fa-calculator' },
-  { name: 'func', icon: 'fa fa-code' },
+  {
+    name: 'attribute',
+    icon: 'fa fa-tag',
+    possibleFollowers: ['operator'],
+  },
+  {
+    name: 'measure',
+    icon: 'fa fa-balance-scale',
+    possibleFollowers: ['operator'],
+  },
+  {
+    name: 'operator',
+    icon: 'fa fa-calculator',
+    characteristics: [{ name: '+' }, { name: '-' }, { name: '*' }, { name: '/' }],
+    possibleFollowers: ['attribute', 'measure', 'func'],
+  },
+  {
+    name: 'func',
+    icon: 'fa fa-code',
+    possibleFollowers: ['operator'],
+  },
 ];
 
 Expressions.operators = {};
 Expressions.operators.types = [
-  { name: '+' }, { name: '-' }, { name: '*' }, { name: '/' },
 ];
 
 Expressions.types.get = (typeName) => {
