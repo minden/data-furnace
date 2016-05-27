@@ -84,6 +84,7 @@ const operator = (props) => {
         props.expression._id,
         name
       )}
+      noCaret="true"
     >
       {Measures.Expressions.operators.types.map((type) => {
         return (
