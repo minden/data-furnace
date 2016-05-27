@@ -37,7 +37,7 @@ if (Meteor.isClient) {
       $('#test-environment').remove();
     });
 
-    it('should start of with a clean measure collection', () =>{
+    it('should start of with a clean measure collection', () => {
       Measures.collection.find().count().should.equal(0);
     });
 
