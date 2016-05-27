@@ -11,6 +11,11 @@ Expressions.types = [
   { name: 'func', icon: 'fa fa-code' },
 ];
 
+Expressions.operators = {};
+Expressions.operators.types = [
+  { name: '+' }, { name: '-' }, { name: '*' }, { name: '/' },
+];
+
 Expressions.types.get = (typeName) => {
   return Expressions.types.find((type) => type.name === typeName);
 };
@@ -23,7 +28,7 @@ Expressions.add = (measureId, typeName) => {
 };
 
 Meteor.methods({
-  'measures.expressions.setName': (measureId, expressionId, name) => {
+  'Measures.Expressions.setName': (measureId, expressionId, name) => {
     check(measureId, String);
     check(expressionId, String);
     check(name, String);

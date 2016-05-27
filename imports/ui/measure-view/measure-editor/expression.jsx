@@ -13,7 +13,7 @@ const attribute = (props) => {
         text={props.expression.name}
         onChange={(name) =>
           Meteor.call(
-            'measures.expressions.setName',
+            'Measures.Expressions.setName',
             props.measure._id,
             props.expression._id,
             name
@@ -65,9 +65,32 @@ measure.propTypes = {
 };
 
 const operator = (props) => {
-  const type = Measures.Expressions.types.get(props.typeName);
+  let icon;
+  if (props.expression.name) {
+    icon = 'fa';
+  } else {
+    icon = 'fa fa-calculator';
+  }
+
   return (
-    <Button className={type.icon} key={props._id}> {props.typeName}</Button>
+    <DropdownButton
+      id={props.expression._id}
+      className={icon}
+      key={props.expression._id}
+      title={props.expression.name}
+      onSelect={(name) => Meteor.call(
+        'Measures.Expressions.setName',
+        props.measure._id,
+        props.expression._id,
+        name
+      )}
+    >
+      {Measures.Expressions.operators.types.map((type) => {
+        return (
+          <MenuItem key={type.name} eventKey={type.name}>{type.name}</MenuItem>
+          );
+      })}
+    </DropdownButton>
   );
 };
 
@@ -77,9 +100,9 @@ operator.propTypes = {
 };
 
 const func = (props) => {
-  const type = Measures.Expressions.types.get(props.typeName);
+  const type = Measures.Expressions.types.get(props.expression.typeName);
   return (
-    <Button className={type.icon} key={props._id}> {props.typeName}</Button>
+    <Button className={type.icon} key={props.expression._id}> {props.expression.name}</Button>
   );
 };
 
