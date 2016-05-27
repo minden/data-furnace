@@ -8,7 +8,7 @@ Measures.Expressions = Expressions;
 Measures.collection = new Meteor.Collection('Measures');
 
 Measures.add = () => {
-  Measures.collection.insert({
+  return Measures.collection.insert({
     name: 'unnamend',
     expressions: [],
   });
