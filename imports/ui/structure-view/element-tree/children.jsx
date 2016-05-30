@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Elements from '../../../api/elements/elements.js';
+import Element from './element.jsx';
 
 const subElementsListStyle = {
   marginBottom: '0px',
@@ -11,28 +12,30 @@ const getChildren = (childIds) => {
 };
 
 const Children = (props) => {
-  if (this.state.childrenVisible === true) {
-    return (
-      <div className="list-group sub-elements-list" style={subElementsListStyle}>
-        {getChildren(props.element.childIds).map((element) => {
-          return (
-            <Element
-              setSelectedElementId={props.setSelectedElementId}
-              selectedElementId={props.selectedElementId}
-              key={element._id}
-              element={element}
-            />
-            );
-        })}
-      </div >
-    );
+  if (!props.childrenVisible) {
+    return null;
   }
+  return (
+    <div className="list-group sub-elements-list" style={subElementsListStyle}>
+      {getChildren(props.element.childIds).map((element) => {
+        return (
+          <Element
+            setSelectedElementId={props.setSelectedElementId}
+            selectedElementId={props.selectedElementId}
+            key={element._id}
+            element={element}
+          />
+          );
+      })}
+    </div >
+  );
 };
 
 Children.propTypes = {
   element: PropTypes.object.isRequired,
   setSelectedElementId: PropTypes.func.isRequired,
-  selectedElementId: PropTypes.string.isRequired,
+  selectedElementId: PropTypes.string,
+  childrenVisible: PropTypes.bool.isRequired,
 };
 
 export default Children;

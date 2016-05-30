@@ -129,6 +129,7 @@ class Element extends React.Component {
           element={this.props.element}
           setSelectedElementId={this.props.setSelectedElementId}
           selectedElementId={this.props.selectedElementId}
+          childrenVisible={this.state.childrenVisible}
         />
       </div>
     );
