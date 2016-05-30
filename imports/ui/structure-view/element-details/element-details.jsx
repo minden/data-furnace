@@ -19,40 +19,46 @@ const elementDetailsTitle = (props) => {
 };
 
 
-const ElementDetails = (props) => (
-  <Panel
-    header={elementDetailsTitle(props)}
-  >
-    <Form horizontal>
-      <FormGroup>
-        <Col sm={4} style={{ textAlign: 'right' }}>
-          Type
-        </Col>
-        <Col sm={8}>
-          <ElementTypeNameLabel typeName={props.element.typeName} />
-        </Col>
-      </FormGroup>
+const ElementDetails = (props) => {
+  if (!props.element) {
+    return null;
+  }
 
-      <FormGroup>
-        <Col sm={4} style={{ textAlign: 'right' }}>
-          Description
-        </Col>
-        <Col sm={8}>
-          <InplaceEdit
-            text={props.element.description}
-            onChange={(text) => Elements.setDescription(props.element._id, text)}
-          />
-        </Col>
-      </FormGroup>
-    </Form>
-    <hr />
-    <ElementDetailsAttributes attributes={props.element.attributes} elementId={props.element._id} />
-  </Panel>
-);
+  return (
+    <Panel
+      header={elementDetailsTitle(props)}
+    >
+      <Form horizontal>
+        <FormGroup>
+          <Col sm={4} style={{ textAlign: 'right' }}>
+            Type
+          </Col>
+          <Col sm={8}>
+            <ElementTypeNameLabel typeName={props.element.typeName} />
+          </Col>
+        </FormGroup>
+
+        <FormGroup>
+          <Col sm={4} style={{ textAlign: 'right' }}>
+            Description
+          </Col>
+          <Col sm={8}>
+            <InplaceEdit
+              text={props.element.description}
+              onChange={(text) => Elements.setDescription(props.element._id, text)}
+            />
+          </Col>
+        </FormGroup>
+      </Form>
+      <hr />
+      <ElementDetailsAttributes attributes={props.element.attributes} elementId={props.element._id} />
+    </Panel>
+  );
+}
 
 ElementDetails.propTypes = {
   elementId: PropTypes.string.isRequired,
-  element: PropTypes.object.isRequired,
+  element: PropTypes.object,
   setSelectedElementId: PropTypes.func.isRequired,
 };
 
