@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const ToggleButton = (props) => {
+const TreeToggler = (props) => {
   if (props.childIds.length === 0) {
     return null;
   }
@@ -21,10 +21,10 @@ const ToggleButton = (props) => {
   );
 };
 
-ToggleButton.propTypes = {
+TreeToggler.propTypes = {
   toggleChildrenVisible: PropTypes.func.isRequired,
   childIds: PropTypes.array.isRequired,
   childrenVisible: PropTypes.bool.isRequired,
 };
 
-export default ToggleButton;
+export default TreeToggler;

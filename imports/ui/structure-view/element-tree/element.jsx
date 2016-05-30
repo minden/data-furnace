@@ -6,7 +6,7 @@ import AddElementButton from './add-element-button.jsx';
 import ElementName from '../element-name.jsx';
 import ElementTypeNameLabel from '../element-type-name-label.jsx';
 import Children from './children.jsx';
-import ToggleButton from './toggle-button.jsx';
+import TreeToggler from './toggle-button.jsx';
 
 class Element extends React.Component {
   constructor(props) {
@@ -96,7 +96,7 @@ class Element extends React.Component {
           onMouseLeave={makeButtonsNotVisible}
           style={elementItselfStyle()}
         >
-          <ToggleButton
+          <TreeToggler
             toggleChildrenVisible={() =>
               this.setState({ childrenVisible: !this.state.childrenVisible })}
             childIds={this.props.element.childIds}
