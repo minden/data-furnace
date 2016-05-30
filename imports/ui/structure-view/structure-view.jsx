@@ -1,5 +1,5 @@
 import React from 'react';
-import ElementTree from './element-tree.jsx';
+import ElementTree from './element-tree/element-tree.jsx';
 import ElementDetails from './element-details/element-details.jsx';
 
 class StructureView extends React.Component {
