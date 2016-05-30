@@ -5,6 +5,7 @@ import Elements from '../../../api/elements/elements.js';
 import AddElementButton from './add-element-button.jsx';
 import ElementName from '../element-name.jsx';
 import ElementTypeNameLabel from '../element-type-name-label.jsx';
+import Children from './children.jsx';
 
 class Element extends React.Component {
   constructor(props) {
@@ -43,33 +44,6 @@ class Element extends React.Component {
       );
     };
 
-    const children = () => {
-      const subElementsListStyle = {
-        marginBottom: '0px',
-        paddingLeft: '20px',
-      };
-
-      const getChildren = (childIds) => {
-        return Elements.collection.find({ _id: { $in: childIds } }).fetch();
-      };
-
-      if (this.state.childrenVisible === true) {
-        return (
-          <div className="list-group sub-elements-list" style={subElementsListStyle}>
-            {getChildren(this.props.element.childIds).map((element) => {
-              return (
-                <Element
-                  setSelectedElementId={this.props.setSelectedElementId}
-                  selectedElementId={this.props.selectedElementId}
-                  key={element._id}
-                  element={element}
-                />
-                );
-            })}
-          </div >
-        );
-      }
-    };
 
     const buttons = () => {
       const buttonsStyle = {
@@ -151,7 +125,11 @@ class Element extends React.Component {
           <ElementName elementName={this.props.element.name} elementId={this.props.element._id} />
           {buttons()}
         </div>
-        {children()}
+        <Children
+          element={this.props.element}
+          setSelectedElementId={this.props.setSelectedElementId}
+          selectedElementId={this.props.selectedElementId}
+        />
       </div>
     );
   }
