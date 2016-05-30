@@ -1,6 +1,11 @@
 import React, { PropTypes } from 'react';
 import { Button, ButtonToolbar } from 'react-bootstrap';
-import Expression from './expression.jsx';
+import attribute from './attribute.jsx';
+import measure from './measure.jsx';
+import operator from './operator.jsx';
+import func from './func.jsx';
+
+const Expression = { attribute, measure, operator, func };
 
 const Expressions = (props) => {
   return (

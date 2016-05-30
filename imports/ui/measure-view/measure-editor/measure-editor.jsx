@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Panel } from 'react-bootstrap';
 import Measures from '../../../api/measures/measures.js';
 import toolbox from './toolbox.jsx';
-import Expressions from './expressions.jsx';
+import Expressions from './expressions/expressions.jsx';
 import header from './header.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 
