@@ -7,7 +7,7 @@ import { Panel } from 'react-bootstrap';
 
 const elementTreeHeader = () => (
   <AddElementButton
-    possibleTypes={[Elements.types.find((element) => element.name === 'dimension')]}
+    possibleTypeNames={['dimension']}
   />
 );
 

@@ -3,17 +3,6 @@ import { Button } from 'react-bootstrap';
 import AddElementButton from './add-element-button.jsx';
 import Elements from '../../../api/elements/elements.js';
 
-const possibleChildTypes = (typeName) => {
-  const currentType =
-    Elements.types.find((element) => element.name === typeName);
-  return Elements.types.filter((type) => {
-    if (currentType.possibleChildren.indexOf(type.name) === -1) {
-      return false;
-    }
-    return true;
-  });
-};
-
 const Buttons = (props) => {
   if (!props.buttonsVisible) {
     return null;
@@ -23,7 +12,9 @@ const Buttons = (props) => {
     <div className="buttons" style={{ display: 'inline', float: 'right' }}>
       <AddElementButton
         elementId={props.element._id}
-        possibleTypes={possibleChildTypes(props.element.typeName)}
+        possibleTypeNames={Elements.types
+          .find((type) => type.name === props.element.typeName)
+          .possibleChildren}
       />
       <Button
         className="glyphicon glyphicon-remove remove-element-button"
