@@ -14,22 +14,9 @@ class Element extends React.Component {
       childrenVisible: true,
       buttonsVisible: false,
     };
-    this.removeElement = this.removeElement.bind(this);
-  }
-
-  removeElement() {
-    Elements.remove(this.props.element._id, this.props.element.parentId);
   }
 
   render() {
-    const makeButtonsVisible = () => {
-      this.setState({ buttonsVisible: true });
-    };
-
-    const makeButtonsNotVisible = () => {
-      this.setState({ buttonsVisible: false });
-    };
-
     const elementItselfStyle = () => {
       const style = {
         border: '1px solid #ddd',
@@ -44,13 +31,12 @@ class Element extends React.Component {
       return style;
     };
 
-
     return (
       <div className="element" style={{ paddingTop: '5px' }}>
         <div
           onClick={() => this.props.setSelectedElementId(this.props.element._id)}
-          onMouseEnter={makeButtonsVisible}
-          onMouseLeave={makeButtonsNotVisible}
+          onMouseEnter={() => this.setState({ buttonsVisible: true })}
+          onMouseLeave={() => this.setState({ buttonsVisible: false })}
           style={elementItselfStyle()}
         >
           <TreeToggler
@@ -68,6 +54,7 @@ class Element extends React.Component {
             element={this.props.element}
           />
         </div>
+
         <Children
           element={this.props.element}
           setSelectedElementId={this.props.setSelectedElementId}
@@ -91,4 +78,3 @@ export default createContainer(() => {
     elements: Elements.collection.find().fetch(),
   };
 }, Element);
-
