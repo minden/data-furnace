@@ -25,7 +25,7 @@ if (Meteor.isClient) {
       childElementId = Elements.add(elementId, 'hierarchy');
       element = Elements.collection.findOne(elementId);
 
-      render(<Element key={elementId} data={element} setSelectedElementId={() => {}} />,
+      render(<Element key={elementId} element={element} setSelectedElementId={() => {}} />,
               document.getElementById('test-environment'));
     });
 

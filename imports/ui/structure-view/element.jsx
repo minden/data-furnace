@@ -17,13 +17,13 @@ class Element extends React.Component {
   }
 
   removeElement() {
-    Elements.remove(this.props.data._id, this.props.data.parentId);
+    Elements.remove(this.props.element._id, this.props.element.parentId);
   }
 
   render() {
     const toggleButton = () => {
       const togglerClasses = () => {
-        if (this.props.data.childIds && this.props.data.childIds.length === 0) {
+        if (this.props.element.childIds && this.props.element.childIds.length === 0) {
           return '';
         }
         if (this.state.childrenVisible) {
@@ -56,13 +56,13 @@ class Element extends React.Component {
       if (this.state.childrenVisible === true) {
         return (
           <div className="list-group sub-elements-list" style={subElementsListStyle}>
-            {getChildren(this.props.data.childIds).map((element) => {
+            {getChildren(this.props.element.childIds).map((element) => {
               return (
                 <Element
                   setSelectedElementId={this.props.setSelectedElementId}
                   selectedElementId={this.props.selectedElementId}
                   key={element._id}
-                  data={element}
+                  element={element}
                 />
                 );
             })}
@@ -87,7 +87,7 @@ class Element extends React.Component {
 
       const possibleChildTypes = () => {
         const currentType =
-          Elements.types.find((element) => element.name === this.props.data.typeName);
+          Elements.types.find((element) => element.name === this.props.element.typeName);
         return Elements.types.filter((type) => {
           if (currentType.possibleChildren.indexOf(type.name) === -1) {
             return false;
@@ -100,7 +100,7 @@ class Element extends React.Component {
         return (
           <div className="buttons" style={buttonsStyle}>
             <AddElementButton
-              elementId={this.props.data._id}
+              elementId={this.props.element._id}
               possibleTypes={possibleChildTypes()}
             />
             <Button
@@ -127,7 +127,7 @@ class Element extends React.Component {
         padding: '10px',
         borderRadius: '4px',
       };
-      if (this.props.data._id === this.props.selectedElementId) {
+      if (this.props.element._id === this.props.selectedElementId) {
         style.backgroundColor = '#337ab7';
         style.color = 'white';
         style.border = '1px solid transparent';
@@ -139,16 +139,16 @@ class Element extends React.Component {
     return (
       <div className="element" style={{ paddingTop: '5px' }}>
         <div
-          onClick={() => this.props.setSelectedElementId(this.props.data._id)}
+          onClick={() => this.props.setSelectedElementId(this.props.element._id)}
           onMouseEnter={makeButtonsVisible}
           onMouseLeave={makeButtonsNotVisible}
           style={elementItselfStyle()}
         >
           {toggleButton()}
           <div style={{ display: 'inline', paddingRight: '10px' }}>
-            <ElementTypeNameLabel typeName={this.props.data.typeName} />
+            <ElementTypeNameLabel typeName={this.props.element.typeName} />
           </div>
-          <ElementName elementName={this.props.data.name} elementId={this.props.data._id} />
+          <ElementName elementName={this.props.element.name} elementId={this.props.element._id} />
           {buttons()}
         </div>
         {children()}
@@ -158,7 +158,7 @@ class Element extends React.Component {
 }
 
 Element.propTypes = {
-  data: React.PropTypes.object.isRequired,
+  element: React.PropTypes.object.isRequired,
   subElements: React.PropTypes.array,
   setSelectedElementId: React.PropTypes.func.isRequired,
   selectedElementId: React.PropTypes.string,

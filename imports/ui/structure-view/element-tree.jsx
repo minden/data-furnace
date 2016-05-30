@@ -21,7 +21,7 @@ const ElementTree = (props) => (
               setSelectedElementId={props.setSelectedElementId}
               selectedElementId={props.selectedElementId}
               key={element._id}
-              data={element}
+              element={element}
             />
             );
         })}
