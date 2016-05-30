@@ -6,6 +6,7 @@ import AddElementButton from './add-element-button.jsx';
 import ElementName from '../element-name.jsx';
 import ElementTypeNameLabel from '../element-type-name-label.jsx';
 import Children from './children.jsx';
+import ToggleButton from './toggle-button.jsx';
 
 class Element extends React.Component {
   constructor(props) {
@@ -22,29 +23,6 @@ class Element extends React.Component {
   }
 
   render() {
-    const toggleButton = () => {
-      const togglerClasses = () => {
-        if (this.props.element.childIds && this.props.element.childIds.length === 0) {
-          return '';
-        }
-        if (this.state.childrenVisible) {
-          return 'glyphicon glyphicon-chevron-down';
-        }
-        return 'glyphicon glyphicon-chevron-right';
-      };
-      const toggleChildrenVisible = () => {
-        this.setState({ childrenVisible: !this.state.childrenVisible });
-      };
-      return (
-        <span
-          className={togglerClasses()}
-          onClick={toggleChildrenVisible}
-          style={{ paddingRight: '10px' }}
-        ></span>
-      );
-    };
-
-
     const buttons = () => {
       const buttonsStyle = {
         display: 'inline',
@@ -118,7 +96,12 @@ class Element extends React.Component {
           onMouseLeave={makeButtonsNotVisible}
           style={elementItselfStyle()}
         >
-          {toggleButton()}
+          <ToggleButton
+            toggleChildrenVisible={() =>
+              this.setState({ childrenVisible: !this.state.childrenVisible })}
+            childIds={this.props.element.childIds}
+            childrenVisible={this.state.childrenVisible}
+          />
           <div style={{ display: 'inline', paddingRight: '10px' }}>
             <ElementTypeNameLabel typeName={this.props.element.typeName} />
           </div>
