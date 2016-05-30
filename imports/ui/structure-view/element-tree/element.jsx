@@ -1,12 +1,11 @@
 import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
-import { Button } from 'react-bootstrap';
 import Elements from '../../../api/elements/elements.js';
-import AddElementButton from './add-element-button.jsx';
 import ElementName from '../element-name.jsx';
 import ElementTypeNameLabel from '../element-type-name-label.jsx';
 import Children from './children.jsx';
 import TreeToggler from './toggle-button.jsx';
+import Buttons from './buttons.jsx';
 
 class Element extends React.Component {
   constructor(props) {
@@ -23,48 +22,6 @@ class Element extends React.Component {
   }
 
   render() {
-    const buttons = () => {
-      const buttonsStyle = {
-        display: 'inline',
-        float: 'right',
-      };
-
-      const removeButtonStyle = {
-        border: 'none',
-        padding: '0px',
-        paddingTop: '1px',
-        paddingLeft: '5px',
-        backgroundColor: 'transparent',
-      };
-
-      const possibleChildTypes = () => {
-        const currentType =
-          Elements.types.find((element) => element.name === this.props.element.typeName);
-        return Elements.types.filter((type) => {
-          if (currentType.possibleChildren.indexOf(type.name) === -1) {
-            return false;
-          }
-          return true;
-        });
-      };
-
-      if (this.state.buttonsVisible) {
-        return (
-          <div className="buttons" style={buttonsStyle}>
-            <AddElementButton
-              elementId={this.props.element._id}
-              possibleTypes={possibleChildTypes()}
-            />
-            <Button
-              className="glyphicon glyphicon-remove remove-element-button"
-              onClick={this.removeElement}
-              style={removeButtonStyle}
-            />
-          </div>
-        );
-      }
-    };
-
     const makeButtonsVisible = () => {
       this.setState({ buttonsVisible: true });
     };
@@ -106,7 +63,10 @@ class Element extends React.Component {
             <ElementTypeNameLabel typeName={this.props.element.typeName} />
           </div>
           <ElementName elementName={this.props.element.name} elementId={this.props.element._id} />
-          {buttons()}
+          <Buttons
+            buttonsVisible={this.state.buttonsVisible}
+            element={this.props.element}
+          />
         </div>
         <Children
           element={this.props.element}
