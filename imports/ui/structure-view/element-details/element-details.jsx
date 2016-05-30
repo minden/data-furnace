@@ -51,10 +51,13 @@ const ElementDetails = (props) => {
         </FormGroup>
       </Form>
       <hr />
-      <ElementDetailsAttributes attributes={props.element.attributes} elementId={props.element._id} />
+      <ElementDetailsAttributes
+        attributes={props.element.attributes}
+        elementId={props.element._id}
+      />
     </Panel>
   );
-}
+};
 
 ElementDetails.propTypes = {
   elementId: PropTypes.string.isRequired,
