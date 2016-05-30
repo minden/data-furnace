@@ -5,11 +5,6 @@ import Elements from '../../../api/elements/elements.js';
 export default class AddElementButton extends React.Component {
   constructor(props) {
     super(props);
-    this.handleAddElement = this.handleAddElement.bind(this);
-  }
-
-  handleAddElement(typeName) {
-    Elements.add(this.props.elementId, typeName);
   }
 
   render() {
@@ -31,7 +26,7 @@ export default class AddElementButton extends React.Component {
       <DropdownButton
         className="glyphicon glyphicon-plus add-element-button"
         id="add-element-dropdown"
-        onSelect={this.handleAddElement}
+        onSelect={(typeName) => Elements.add(this.props.elementId, typeName)}
         title=""
         style={dropDownButtonStyle}
       >

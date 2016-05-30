@@ -17,7 +17,7 @@ if (Meteor.isClient) {
       document.body.appendChild(testEnvironment);
       render(
         <AddElementButton
-          possibleTypes={[Elements.types[0], Elements.types[1]]}
+          possibleTypeNames={[Elements.types[0].name, Elements.types[1].name]}
         />,
         document.getElementById('test-environment')
       );
