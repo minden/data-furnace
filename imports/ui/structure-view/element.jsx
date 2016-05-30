@@ -130,7 +130,7 @@ class Element extends React.Component {
       if (this.props.data._id === this.props.selectedElementId) {
         style.backgroundColor = '#337ab7';
         style.color = 'white';
-        style.border = 'none';
+        style.border = '1px solid transparent';
       }
       return style;
     };
