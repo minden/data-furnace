@@ -40,7 +40,7 @@ if (Meteor.isClient) {
       it('should only show restricted possibleTypes', () => {
         $('#test-environment  a').length.should.equal(2);
       });
-             
+
       describe('click on "Referece object" button', () => {
         let amountBefore;
         let amountAfter;
@@ -52,7 +52,7 @@ if (Meteor.isClient) {
         });
 
         it('should create a new referenceObject element in the database', () => {
-        amountBefore.should.equal(amountAfter - 1);
+          amountBefore.should.equal(amountAfter - 1);
         });
       });
     });
