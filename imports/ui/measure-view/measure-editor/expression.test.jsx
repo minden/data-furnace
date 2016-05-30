@@ -122,4 +122,106 @@ if (Meteor.isClient) {
       });
     });
   });
+
+  describe('Expression.operator', () => {
+    let measureId;
+    let measure;
+    let expressionId;
+    let expression;
+    let expressionComponent;
+
+    before((done) => {
+      resetDatabase();
+      const interval = setInterval(() => {
+        if (Measures.collection.find().count() === 0) {
+          done();
+          clearInterval(interval);
+        }
+      }, 0);
+    });
+
+    before(() => {
+      const testEnvironment = document.createElement('div');
+      testEnvironment.setAttribute('id', 'test-environment');
+      document.body.appendChild(testEnvironment);
+
+      measureId = Measures.add();
+      expressionId = Measures.Expressions.add(measureId, 'operator');
+
+      measure = Measures.collection.findOne(measureId);
+      expression = measure.expressions.find(
+        (expressionEntity) => expressionEntity._id === expressionId);
+
+      render(
+        <Expression.operator measure={measure} expression={expression} />,
+        document.getElementById('test-environment')
+      );
+      expressionComponent = $('#test-environment .dropdown-toggle.fa-calculator');
+    });
+
+    after(() => {
+      $('#test-environment').remove();
+    });
+
+    it('should exist', () => {
+      expressionComponent.length.should.equal(1);
+    });
+
+    describe('selecting an operator', () => {
+      before(() => {
+        $('.dropdown-toggle').click();
+        $('ul.dropdown-menu li a')[1].click();
+      });
+
+      it('should set the selected operator in the expression object name', () => {
+        const updatedMeasure = Measures.collection.findOne({ 'expressions._id': expressionId });
+        updatedMeasure.expressions[0].name.should.equal('-');
+      });
+    });
+  });
+
+  describe('Expression.function', () => {
+    let measureId;
+    let measure;
+    let expressionId;
+    let expression;
+    let expressionComponent;
+
+    before((done) => {
+      resetDatabase();
+      const interval = setInterval(() => {
+        if (Measures.collection.find().count() === 0) {
+          done();
+          clearInterval(interval);
+        }
+      }, 0);
+    });
+
+    before(() => {
+      const testEnvironment = document.createElement('div');
+      testEnvironment.setAttribute('id', 'test-environment');
+      document.body.appendChild(testEnvironment);
+
+      measureId = Measures.add();
+      expressionId = Measures.Expressions.add(measureId, 'func');
+
+      measure = Measures.collection.findOne(measureId);
+      expression = measure.expressions.find(
+        (expressionEntity) => expressionEntity._id === expressionId);
+
+      render(
+        <Expression.func measure={measure} expression={expression} />,
+        document.getElementById('test-environment')
+      );
+      expressionComponent = $('#test-environment button.fa-code');
+    });
+
+    after(() => {
+      $('#test-environment').remove();
+    });
+
+    it('should exist', () => {
+      expressionComponent.length.should.equal(1);
+    });
+  });
 }
