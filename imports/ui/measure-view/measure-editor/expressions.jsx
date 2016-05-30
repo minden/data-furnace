@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Label, Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
+import { Button, ButtonToolbar } from 'react-bootstrap';
 import Expression from './expression.jsx';
 
 const Expressions = (props) => {
