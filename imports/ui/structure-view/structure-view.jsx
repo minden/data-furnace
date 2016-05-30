@@ -16,17 +16,6 @@ class StructureView extends React.Component {
   }
 
   render() {
-    const elementDetails = () => {
-      if (this.state.selectedElementId) {
-        return (
-          <ElementDetails
-            elementId={this.state.selectedElementId}
-            setSelectedElementId={this.setSelectedElementId}
-          />
-        );
-      }
-    };
-
     return (
       <div id="structure-view" className="container">
         <div className="row">
@@ -37,7 +26,10 @@ class StructureView extends React.Component {
             />
           </div>
           <div className="col-md-4">
-            {elementDetails()}
+            <ElementDetails
+              elementId={this.state.selectedElementId}
+              setSelectedElementId={this.setSelectedElementId}
+            />
           </div>
         </div>
       </div>

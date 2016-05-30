@@ -60,7 +60,7 @@ const ElementDetails = (props) => {
 };
 
 ElementDetails.propTypes = {
-  elementId: PropTypes.string.isRequired,
+  elementId: PropTypes.string,
   element: PropTypes.object,
   setSelectedElementId: PropTypes.func.isRequired,
 };
