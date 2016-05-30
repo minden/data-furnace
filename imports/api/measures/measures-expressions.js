@@ -37,10 +37,14 @@ Expressions.types.get = (typeName) => {
 };
 
 Expressions.add = (measureId, typeName) => {
+  const expressionId = Random.id();
+
   Measures.collection.update(
     measureId,
-    { $push: { expressions: { _id: Random.id(), typeName, name: '' } } }
+    { $push: { expressions: { _id: expressionId, typeName, name: '' } } }
   );
+
+  return expressionId;
 };
 
 Expressions.removeLast = (measureId) => {
