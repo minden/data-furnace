@@ -23,6 +23,8 @@
     "test": "meteor test --once --driver-package dispatch:mocha-phantomjs",
     "test:watch": "TEST_WATCH=1 meteor test --driver-package dispatch:mocha-phantomjs",
     "test:browser": "meteor test --driver-package dispatch:mocha-browser",
-    "start": "meteor run"
+    "start": "meteor run",
+    "mongodump": "mongodump --port 3001 --db meteor --out .mongodb-dump",
+    "mongorestore": "mongorestore --port 3001 --db meteor .mongodb-dump/meteor"
   }
 }
