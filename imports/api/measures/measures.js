@@ -14,8 +14,8 @@ Measures.add = () => {
   });
 };
 
-Measures.setName = (elementId, name) => {
-  Measures.collection.update(elementId, { $set: { name } });
+Measures.setName = (measureId, name) => {
+  Measures.collection.update(measureId, { $set: { name } });
 };
 
 export default Measures;
