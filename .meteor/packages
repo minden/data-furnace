@@ -22,7 +22,7 @@ static-html
 react-meteor-data
 twbs:bootstrap
 less
-practicalmeteor:mocha
 random
 fortawesome:fontawesome
 xolvio:cleaner
+dispatch:mocha-phantomjs

@@ -1,12 +1,13 @@
+/* eslint-env mocha */
+
 import $ from 'jquery';
 import Element from './element.jsx';
 import Elements from '../../../api/elements/elements.js';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import { Meteor } from 'meteor/meteor';
-import { after, before, describe, it } from 'meteor/practicalmeteor:mocha';
 import { render } from 'react-dom';
-import { should, expect } from 'meteor/practicalmeteor:chai';
+import { should, expect } from 'chai';
 should();
 
 if (Meteor.isClient) {

@@ -1,8 +1,7 @@
 /* eslint-env mocha */
 
 import { Meteor } from 'meteor/meteor';
-import { describe, it } from 'meteor/practicalmeteor:mocha';
-import { should, expect } from 'meteor/practicalmeteor:chai';
+import { should, expect } from 'chai';
 should();
 import Elements from './elements.js';
 

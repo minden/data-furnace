@@ -1,12 +1,13 @@
+/* eslint-env mocha */
+
 import $ from 'jquery';
 import Measure from './measure.jsx';
 import Measures from '../../../../api/measures/measures.js';
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { after, before, describe, it } from 'meteor/practicalmeteor:mocha';
 import { render } from 'react-dom';
 import { resetDatabase } from 'meteor/xolvio:cleaner';
-import { should } from 'meteor/practicalmeteor:chai';
+import { should } from 'chai';
 should();
 
 if (Meteor.isClient) {

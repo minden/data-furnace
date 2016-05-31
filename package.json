@@ -5,6 +5,7 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "chai": "^3.5.0",
     "eslint-plugin-meteor": "^3.5.2",
     "jquery": "^2.2.3",
     "meteor-node-stubs": "~0.2.0",
@@ -17,5 +18,10 @@
   },
   "devDependencies": {
     "react-addons-test-utils": "^15.0.1"
+  },
+  "scripts": {
+    "test": "meteor test --once --driver-package dispatch:mocha-phantomjs",
+    "test:watch": "TEST_WATCH=1 meteor test --driver-package dispatch:mocha-phantomjs",
+    "start": "meteor run"
   }
 }
