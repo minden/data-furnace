@@ -28,10 +28,6 @@ Expressions.types = [
   },
 ];
 
-Expressions.operators = {};
-Expressions.operators.types = [
-];
-
 Expressions.types.get = (typeName) => {
   return Expressions.types.find((type) => type.name === typeName);
 };
