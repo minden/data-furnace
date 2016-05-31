@@ -92,7 +92,7 @@ if (Meteor.isServer) {
     });
   });
 
-  describe('Measures.Expressions.setMeasure', () => {
+  describe('Measures.Expressions.setMeasureId', () => {
     let measureId;
     let expressionId;
     const newExpressionMeasure = 'My awesome new measure Id';
@@ -101,7 +101,12 @@ if (Meteor.isServer) {
       resetDatabase();
       measureId = Measures.add();
       expressionId = Expressions.add(measureId, 'operator');
-      Meteor.call('Measures.Expressions.setMeasure', measureId, expressionId, newExpressionMeasure);
+      Meteor.call(
+        'Measures.Expressions.setMeasureId',
+        measureId,
+        expressionId,
+        newExpressionMeasure
+      );
     });
 
     it('should set the measure of an expression', () => {

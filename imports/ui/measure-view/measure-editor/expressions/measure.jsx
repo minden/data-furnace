@@ -19,7 +19,7 @@ const measure = (props) => {
       key={props.expression._id}
       title={choosenMeasureName}
       onSelect={(measureId) => Meteor.call(
-        'Measures.Expressions.setMeasure',
+        'Measures.Expressions.setMeasureId',
         props.measure._id,
         props.expression._id,
         measureId

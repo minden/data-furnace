@@ -61,7 +61,7 @@ Meteor.methods({
     );
   },
 
-  'Measures.Expressions.setMeasure': (measureId, expressionId, measureIdToSet) => {
+  'Measures.Expressions.setMeasureId': (measureId, expressionId, measureIdToSet) => {
     check(measureId, String);
     check(expressionId, String);
     check(measureIdToSet, String);
