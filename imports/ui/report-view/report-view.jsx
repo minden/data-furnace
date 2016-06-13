@@ -10,7 +10,7 @@ const ReportView = (props) => (
     </Col>
     <Col md={6} />
     <Col md={2}>
-      <MeasureExplorer setSelectedMeasureId={() => {}} />
+      <MeasureExplorer setSelectedMeasureId={() => {}} readOnly />
     </Col>
   </div>
 );
