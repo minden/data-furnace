@@ -3,7 +3,7 @@ import Measures from '../../api/measures/measures.js';
 import { Button, Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { createContainer } from 'meteor/react-meteor-data';
 
-const panelHeader = (props) => (
+const panelHeader = () => (
   <div>
     Measures
     <Button
