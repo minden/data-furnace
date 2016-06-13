@@ -3,7 +3,7 @@ import { Col } from 'react-bootstrap';
 import MeasureExplorer from '../measure-view/measure-explorer.jsx';
 import ElementTree from '../structure-view/element-tree/element-tree.jsx';
 
-const ReportView = (props) => (
+const ReportView = () => (
   <div>
     <Col mdOffset={1} md={2}>
       <ElementTree setSelectedElementId={() => {}} readOnly />
