@@ -24,6 +24,7 @@ const AddElementButton = (props) => {
       onSelect={(typeName) => Elements.add(props.elementId, typeName)}
       title=""
       style={dropDownButtonStyle}
+      noCaret
     >
       {possibleTypes.map((elementType) => {
         return (
