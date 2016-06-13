@@ -1,7 +1,18 @@
 import React from 'react';
+import { Col } from 'react-bootstrap';
+import MeasureExplorer from '../measure-view/measure-explorer.jsx';
+import ElementTree from '../structure-view/element-tree/element-tree.jsx';
 
 const ReportView = (props) => (
-  <h1> Report view </h1>
+  <div>
+    <Col mdOffset={1} md={2}>
+      <ElementTree setSelectedElementId={ () => {} } />
+    </Col>
+    <Col md={6} />
+    <Col md={2}>
+      <MeasureExplorer setSelectedMeasureId={ () => {} } />
+    </Col>
+  </div>
 );
 
 export default ReportView;
