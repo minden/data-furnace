@@ -5,20 +5,18 @@ import Element from './element.jsx';
 import AddElementButton from './add-element-button.jsx';
 import { Panel } from 'react-bootstrap';
 
-const elementTreeHeader = () => (
+const elementTreeHeader = (readOnly) => (
   <div>
     Elements
     <div className="pull-right">
-      <AddElementButton
-        possibleTypeNames={['dimension']}
-      />
+      {!readOnly && <AddElementButton possibleTypeNames={['dimension']} />}
     </div>
   </div>
 );
 
 const ElementTree = (props) => (
   <div id="element-tree">
-    <Panel header={elementTreeHeader()}>
+    <Panel header={elementTreeHeader(props.readOnly)}>
       <div id="elements">
         {props.elements.map((element) => {
           return (
@@ -27,6 +25,7 @@ const ElementTree = (props) => (
               selectedElementId={props.selectedElementId}
               key={element._id}
               element={element}
+              readOnly={props.readOnly}
             />
             );
         })}
@@ -39,6 +38,7 @@ ElementTree.propTypes = {
   elements: PropTypes.array.isRequired,
   setSelectedElementId: PropTypes.func.isRequired,
   selectedElementId: PropTypes.string,
+  readOnly: PropTypes.bool,
 };
 
 export default createContainer(() => {

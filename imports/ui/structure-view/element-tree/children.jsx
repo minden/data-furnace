@@ -22,6 +22,7 @@ const Children = (props) => {
             selectedElementId={props.selectedElementId}
             key={element._id}
             element={element}
+            readOnly={props.readOnly}
           />
           );
       })}
@@ -34,6 +35,7 @@ Children.propTypes = {
   setSelectedElementId: PropTypes.func.isRequired,
   selectedElementId: PropTypes.string,
   childrenVisible: PropTypes.bool.isRequired,
+  readOnly: PropTypes.bool,
 };
 
 export default Children;

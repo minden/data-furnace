@@ -48,9 +48,13 @@ class Element extends React.Component {
           <div style={{ display: 'inline', paddingRight: '10px' }}>
             <ElementTypeNameLabel typeName={this.props.element.typeName} />
           </div>
-          <ElementName elementName={this.props.element.name} elementId={this.props.element._id} />
+          <ElementName
+            elementName={this.props.element.name}
+            elementId={this.props.element._id}
+            readOnly={this.props.readOnly}
+          />
           <Buttons
-            buttonsVisible={this.state.buttonsVisible}
+            buttonsVisible={this.state.buttonsVisible && !this.props.readOnly}
             element={this.props.element}
           />
         </div>
@@ -60,6 +64,7 @@ class Element extends React.Component {
           setSelectedElementId={this.props.setSelectedElementId}
           selectedElementId={this.props.selectedElementId}
           childrenVisible={this.state.childrenVisible}
+          readOnly={this.props.readOnly}
         />
       </div>
     );
@@ -71,6 +76,7 @@ Element.propTypes = {
   subElements: React.PropTypes.array,
   setSelectedElementId: React.PropTypes.func.isRequired,
   selectedElementId: React.PropTypes.string,
+  readOnly: React.PropTypes.bool,
 };
 
 export default createContainer(() => {

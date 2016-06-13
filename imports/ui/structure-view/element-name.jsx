@@ -18,16 +18,24 @@ const ElementName = (props) => (
     className="elementName"
     style={{ display: 'inline-block' }}
   >
-    <InplaceEdit
-      onChange={(text) => setName(props.elementId, text)}
-      text={elementName(props.elementName)}
-    />
+    {props.readOnly &&
+      <div>
+        {props.elementName}
+      </div>
+    }
+    {!props.readOnly &&
+      <InplaceEdit
+        onChange={(text) => setName(props.elementId, text)}
+        text={elementName(props.elementName)}
+      />
+    }
   </div>
 );
 
 ElementName.propTypes = {
   elementName: React.PropTypes.string.isRequired,
   elementId: React.PropTypes.string.isRequired,
+  readOnly: React.PropTypes.bool,
 };
 
 export default ElementName;

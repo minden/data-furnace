@@ -6,11 +6,11 @@ import ElementTree from '../structure-view/element-tree/element-tree.jsx';
 const ReportView = (props) => (
   <div>
     <Col mdOffset={1} md={2}>
-      <ElementTree setSelectedElementId={ () => {} } />
+      <ElementTree setSelectedElementId={() => {}} readOnly />
     </Col>
     <Col md={6} />
     <Col md={2}>
-      <MeasureExplorer setSelectedMeasureId={ () => {} } />
+      <MeasureExplorer setSelectedMeasureId={() => {}} />
     </Col>
   </div>
 );
