@@ -6,9 +6,14 @@ import AddElementButton from './add-element-button.jsx';
 import { Panel } from 'react-bootstrap';
 
 const elementTreeHeader = () => (
-  <AddElementButton
-    possibleTypeNames={['dimension']}
-  />
+  <div>
+    Elements
+    <div className="pull-right">
+      <AddElementButton
+        possibleTypeNames={['dimension']}
+      />
+    </div>
+  </div>
 );
 
 const ElementTree = (props) => (
