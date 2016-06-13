@@ -39,6 +39,14 @@ export default class MainNavBar extends React.Component {
             <i className="fa fa-balance-scale"></i> &nbsp;
             Measure View
           </NavItem>
+          <NavItem
+            style={{ color: 'white' }}
+            active={this.isActive('report-view')}
+            onClick={() => this.goTo('/report-view')}
+          >
+            <i className="fa fa-newspaper-o"></i> &nbsp;
+            Report View
+          </NavItem>
         </Nav>
       </Navbar>
     );
