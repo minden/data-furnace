@@ -23,6 +23,7 @@ const Children = (props) => {
             key={element._id}
             element={element}
             readOnly={props.readOnly}
+            draggable={props.draggable}
           />
           );
       })}
@@ -36,6 +37,7 @@ Children.propTypes = {
   selectedElementId: PropTypes.string,
   childrenVisible: PropTypes.bool.isRequired,
   readOnly: PropTypes.bool,
+  draggable: PropTypes.bool,
 };
 
 export default Children;

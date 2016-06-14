@@ -26,6 +26,7 @@ const ElementTree = (props) => (
               key={element._id}
               element={element}
               readOnly={props.readOnly}
+              draggable={props.draggable}
             />
             );
         })}
@@ -39,6 +40,7 @@ ElementTree.propTypes = {
   setSelectedElementId: PropTypes.func.isRequired,
   selectedElementId: PropTypes.string,
   readOnly: PropTypes.bool,
+  draggable: PropTypes.bool,
 };
 
 export default createContainer(() => {

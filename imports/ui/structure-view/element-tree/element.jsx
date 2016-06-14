@@ -38,6 +38,11 @@ class Element extends React.Component {
           onMouseEnter={() => this.setState({ buttonsVisible: true })}
           onMouseLeave={() => this.setState({ buttonsVisible: false })}
           style={elementItselfStyle()}
+          draggable={this.props.draggable}
+          onDragStart={(ev) => {
+            ev.dataTransfer.setData('text/id', this.props.element._id);
+            ev.dataTransfer.setData('text/type', 'element');
+          }}
         >
           <TreeToggler
             toggleChildrenVisible={() =>
@@ -65,6 +70,7 @@ class Element extends React.Component {
           selectedElementId={this.props.selectedElementId}
           childrenVisible={this.state.childrenVisible}
           readOnly={this.props.readOnly}
+          draggable={this.props.draggable}
         />
       </div>
     );
@@ -77,6 +83,7 @@ Element.propTypes = {
   setSelectedElementId: React.PropTypes.func.isRequired,
   selectedElementId: React.PropTypes.string,
   readOnly: React.PropTypes.bool,
+  draggable: React.PropTypes.bool,
 };
 
 export default createContainer(() => {

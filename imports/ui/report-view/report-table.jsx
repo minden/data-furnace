@@ -4,6 +4,14 @@ import { Table } from 'react-bootstrap';
 const ReportTable = (props) => (
   <Table>
     <thead>
+      {props.report.columns.map((column) => {
+        return (
+          <tr key={column.elementId} >
+            <th></th>
+            <th>{column.elementId}</th>
+          </tr>
+          );
+      })}
     </thead>
     <tbody>
       {props.report.rows.map((row) => {

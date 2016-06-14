@@ -7,7 +7,7 @@ import Report from './report.jsx';
 const ReportView = () => (
   <div>
     <Col mdOffset={1} md={2}>
-      <ElementTree setSelectedElementId={() => {}} readOnly />
+      <ElementTree setSelectedElementId={() => {}} readOnly draggable />
     </Col>
     <Col md={6}>
       <Report />
