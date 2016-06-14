@@ -25,9 +25,13 @@ const MeasureExplorer = (props) => (
             active={props.selectedMeasureId === measure._id}
             onClick={() => props.setSelectedMeasureId(measure._id)}
             key={measure._id}
+            onDragStart={(ev) => {
+              ev.dataTransfer.setData('text/id', measure._id);
+              ev.dataTransfer.setData('text/type', 'measure');
+            }}
+            draggable={props.draggable}
           >
-            {measure.name}
-          </ListGroupItem>
+            {measure.name} </ListGroupItem>
           );
       })}
     </ListGroup>
@@ -39,6 +43,7 @@ MeasureExplorer.propTypes = {
   selectedMeasureId: PropTypes.string,
   setSelectedMeasureId: PropTypes.func.isRequired,
   readOnly: PropTypes.bool,
+  draggable: PropTypes.bool,
 };
 
 export default createContainer(() => {
