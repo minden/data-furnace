@@ -23,23 +23,14 @@ const Report = (props) => {
 
   return (
     <Panel header={reportHeader(props.report._id, props.report.name)}>
-      <div
-        onDrop={(ev) => Reports.addToTable(
-          props.report._id,
-          ev.dataTransfer.getData('text/type'),
-          ev.dataTransfer.getData('text/id')
-        )}
-        onDragOver={(e) => { e.preventDefault(); console.log('dragged over'); }}
-      >
-        DropZone
-      </div>
       <ReportTable report={props.report} />
     </Panel>
-  )
+  );
 };
 
 Report.propTypes = {
   report: PropTypes.object,
+  ready: PropTypes.bool.isRequired,
 };
 
 export default createContainer(() => {

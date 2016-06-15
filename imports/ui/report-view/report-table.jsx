@@ -5,40 +5,53 @@ import Elements from '../../api/elements/elements.js';
 import Reports from '../../api/reports/reports.js';
 
 const ReportTable = (props) => (
-  <Table>
+  <Table bordered>
     <thead>
+      <tr>
+        <td /><td />
+        <th
+          onDrop={(ev) => Reports.addToTable(
+            props.report._id,
+            ev.dataTransfer.getData('text/type'),
+            ev.dataTransfer.getData('text/id')
+          )}
+          onDragOver={(e) => { e.preventDefault(); console.log('dragged over'); }}
+        >
+          Elements
+        </th>
+      </tr>
       {props.report.columns.map((column) => {
         return (
           <tr key={column.elementId} >
-            <th></th>
-            <th
-              onDrop={(ev) => Reports.addToTable(
-                props.report._id,
-                ev.dataTransfer.getData('text/type'),
-                ev.dataTransfer.getData('text/id')
-              )}
-              onDragOver={(e) => { e.preventDefault(); console.log('dragged over'); }}
+            <td /><td />
+            <td
             >
               {Elements.getName(column.elementId)}
-            </th>
+            </td>
           </tr>
           );
       })}
     </thead>
     <tbody>
+      <tr>
+        <th rowSpan={props.report.rows.length + 1}
+          onDrop={(ev) => Reports.addToTable(
+            props.report._id,
+            ev.dataTransfer.getData('text/type'),
+            ev.dataTransfer.getData('text/id')
+          )}
+          onDragOver={(e) => { e.preventDefault(); console.log('dragged over'); }}
+        >
+          Measures
+        </th>
+      </tr>
       {props.report.rows.map((row) => {
         return (
           <tr key={row.measureId} >
-            <th
-              onDrop={(ev) => Reports.addToTable(
-                props.report._id,
-                ev.dataTransfer.getData('text/type'),
-                ev.dataTransfer.getData('text/id')
-              )}
-              onDragOver={(e) => { e.preventDefault(); console.log('dragged over'); }}
+            <td
             >
               {Measures.getName(row.measureId)}
-            </th>
+            </td>
           </tr>
           );
       })}
