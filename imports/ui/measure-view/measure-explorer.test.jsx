@@ -57,7 +57,7 @@ if (Meteor.isClient) {
 
       it('should create a new measure in the ui', (done) => {
         const interval = setInterval(() => {
-          if ($('.list-group button').length === 1) {
+          if ($('.list-group div').length === 1) {
             clearInterval(interval);
             true.should.equal(true);
             done();
@@ -69,7 +69,7 @@ if (Meteor.isClient) {
     describe('the measure list', () => {
       before(() => {
         Measures.add();
-        $('.list-group button')[0].click();
+        $('.list-group div')[0].click();
       });
 
       it('calls the setSelectedElementId() function, when measure is clicked', () => {

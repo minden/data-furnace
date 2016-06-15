@@ -23,7 +23,6 @@ const MeasureExplorer = (props) => (
         return (
           <ListGroupItem
             active={props.selectedMeasureId === measure._id}
-            onClick={() => props.setSelectedMeasureId(measure._id)}
             key={measure._id}
             onDragStart={(ev) => {
               ev.dataTransfer.setData('text/id', measure._id);
@@ -31,7 +30,10 @@ const MeasureExplorer = (props) => (
             }}
             draggable={props.draggable}
           >
-            {measure.name} </ListGroupItem>
+            <div onClick={() => props.setSelectedMeasureId(measure._id)} >
+              {measure.name}
+            </div>
+          </ListGroupItem>
           );
       })}
     </ListGroup>
