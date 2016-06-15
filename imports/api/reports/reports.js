@@ -19,14 +19,14 @@ Reports.addToTable = (reportId, type, id) => {
 Reports.columns.add = (reportId, elementId) => {
   Reports.collection.update(
     reportId,
-    { $push: { columns: { elementId } } }
+    { $addToSet: { columns: { elementId } } }
   );
 };
 
 Reports.rows.add = (reportId, measureId) => {
   Reports.collection.update(
     reportId,
-    { $push: { rows: { measureId } } }
+    { $addToSet: { rows: { measureId } } }
   );
 };
 
