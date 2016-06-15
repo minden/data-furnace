@@ -1,13 +1,7 @@
 import React, { PropTypes } from 'react';
-import { Button } from 'react-bootstrap';
 
 import ElementName from '../element-name.jsx';
-import Elements from '../../../api/elements/elements.js';
 import ElementParentBreadCrumbs from './element-parent-breadcrumbs.jsx';
-
-const addAttribute = (elementId) => {
-  Elements.attributes.add(elementId);
-};
 
 const ElementDetailsTitle = (props) => (
   <div>
@@ -16,11 +10,6 @@ const ElementDetailsTitle = (props) => (
       setSelectedElementId={props.setSelectedElementId}
     />
     <ElementName elementName={props.elementName} elementId={props.elementId} />
-    <Button
-      className="glyphicon glyphicon-plus pull-right"
-      style={{ padding: '0px', border: '0px', backgroundColor: 'transparent' }}
-      onClick={() => addAttribute(props.elementId)}
-    />
   </div>
 );
 

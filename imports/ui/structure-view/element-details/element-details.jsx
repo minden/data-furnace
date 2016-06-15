@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Form, FormGroup, Col, Panel } from 'react-bootstrap';
-import ElementDetailsAttributes from './element-details-attributes.jsx';
 import Characteristics from './characteristics/characteristics.jsx';
 
 import Elements from '../../../api/elements/elements.js';
@@ -52,10 +51,6 @@ const ElementDetails = (props) => {
         </FormGroup>
       </Form>
       <hr />
-      <ElementDetailsAttributes
-        attributes={props.element.attributes}
-        elementId={props.element._id}
-      />
       <Characteristics element={props.element} />
     </Panel>
   );
