@@ -2,15 +2,25 @@ import React, { PropTypes } from 'react';
 import { Table } from 'react-bootstrap';
 import Measures from '../../api/measures/measures.js';
 import Elements from '../../api/elements/elements.js';
+import Reports from '../../api/reports/reports.js';
 
 const ReportTable = (props) => (
-  <Table bordered="true" >
+  <Table>
     <thead>
       {props.report.columns.map((column) => {
         return (
           <tr key={column.elementId} >
             <th></th>
-            <th>{Elements.getName(column.elementId)}</th>
+            <th
+              onDrop={(ev) => Reports.addToTable(
+                props.report._id,
+                ev.dataTransfer.getData('text/type'),
+                ev.dataTransfer.getData('text/id')
+              )}
+              onDragOver={(e) => { e.preventDefault(); console.log('dragged over'); }}
+            >
+              {Elements.getName(column.elementId)}
+            </th>
           </tr>
           );
       })}
@@ -19,7 +29,14 @@ const ReportTable = (props) => (
       {props.report.rows.map((row) => {
         return (
           <tr key={row.measureId} >
-            <th>
+            <th
+              onDrop={(ev) => Reports.addToTable(
+                props.report._id,
+                ev.dataTransfer.getData('text/type'),
+                ev.dataTransfer.getData('text/id')
+              )}
+              onDragOver={(e) => { e.preventDefault(); console.log('dragged over'); }}
+            >
               {Measures.getName(row.measureId)}
             </th>
           </tr>
