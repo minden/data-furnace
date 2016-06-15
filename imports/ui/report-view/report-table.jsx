@@ -1,14 +1,16 @@
 import React, { PropTypes } from 'react';
 import { Table } from 'react-bootstrap';
+import Measures from '../../api/measures/measures.js';
+import Elements from '../../api/elements/elements.js';
 
 const ReportTable = (props) => (
-  <Table>
+  <Table bordered="true" >
     <thead>
       {props.report.columns.map((column) => {
         return (
           <tr key={column.elementId} >
             <th></th>
-            <th>{column.elementId}</th>
+            <th>{Elements.getName(column.elementId)}</th>
           </tr>
           );
       })}
@@ -18,7 +20,7 @@ const ReportTable = (props) => (
         return (
           <tr key={row.measureId} >
             <th>
-              {row.measureId}
+              {Measures.getName(row.measureId)}
             </th>
           </tr>
           );

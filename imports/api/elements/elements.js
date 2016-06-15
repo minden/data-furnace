@@ -33,6 +33,10 @@ Elements.remove = function remove(elementId, parentId) {
   Elements.collection.remove(elementId);
 };
 
+Elements.getName = (elementId) => {
+  return Elements.collection.findOne(elementId).name;
+}
+
 Elements.setName = (elementId, name) => {
   Elements.collection.update(elementId, { $set: { name } });
 };

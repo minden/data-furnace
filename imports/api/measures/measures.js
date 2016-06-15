@@ -14,6 +14,10 @@ Measures.add = () => {
   });
 };
 
+Measures.getName = (measureId) => {
+  return Measures.collection.findOne(measureId).name;
+};
+
 Measures.setName = (measureId, name) => {
   Measures.collection.update(measureId, { $set: { name } });
 };
