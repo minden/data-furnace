@@ -1,9 +1,20 @@
 import { Meteor } from 'meteor/meteor';
 import React, { PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
-import { Panel } from 'react-bootstrap';
+import { Panel, Button } from 'react-bootstrap';
 import Reports from '../../api/reports/reports.js';
 import ReportTable from './report-table.jsx';
+
+const reportHeader = (reportId, reportName) => (
+  <div>
+    {reportName}
+    <Button
+      className="glyphicon glyphicon-remove pull-right"
+      style={{ padding: '0px', border: '0px', backgroundColor: 'transparent' }}
+      onClick={() => Reports.remove(reportId)}
+    />
+  </div>
+);
 
 const Report = (props) => {
   if (!props.ready) {
@@ -11,7 +22,7 @@ const Report = (props) => {
   }
 
   return (
-    <Panel header="Report">
+    <Panel header={reportHeader(props.report._id, props.report.name)}>
       <div
         onDrop={(ev) => Reports.addToTable(
           props.report._id,

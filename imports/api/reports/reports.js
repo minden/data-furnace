@@ -5,7 +5,11 @@ const Reports = { columns: {}, rows: {} };
 Reports.collection = new Meteor.Collection('Reports');
 
 Reports.add = () => {
-  return Reports.collection.insert({ columns: [], rows: [] });
+  return Reports.collection.insert({ name: 'Report', columns: [], rows: [] });
+};
+
+Reports.remove = (reportId) => {
+  Reports.collection.remove(reportId);
 };
 
 Reports.addToTable = (reportId, type, id) => {
