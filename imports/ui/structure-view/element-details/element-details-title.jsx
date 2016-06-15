@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Button } from 'react-bootstrap';
 
-
 import ElementName from '../element-name.jsx';
 import Elements from '../../../api/elements/elements.js';
 import ElementParentBreadCrumbs from './element-parent-breadcrumbs.jsx';

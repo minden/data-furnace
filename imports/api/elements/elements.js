@@ -1,11 +1,13 @@
 import { Meteor } from 'meteor/meteor';
 import types from './element-types.js';
 import attributes from './element-attributes.js';
+import characteristics from './characteristics.js';
 
 const Elements = {};
 
 Elements.types = types;
 Elements.attributes = attributes;
+Elements.characteristics = characteristics;
 
 Meteor.Elements = Elements;
 
@@ -14,6 +16,7 @@ Elements.collection = new Meteor.Collection('Elements');
 Elements.add = function add(parentId, typeName) {
   const elementId = Elements.collection.insert({
     attributes: [],
+    characteristics: [],
     childIds: [],
     description: '',
     name: 'unnamed',
