@@ -7,7 +7,7 @@ import Elements from '../../../../api/elements/elements.js';
 const List = (props) => (
   <ListGroup>
     {props.element.characteristics.map((characteristic) => (
-      <ListGroupItem>
+      <ListGroupItem key={characteristic._id}>
         <InplaceEdit
           text={characteristic.value}
           onChange={(text) =>
