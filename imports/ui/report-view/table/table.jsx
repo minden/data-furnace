@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Table } from 'react-bootstrap';
-import Measures from '../../api/measures/measures.js';
-import Elements from '../../api/elements/elements.js';
-import Reports from '../../api/reports/reports.js';
+import Measures from '../../../api/measures/measures.js';
+import Reports from '../../../api/reports/reports.js';
+import TableHeadRow from './table-head-row.jsx';
 
 const ReportTable = (props) => (
   <Table bordered>
@@ -20,21 +20,20 @@ const ReportTable = (props) => (
           Elements
         </th>
       </tr>
-      {props.report.columns.map((column) => {
+      {props.report.columns.map((column, position) => {
         return (
-          <tr key={column.elementId} >
-            <td /><td />
-            <td
-            >
-              {Elements.getName(column.elementId)}
-            </td>
-          </tr>
-          );
+          <TableHeadRow
+            columns={props.report.columns}
+            column={column}
+            position={position}
+          />
+        );
       })}
     </thead>
     <tbody>
       <tr>
-        <th rowSpan={props.report.rows.length + 1}
+        <th
+          rowSpan={props.report.rows.length + 1}
           onDrop={(ev) => Reports.addToTable(
             props.report._id,
             ev.dataTransfer.getData('text/type'),
@@ -48,8 +47,7 @@ const ReportTable = (props) => (
       {props.report.rows.map((row) => {
         return (
           <tr key={row.measureId} >
-            <td
-            >
+            <td>
               {Measures.getName(row.measureId)}
             </td>
           </tr>

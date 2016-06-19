@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Panel, Button } from 'react-bootstrap';
 import Reports from '../../api/reports/reports.js';
-import ReportTable from './report-table.jsx';
+import ReportTable from './table/table.jsx';
 
 const reportHeader = (reportId, reportName) => (
   <div>
