@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Table } from 'react-bootstrap';
 import Measures from '../../../api/measures/measures.js';
 import Reports from '../../../api/reports/reports.js';
-import TableHeadRow from './table-head-row.jsx';
+import elementRows from './element-rows.jsx';
 
 const ReportTable = (props) => (
   <Table bordered>
@@ -20,15 +20,7 @@ const ReportTable = (props) => (
           Elements
         </th>
       </tr>
-      {props.report.elements.map((element, position) => {
-        return (
-          <TableHeadRow
-            elements={props.report.elements}
-            element={element}
-            position={position}
-          />
-        );
-      })}
+      {elementRows(props.report.elements)}
     </thead>
     <tbody>
       <tr>
