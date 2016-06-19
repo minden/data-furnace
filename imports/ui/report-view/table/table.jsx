@@ -6,12 +6,6 @@ import elementRows from './element-rows.jsx';
 
 const ReportTable = (props) => (
   <Table
-    onDrop={(ev) => Reports.addToTable(
-      props.report._id,
-      ev.dataTransfer.getData('text/type'),
-      ev.dataTransfer.getData('text/id')
-    )}
-    onDragOver={(e) => { e.preventDefault(); console.log('dragged over'); }}
     style={{ fontSize: '9pt' }}
     bordered
     responsive

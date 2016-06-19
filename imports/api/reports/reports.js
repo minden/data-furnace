@@ -51,6 +51,16 @@ Reports.elements.add = (reportId, elementId, characteristics) => {
   );
 };
 
+Reports.elements.swap = (reportId, elementId1, elementId2) => {
+  const elements = Reports.collection.findOne(reportId).elements;
+  const indexElement1 = elements.findIndex((element) => element._id === elementId1);
+  const indexElement2 = elements.findIndex((element) => element._id === elementId2);
+  const temp = elements[indexElement1];
+  elements[indexElement1] = elements[indexElement2];
+  elements[indexElement2] = temp;
+  Reports.collection.update(reportId, { $set: { elements } });
+};
+
 Reports.measures.add = (reportId, measureId) => {
   Reports.collection.update(
     reportId,

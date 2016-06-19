@@ -1,13 +1,35 @@
+/*eslint no-param-reassign: "0"*/
 import React from 'react';
+import Reports from '../../../api/reports/reports.js';
 import Elements from '../../../api/elements/elements.js';
 import ElementCharacteristicFilter from './element-characteristic-filter.jsx';
 
 const ElementRows = (reportId, elements) => {
+  if (elements.length === 0) return;
   const rows = [];
   for (let i = 0; i < elements.length; i++) {
     const element = elements[i];
     rows.push(
-      <tr>
+      <tr
+        draggable
+        onDragStart={(ev) => {
+          ev.dataTransfer.setData('text/id', element._id);
+          ev.dataTransfer.setData('text/type', 'swap-element');
+          ev.dataTransfer.dropEffekt = 'move';
+        }}
+        onDrop={(ev) => {
+          if (ev.dataTransfer.getData('text/type') !== 'swap-element') return;
+          Reports.elements.swap(
+            reportId,
+            ev.dataTransfer.getData('text/id'),
+            element._id
+          );
+        }}
+        onDragOver={(ev) => {
+          if (ev.dataTransfer.getData('text/type') !== 'swap-element') return;
+          ev.preventDefault(); ev.dataTransfer.dropEffect = 'move';
+        }}
+      >
         <td />
         <td>
           {Elements.getName(element._id)}
