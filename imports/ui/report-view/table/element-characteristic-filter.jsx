@@ -16,12 +16,12 @@ const ElementCharacteristicFilter = (props) => {
             {originalElement.characteristics.map((characteristic) => {
               return (
                 <Checkbox
-                  checked={isDisabled(characteristic, props.element.characteristics)}
+                  checked={isPresent(characteristic, props.element.characteristicIds)}
                   onClick={() => Meteor.call('Reports.toggleCharacteristic',
                     props.reportId,
                     props.element.elementId,
                     characteristic._id,
-                    isDisabled(characteristic, props.element.characteristics)
+                    isPresent(characteristic, props.element.characteristicIds)
                   )}
                 >
                   {characteristic.value}
@@ -37,11 +37,8 @@ const ElementCharacteristicFilter = (props) => {
   );
 };
 
-const isDisabled = (originalCharacteristic, reportElementCharacteristics) => {
-  const index = reportElementCharacteristics.findIndex((characteristic) => {
-    return characteristic._id === originalCharacteristic._id;
-  });
-  return index > -1;
+const isPresent = (characteristic, reportElementCharacteristicIds) => {
+  return reportElementCharacteristicIds.indexOf(characteristic._id) > -1;
 };
 
 ElementCharacteristicFilter.propTypes = {

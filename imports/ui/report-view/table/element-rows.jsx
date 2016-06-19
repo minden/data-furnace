@@ -16,16 +16,17 @@ const ElementRows = (reportId, elements) => {
             reportId={reportId}
           />
         </td>
-        {characteristicsCells(elements, element, i)}
+        {characteristicsCells(reportId, elements, element, i)}
       </tr>
     );
   }
   return rows;
 };
 
-const characteristicsCells = (elements, element, index) => {
+const characteristicsCells = (reportId, elements, element, index) => {
   const cells = [];
-  for (const characteristic of element.characteristics) {
+  for (const characteristicId of element.characteristicIds) {
+    const characteristic = Elements.characteristics.get(element.elementId, characteristicId);
     cells.push(
       <td
         colSpan={amountCharacteristicsAfter(elements, index)}
@@ -41,7 +42,7 @@ const characteristicsCells = (elements, element, index) => {
 const amountCharacteristicsBefore = (elements, index) => {
   let amount = 1;
   for (let i = 0; i < index; i++) {
-    amount *= elements[i].characteristics.length;
+    amount *= elements[i].characteristicIds.length;
   }
   return amount;
 };
@@ -49,7 +50,7 @@ const amountCharacteristicsBefore = (elements, index) => {
 const amountCharacteristicsAfter = (elements, index) => {
   let amount = 1;
   for (let i = index + 1; i < elements.length; i++) {
-    amount *= elements[i].characteristics.length;
+    amount *= elements[i].characteristicIds.length;
   }
   return amount;
 };

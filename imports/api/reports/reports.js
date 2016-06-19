@@ -29,30 +29,25 @@ Meteor.methods({
     check(characteristicId, String);
     check(isPresent, Boolean);
 
-    console.log(reportId, elementId, characteristicId, isPresent);
-
     if (isPresent) {
       Reports.collection.update(
         { _id: reportId, 'elements.elementId': elementId },
-        { $pull: { 'elements.$.characteristics': { _id: characteristicId } } }
+        { $pull: { 'elements.$.characteristicIds': characteristicId } }
       );
     } else {
-      const characteristic = Elements.collection.
-        findOne(elementId).characteristics.
-        find((origCharacteristic) => origCharacteristic._id === characteristicId);
-      console.log(characteristic);
       Reports.collection.update(
         { _id: reportId, 'elements.elementId': elementId },
-        { $push: { 'elements.$.characteristics': characteristic } }
+        { $push: { 'elements.$.characteristicIds': characteristicId } }
       );
     }
   },
 });
 
 Reports.elements.add = (reportId, elementId, characteristics) => {
+  const characteristicIds = characteristics.map((characteristic) => characteristic._id);
   Reports.collection.update(
     reportId,
-    { $addToSet: { elements: { elementId, characteristics } } }
+    { $addToSet: { elements: { elementId, characteristicIds } } }
   );
 };
 

@@ -19,6 +19,12 @@ characteristics.remove = (elementId, characteristicsId) => {
   );
 };
 
+characteristics.get = (elementId, characteristicsId) => {
+  const element = Elements.collection.findOne(elementId);
+  return element.characteristics.
+    find((characteristic) => characteristic._id === characteristicsId);
+};
+
 Meteor.methods({
   'elements.characteristics.setValue': (elementId, characteristicId, value) => {
     check(elementId, String);
