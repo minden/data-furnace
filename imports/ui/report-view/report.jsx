@@ -22,7 +22,10 @@ const Report = (props) => {
   }
 
   return (
-    <Panel header={reportHeader(props.report._id, props.report.name)}>
+    <Panel
+      style={{ overflow: 'auto' }}
+      header={reportHeader(props.report._id, props.report.name)}
+    >
       <ReportTable report={props.report} />
     </Panel>
   );

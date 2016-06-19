@@ -11,6 +11,8 @@ const ElementRows = (reportId, elements) => {
         <td />
         <td>
           {Elements.getName(element._id)}
+        </td>
+        <td>
           <ElementCharacteristicFilter
             element={element}
             reportId={reportId}

@@ -12,12 +12,13 @@ const ReportTable = (props) => (
       ev.dataTransfer.getData('text/id')
     )}
     onDragOver={(e) => { e.preventDefault(); console.log('dragged over'); }}
+    style={{ fontSize: '9pt' }}
     bordered
+    responsive
+    striped
   >
-    <thead>
-      {elementRows(props.report._id, props.report.elements)}
-    </thead>
     <tbody>
+      {elementRows(props.report._id, props.report.elements)}
       {props.report.measures.map((measure) => {
         return (
           <tr key={measure._id} >
