@@ -20,7 +20,7 @@ const ReportTable = (props) => (
           Elements
         </th>
       </tr>
-      {elementRows(props.report.elements)}
+      {elementRows(props.report._id, props.report.elements)}
     </thead>
     <tbody>
       <tr>
