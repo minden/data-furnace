@@ -11,7 +11,7 @@ const ElementCharacteristicFilter = (props) => {
       placement="right"
       rootClose
       overlay={
-        <Popover title="Characteristics" >
+        <Popover id={originalElement._id} title="Characteristics" >
           <FormGroup>
             {originalElement.characteristics.map((characteristic) => {
               return (
@@ -23,6 +23,7 @@ const ElementCharacteristicFilter = (props) => {
                     characteristic._id,
                     isPresent(characteristic, props.element.characteristicIds)
                   )}
+                  key={characteristic._id}
                 >
                   {characteristic.value}
                 </Checkbox>
