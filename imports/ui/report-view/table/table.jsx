@@ -5,42 +5,24 @@ import Reports from '../../../api/reports/reports.js';
 import elementRows from './element-rows.jsx';
 
 const ReportTable = (props) => (
-  <Table bordered>
+  <Table
+    onDrop={(ev) => Reports.addToTable(
+      props.report._id,
+      ev.dataTransfer.getData('text/type'),
+      ev.dataTransfer.getData('text/id')
+    )}
+    onDragOver={(e) => { e.preventDefault(); console.log('dragged over'); }}
+    bordered
+  >
     <thead>
-      <tr>
-        <td /><td />
-        <th
-          onDrop={(ev) => Reports.addToTable(
-            props.report._id,
-            ev.dataTransfer.getData('text/type'),
-            ev.dataTransfer.getData('text/id')
-          )}
-          onDragOver={(e) => { e.preventDefault(); console.log('dragged over'); }}
-        >
-          Elements
-        </th>
-      </tr>
       {elementRows(props.report._id, props.report.elements)}
     </thead>
     <tbody>
-      <tr>
-        <th
-          rowSpan={props.report.measures.length + 1}
-          onDrop={(ev) => Reports.addToTable(
-            props.report._id,
-            ev.dataTransfer.getData('text/type'),
-            ev.dataTransfer.getData('text/id')
-          )}
-          onDragOver={(e) => { e.preventDefault(); console.log('dragged over'); }}
-        >
-          Measures
-        </th>
-      </tr>
-      {props.report.measures.map((row) => {
+      {props.report.measures.map((measure) => {
         return (
-          <tr key={row.measureId} >
+          <tr key={measure._id} >
             <td>
-              {Measures.getName(row.measureId)}
+              {Measures.getName(measure._id)}
             </td>
           </tr>
           );
