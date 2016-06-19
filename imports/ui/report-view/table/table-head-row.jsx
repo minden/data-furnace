@@ -2,14 +2,14 @@ import React, { PropTypes } from 'react';
 import Elements from '../../../api/elements/elements.js';
 
 const TableHeadRow = (props) => {
-  const element = Elements.collection.findOne(props.column.elementId);
+  const element = Elements.collection.findOne(props.element.elementId);
   return (
-    <tr key={props.column.elementId} >
+    <tr key={props.element.elementId} >
       <td /><td />
       <td>
         {element.name}
       </td>
-      {props.column.characteristics.map(
+      {props.element.characteristics.map(
         (characteristic, i) => {
           return (
             <td>{characteristic.value}</td>
@@ -20,8 +20,8 @@ const TableHeadRow = (props) => {
 };
 
 TableHeadRow.propTypes = {
-  columns: PropTypes.array.isRequired,
-  column: PropTypes.object.isRequired,
+  elements: PropTypes.array.isRequired,
+  element: PropTypes.object.isRequired,
   position: PropTypes.number.isRequired,
 };
 

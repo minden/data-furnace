@@ -20,11 +20,11 @@ const ReportTable = (props) => (
           Elements
         </th>
       </tr>
-      {props.report.columns.map((column, position) => {
+      {props.report.elements.map((element, position) => {
         return (
           <TableHeadRow
-            columns={props.report.columns}
-            column={column}
+            elements={props.report.elements}
+            element={element}
             position={position}
           />
         );
@@ -33,7 +33,7 @@ const ReportTable = (props) => (
     <tbody>
       <tr>
         <th
-          rowSpan={props.report.rows.length + 1}
+          rowSpan={props.report.measures.length + 1}
           onDrop={(ev) => Reports.addToTable(
             props.report._id,
             ev.dataTransfer.getData('text/type'),
@@ -44,7 +44,7 @@ const ReportTable = (props) => (
           Measures
         </th>
       </tr>
-      {props.report.rows.map((row) => {
+      {props.report.measures.map((row) => {
         return (
           <tr key={row.measureId} >
             <td>

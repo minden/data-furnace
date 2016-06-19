@@ -1,12 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import Elements from '../elements/elements.js';
 
-const Reports = { columns: {}, rows: {} };
+const Reports = { elements: {}, measures: {} };
 
 Reports.collection = new Meteor.Collection('Reports');
 
 Reports.add = () => {
-  return Reports.collection.insert({ name: 'Report', columns: [], rows: [] });
+  return Reports.collection.insert({ name: 'Report', elements: [], measures: [] });
 };
 
 Reports.remove = (reportId) => {
@@ -15,23 +15,23 @@ Reports.remove = (reportId) => {
 
 Reports.addToTable = (reportId, type, id) => {
   if (type === 'measure') {
-    Reports.rows.add(reportId, id);
+    Reports.measures.add(reportId, id);
   } else if (type === 'element') {
-    Reports.columns.add(reportId, id, Elements.collection.findOne(id).characteristics);
+    Reports.elements.add(reportId, id, Elements.collection.findOne(id).characteristics);
   }
 };
 
-Reports.columns.add = (reportId, elementId, characteristics) => {
+Reports.elements.add = (reportId, elementId, characteristics) => {
   Reports.collection.update(
     reportId,
-    { $addToSet: { columns: { elementId, characteristics } } }
+    { $addToSet: { elements: { elementId, characteristics } } }
   );
 };
 
-Reports.rows.add = (reportId, measureId) => {
+Reports.measures.add = (reportId, measureId) => {
   Reports.collection.update(
     reportId,
-    { $addToSet: { rows: { measureId } } }
+    { $addToSet: { measures: { measureId } } }
   );
 };
 
