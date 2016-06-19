@@ -4,7 +4,7 @@ import { Glyphicon, OverlayTrigger, Popover, FormGroup, Checkbox } from 'react-b
 import Elements from '../../../api/elements/elements.js';
 
 const ElementCharacteristicFilter = (props) => {
-  const originalElement = Elements.collection.findOne(props.element.elementId);
+  const originalElement = Elements.collection.findOne(props.element._id);
   return (
     <OverlayTrigger
       trigger="click"
@@ -19,7 +19,7 @@ const ElementCharacteristicFilter = (props) => {
                   checked={isPresent(characteristic, props.element.characteristicIds)}
                   onClick={() => Meteor.call('Reports.toggleCharacteristic',
                     props.reportId,
-                    props.element.elementId,
+                    props.element._id,
                     characteristic._id,
                     isPresent(characteristic, props.element.characteristicIds)
                   )}

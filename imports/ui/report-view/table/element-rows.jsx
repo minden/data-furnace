@@ -10,7 +10,7 @@ const ElementRows = (reportId, elements) => {
       <tr>
         <td />
         <td>
-          {Elements.getName(element.elementId)}
+          {Elements.getName(element._id)}
           <ElementCharacteristicFilter
             element={element}
             reportId={reportId}
@@ -26,7 +26,7 @@ const ElementRows = (reportId, elements) => {
 const characteristicsCells = (reportId, elements, element, index) => {
   const cells = [];
   for (const characteristicId of element.characteristicIds) {
-    const characteristic = Elements.characteristics.get(element.elementId, characteristicId);
+    const characteristic = Elements.characteristics.get(element._id, characteristicId);
     cells.push(
       <td
         colSpan={amountCharacteristicsAfter(elements, index)}

@@ -31,12 +31,12 @@ Meteor.methods({
 
     if (isPresent) {
       Reports.collection.update(
-        { _id: reportId, 'elements.elementId': elementId },
+        { _id: reportId, 'elements._id': elementId },
         { $pull: { 'elements.$.characteristicIds': characteristicId } }
       );
     } else {
       Reports.collection.update(
-        { _id: reportId, 'elements.elementId': elementId },
+        { _id: reportId, 'elements._id': elementId },
         { $push: { 'elements.$.characteristicIds': characteristicId } }
       );
     }
@@ -47,14 +47,14 @@ Reports.elements.add = (reportId, elementId, characteristics) => {
   const characteristicIds = characteristics.map((characteristic) => characteristic._id);
   Reports.collection.update(
     reportId,
-    { $addToSet: { elements: { elementId, characteristicIds } } }
+    { $addToSet: { elements: { _id: elementId, characteristicIds } } }
   );
 };
 
 Reports.measures.add = (reportId, measureId) => {
   Reports.collection.update(
     reportId,
-    { $addToSet: { measures: { measureId } } }
+    { $addToSet: { measures: { _id: measureId } } }
   );
 };
 
