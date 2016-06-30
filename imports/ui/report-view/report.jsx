@@ -17,7 +17,7 @@ const reportHeader = (reportId, reportName) => (
 );
 
 const Report = (props) => {
-  if (!props.ready) {
+  if (!props.report) {
     return null;
   }
 
@@ -39,7 +39,6 @@ const Report = (props) => {
 
 Report.propTypes = {
   report: PropTypes.object,
-  ready: PropTypes.bool.isRequired,
 };
 
 export default createContainer(() => {
@@ -48,7 +47,6 @@ export default createContainer(() => {
     Reports.add();
   }
   return {
-    ready: handle.ready(),
     report: Reports.collection.findOne(),
   };
 }, Report);
