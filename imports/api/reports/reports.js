@@ -6,6 +6,12 @@ const Reports = { elements: {}, measures: {} };
 
 Reports.collection = new Meteor.Collection('Reports');
 
+if (Meteor.isServer) {
+  Meteor.publish('reports', () => {
+    return Reports.collection.find();
+  });
+}
+
 Reports.add = () => {
   return Reports.collection.insert({ name: 'Report', elements: [], measures: [] });
 };
