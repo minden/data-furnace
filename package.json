@@ -25,6 +25,6 @@
     "test:browser": "meteor test --driver-package dispatch:mocha-browser",
     "start": "meteor run",
     "mongodump": "mongodump --port 3001 --db meteor --out .mongodb-dump",
-    "mongorestore": "mongorestore --port 3001 --db meteor .mongodb-dump/meteor"
+    "mongorestore": "mongo --port 3001 meteor --eval \"printjson(db.dropDatabase())\" && mongorestore --port 3001 --db meteor .mongodb-dump/meteor"
   }
 }
