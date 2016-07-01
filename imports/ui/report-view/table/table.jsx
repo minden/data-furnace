@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Table } from 'react-bootstrap';
 import Measures from '../../../api/measures/measures.js';
-import Reports from '../../../api/reports/reports.js';
 import elementRows from './element-rows.jsx';
 
 const ReportTable = (props) => (
