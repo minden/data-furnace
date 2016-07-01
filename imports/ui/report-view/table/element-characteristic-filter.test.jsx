@@ -44,7 +44,7 @@ describe('ElementCharacteristicFilter', () => {
 
     it('removes the characteristic from the report on click on the checkbox', () => {
       $('.popover input:checkbox').click();
-      Reports.collection.findOne(reportId).elements[0].characteristicIds.should.have.length(0);
+      Reports.collection.findOne(reportId).elements[0].favCharacteristicIds.should.have.length(0);
     });
   });
 });

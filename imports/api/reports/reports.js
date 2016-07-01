@@ -38,22 +38,22 @@ Meteor.methods({
     if (isPresent) {
       Reports.collection.update(
         { _id: reportId, 'elements._id': elementId },
-        { $pull: { 'elements.$.characteristicIds': characteristicId } }
+        { $pull: { 'elements.$.favCharacteristicIds': characteristicId } }
       );
     } else {
       Reports.collection.update(
         { _id: reportId, 'elements._id': elementId },
-        { $push: { 'elements.$.characteristicIds': characteristicId } }
+        { $push: { 'elements.$.favCharacteristicIds': characteristicId } }
       );
     }
   },
 });
 
 Reports.elements.add = (reportId, elementId, characteristics) => {
-  const characteristicIds = characteristics.map((characteristic) => characteristic._id);
+  const favCharacteristicIds = characteristics.map((characteristic) => characteristic._id);
   Reports.collection.update(
     reportId,
-    { $addToSet: { elements: { _id: elementId, characteristicIds } } }
+    { $addToSet: { elements: { _id: elementId, favCharacteristicIds } } }
   );
 };
 

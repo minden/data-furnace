@@ -49,7 +49,7 @@ const ElementRows = (reportId, elements) => {
 
 const characteristicsCells = (reportId, elements, element, index) => {
   const cells = [];
-  for (const characteristicId of element.characteristicIds) {
+  for (const characteristicId of element.favCharacteristicIds) {
     const characteristic = Elements.characteristics.get(element._id, characteristicId);
     cells.push(
       <td
@@ -66,7 +66,7 @@ const characteristicsCells = (reportId, elements, element, index) => {
 const amountCharacteristicsBefore = (elements, index) => {
   let amount = 1;
   for (let i = 0; i < index; i++) {
-    amount *= elements[i].characteristicIds.length;
+    amount *= elements[i].favCharacteristicIds.length;
   }
   return amount;
 };
@@ -74,7 +74,7 @@ const amountCharacteristicsBefore = (elements, index) => {
 const amountCharacteristicsAfter = (elements, index) => {
   let amount = 1;
   for (let i = index + 1; i < elements.length; i++) {
-    amount *= elements[i].characteristicIds.length;
+    amount *= elements[i].favCharacteristicIds.length;
   }
   return amount;
 };
