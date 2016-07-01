@@ -8,7 +8,7 @@ import Reports from '../../api/reports/reports.js';
 import Measures from '../../api/measures/measures.js';
 import Elements from '../../api/elements/elements.js';
 
-describe.only('Report', () => {
+describe('Report', () => {
   if (Meteor.isServer) return;
   let report;
   let reportId;
