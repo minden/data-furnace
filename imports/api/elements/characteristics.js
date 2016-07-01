@@ -6,10 +6,12 @@ import { Random } from 'meteor/random';
 const characteristics = {};
 
 characteristics.add = (elementId, value) => {
+  const characteristicId = Random.id();
   Elements.collection.update(
     elementId,
-    { $push: { characteristics: { _id: Random.id(), value } } }
+    { $push: { characteristics: { _id: characteristicId, value } } }
   );
+  return characteristicId;
 };
 
 characteristics.remove = (elementId, characteristicsId) => {
