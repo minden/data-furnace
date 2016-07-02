@@ -13,7 +13,7 @@
   },
   "extends": ["airbnb", "plugin:meteor/recommended"],
   "rules": {
-    "indent": ["error", 2],
+    "indent": [2, 2],
     "import/no-unresolved": [
       2, { "ignore": ["^meteor/"] }
     ],
