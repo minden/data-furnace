@@ -4,6 +4,7 @@ language: node_js
  
 before_install:
   - curl https://install.meteor.com | /bin/sh
+  - npm install -g mupx
   - export PATH="$HOME/.meteor:$PATH"
  
 cache:
@@ -15,3 +16,9 @@ before_script:
  
 script:
   - meteor npm run test
+  
+after_success:
+  - echo "-----BEGIN RSA PRIVATE KEY-----" > data-furnace-deployment
+  - env | grep DATAFURNACEDEPLOYMENT | cut -c 23- | fold -w 64 >> data-furnace-deployment
+  - echo "-----END RSA PRIVATE KEY-----" >> data-furnace-deployment
+  - test $TRAVIS_BRANCH == "development" && mupx deploy
