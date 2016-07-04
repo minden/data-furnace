@@ -1,8 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import Elements from '../elements/elements.js';
+import { Random } from 'meteor/random';
 
-const Reports = { elements: {}, measures: {} };
+const Reports = { elements: {}, measures: {}, filters: {} };
 
 Reports.collection = new Meteor.Collection('Reports');
 
@@ -13,7 +14,7 @@ if (Meteor.isServer) {
 }
 
 Reports.add = () => {
-  return Reports.collection.insert({ name: 'Report', elements: [], measures: [] });
+  return Reports.collection.insert({ name: 'Report', elements: [], measures: [], filters: [] });
 };
 
 Reports.remove = (reportId) => {
@@ -71,6 +72,13 @@ Reports.measures.add = (reportId, measureId) => {
   Reports.collection.update(
     reportId,
     { $addToSet: { measures: { _id: measureId } } }
+  );
+};
+
+Reports.filters.add = (reportId) => {
+  Reports.collection.update(
+    reportId,
+    { $addToSet: { filters: { _id: Random.id() } } }
   );
 };
 
