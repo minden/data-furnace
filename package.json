@@ -6,8 +6,8 @@
     "test:watch": "TEST_WATCH=1 meteor test --driver-package dispatch:mocha-phantomjs",
     "test:browser": "meteor test --driver-package dispatch:mocha-browser",
     "start": "meteor run",
-    "mongodump": "mongodump --port 3001 --db meteor --out .mongodb-dump",
-    "mongorestore": "mongo --port 3001 meteor --eval \"printjson(db.dropDatabase())\" && mongorestore --port 3001 --db meteor .mongodb-dump/meteor"
+    "mongodump": "mongodump --port $(meteor mongo -U | grep -Po '\\:\\K.*?(?=\\/)') --db $(meteor mongo -U | grep -Po '\\/\\/.*\\/\\K.*') --out .mongodb-dump",
+    "mongorestore": "mongo --port $(meteor mongo -U | grep -Po '\\:\\K.*?(?=\\/)') meteor --eval \"printjson(db.dropDatabase())\" && mongorestore --port $(meteor mongo -U | grep -Po '\\:\\K.*?(?=\\/)') --db $(meteor mongo -U | grep -Po '\\/\\/.*\\/\\K.*') .mongodb-dump/meteor"
   },
   "dependencies": {
     "chai": "^3.5.0",
