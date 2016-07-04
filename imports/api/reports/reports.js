@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import Elements from '../elements/elements.js';
-import { Random } from 'meteor/random';
 
 const Reports = { elements: {}, measures: {}, filters: {} };
 
@@ -75,10 +74,11 @@ Reports.measures.add = (reportId, measureId) => {
   );
 };
 
-Reports.filters.add = (reportId) => {
+Reports.filters.add = (reportId, type, _id) => {
+  console.log(reportId, type, _id);
   Reports.collection.update(
     reportId,
-    { $addToSet: { filters: { _id: Random.id() } } }
+    { $addToSet: { filters: { _id, type } } }
   );
 };
 
