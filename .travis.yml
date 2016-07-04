@@ -22,4 +22,4 @@ after_success:
   - env | grep DATAFURNACEDEPLOYMENT | cut -c 23- | fold -w 64 >> data-furnace-deployment
   - echo "-----END RSA PRIVATE KEY-----" >> data-furnace-deployment
   - test $TRAVIS_BRANCH == "development" && mupx deploy
-  - test $TRAVIS_BRANCH == "development" && ssh -i data-furnace-deployment data-furnace@46.101.183.252 'export LC_ALL=C.UTF-8 && cd data-furnace && git pull origin development && mongo --port 27017 data-furnace --eval "printjson(db.dropDatabase())" && mongorestore --port 27017 --db data-furnace .mongodb-dump/meteor/'
+  - test $TRAVIS_BRANCH == "development" && ssh -o StrictHostKeyChecking=no -i data-furnace-deployment data-furnace@46.101.183.252 'export LC_ALL=C.UTF-8 && cd data-furnace && git pull origin development && mongo --port 27017 data-furnace --eval "printjson(db.dropDatabase())" && mongorestore --port 27017 --db data-furnace .mongodb-dump/meteor/'
