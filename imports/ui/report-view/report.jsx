@@ -18,7 +18,7 @@ const reportHeader = (reportId, reportName) => (
 );
 
 const Report = (props) => {
-  if (!props.report) {
+  if (!props.ready) {
     return null;
   }
 
@@ -28,6 +28,7 @@ const Report = (props) => {
       header={reportHeader(props.report._id, props.report.name)}
     >
       <div
+        className="report-table-wrapper"
         onDrop={(ev) => Reports.addToTable(
           props.report._id,
           ev.dataTransfer.getData('text/type'),
@@ -40,6 +41,7 @@ const Report = (props) => {
       </div>
       <hr />
       <div
+        className="filters-wrapper"
         onDrop={(ev) => Reports.filters.add(
           props.report._id,
           ev.dataTransfer.getData('text/type'),
@@ -56,14 +58,21 @@ const Report = (props) => {
 
 Report.propTypes = {
   report: PropTypes.object,
+  ready: PropTypes.bool.isRequired,
 };
 
 export default createContainer(() => {
-  const handle = Meteor.subscribe('reports');
-  if (handle.ready() && Reports.collection.find().count() === 0) {
+  const reportHandle = Meteor.subscribe('reports');
+  const measureHandle = Meteor.subscribe('measures');
+
+  if (reportHandle.ready() && Reports.collection.find().count() === 0) {
     Reports.add();
   }
   return {
+    ready: reportHandle.ready() && measureHandle.ready(),
     report: Reports.collection.findOne(),
   };
 }, Report);
+
+// To bypass data container in tests
+export { Report as ReportWithoutContainer };

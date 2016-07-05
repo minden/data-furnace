@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import { mount } from 'enzyme';
 import { Meteor } from 'meteor/meteor';
-import Report from './report.jsx';
+import { ReportWithoutContainer } from './report.jsx';
 import ReportTable from './table/table.jsx';
 import React from 'react';
 import Reports from '../../api/reports/reports.js';
@@ -23,19 +23,10 @@ describe('Report', () => {
     });
   });
 
-  before((done) => {
-    Reports.add();
-    const interval = setInterval(() => {
-      if (Reports.collection.find().count() !== 0) {
-        clearInterval(interval);
-        done();
-      }
-    });
-  });
-
   before(() => {
-    report = mount(<Report />);
-    reportId = report.find('Report').prop('report')._id;
+    reportId = Reports.add();
+    const reportData = Reports.collection.findOne(reportId);
+    report = mount(<ReportWithoutContainer report={reportData} ready />);
   });
 
   it('should contain the ReportTable component', () => {
@@ -57,7 +48,8 @@ describe('Report', () => {
           },
         },
       };
-      report.find('.panel').simulate('drop', sampleEvent);
+      console.log(report.find('.panel .report-table-wrapper').html());
+      report.find('.panel .report-table-wrapper').simulate('drop', sampleEvent);
     });
 
     it('adds a new measure to the report', () => {
@@ -80,7 +72,7 @@ describe('Report', () => {
           },
         },
       };
-      report.find('.panel').simulate('drop', sampleEvent);
+      report.find('.panel .report-table-wrapper').simulate('drop', sampleEvent);
     });
 
     it('adds a new element to the report', () => {

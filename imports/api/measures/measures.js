@@ -7,6 +7,12 @@ Measures.Expressions = Expressions;
 
 Measures.collection = new Meteor.Collection('Measures');
 
+if (Meteor.isServer) {
+  Meteor.publish('measures', () => {
+    return Measures.collection.find();
+  });
+}
+
 Measures.add = () => {
   return Measures.collection.insert({
     name: 'unnamend',
