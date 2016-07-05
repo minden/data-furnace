@@ -18,8 +18,8 @@ script:
   - meteor npm run test
   
 after_success:
-  - echo "-----BEGIN RSA PRIVATE KEY-----" > data-furnace-deployment
-  - env | grep -oP 'DATAFURNACEDEPLOYMENT\=\K.*' | fold -w 64 >> data-furnace-deployment
-  - echo "-----END RSA PRIVATE KEY-----" >> data-furnace-deployment
+  - echo "-----BEGIN RSA PRIVATE KEY-----" > app-deployment-key 
+  - env | grep -oP 'APPDEPLOYMENTKEY\=\K.*' | fold -w 64 >> app-deployment-key
+  - echo "-----END RSA PRIVATE KEY-----" >> app-deployment-key
   - test $TRAVIS_BRANCH == "development" && mupx deploy
-  - test $TRAVIS_BRANCH == "development" && chmod 600 data-furnace-deployment && ssh -o StrictHostKeyChecking=no -i data-furnace-deployment data-furnace@46.101.183.252 'export LC_ALL=C.UTF-8 && cd data-furnace && git pull origin development && mongo --port 27017 data-furnace --eval "printjson(db.dropDatabase())" && mongorestore --port 27017 --db data-furnace .mongodb-dump/meteor/'
+  - test $TRAVIS_BRANCH == "development" && chmod 600 app-deployment-key && ssh -o StrictHostKeyChecking=no -i app-deployment-key data-furnace@46.101.183.252 'export LC_ALL=C.UTF-8 && cd data-furnace && git pull origin development && mongo --port 27017 data-furnace --eval "printjson(db.dropDatabase())" && mongorestore --port 27017 --db data-furnace .mongodb-dump/meteor/'
