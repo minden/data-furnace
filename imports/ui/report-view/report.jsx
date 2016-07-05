@@ -34,7 +34,7 @@ const Report = (props) => {
           ev.dataTransfer.getData('text/type'),
           ev.dataTransfer.getData('text/id')
         )}
-        onDragOver={(e) => { e.preventDefault(); console.log('dragged over'); }}
+        onDragOver={(e) => e.preventDefault()}
       >
         <h4>Table</h4>
         <ReportTable report={props.report} />
@@ -47,7 +47,7 @@ const Report = (props) => {
           ev.dataTransfer.getData('text/type'),
           ev.dataTransfer.getData('text/id')
         )}
-        onDragOver={(e) => { e.preventDefault(); console.log('dragged over'); }}
+        onDragOver={(e) => e.preventDefault()}
       >
         <h4>Filters</h4>
         <Filters report={props.report} />
