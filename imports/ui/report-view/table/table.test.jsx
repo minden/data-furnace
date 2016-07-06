@@ -35,4 +35,14 @@ describe('ReportTable', () => {
   it('displays the name of the measure', () => {
     table.find('tr').at(1).text().should.equal('The measure name');
   });
+
+  describe('ReportTable without elements or measures', () => {
+    before(() => {
+      table = mount(<ReportTable report={{ elements: [], measures: [] }} />);
+    });
+
+    it('should show an alert to add elements and measures', () => {
+      table.find('.alert').should.have.length(1);
+    });
+  });
 });
