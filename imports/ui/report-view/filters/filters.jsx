@@ -7,9 +7,9 @@ const Filters = (props) => (
   <ListGroup>
     {props.report.filters.map((filter) => {
       if (filter.type === 'element') {
-        return (<ElementFilter filter={filter} />);
+        return (<ElementFilter filter={filter} reportId={props.report._id} />);
       }
-      return (<MeasureFilter filter={filter} />);
+      return (<MeasureFilter filter={filter} reportId={props.report._id} />);
     })}
   </ListGroup>
 );

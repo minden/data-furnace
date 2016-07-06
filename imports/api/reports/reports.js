@@ -75,11 +75,44 @@ Reports.measures.add = (reportId, measureId) => {
 };
 
 Reports.filters.add = (reportId, type, _id) => {
-  console.log(reportId, type, _id);
+  const update = { $addToSet: { filters: { _id, type } } };
+
+  if (type === 'element') {
+    update.$addToSet.filters.favCharacteristicIds = [];
+  }
+
   Reports.collection.update(
     reportId,
-    { $addToSet: { filters: { _id, type } } }
+    update
   );
 };
+
+Reports.filters.remove = (reportId, _id) => {
+  Reports.collection.update(
+    reportId,
+    { $pull: { filters: { _id } } }
+  );
+};
+
+Meteor.methods({
+  'Reports.filters.toggleCharacteristic': (reportId, filterId, characteristicId, isPresent) => {
+    check(reportId, String);
+    check(filterId, String);
+    check(characteristicId, String);
+    check(isPresent, Boolean);
+
+    if (isPresent) {
+      Reports.collection.update(
+        { _id: reportId, 'filters._id': filterId },
+        { $pull: { 'filters.$.favCharacteristicIds': characteristicId } }
+      );
+    } else {
+      Reports.collection.update(
+        { _id: reportId, 'filters._id': filterId },
+        { $push: { 'filters.$.favCharacteristicIds': characteristicId } }
+      );
+    }
+  },
+});
 
 export default Reports;
