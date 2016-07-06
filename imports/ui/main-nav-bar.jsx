@@ -29,6 +29,7 @@ export default class MainNavBar extends React.Component {
             active={this.isActive('structure-view')}
             onClick={() => this.goTo('/structure-view')}
           >
+            <i className="fa fa-cube"></i> &nbsp;
             Structure View
           </NavItem>
           <NavItem
