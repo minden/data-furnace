@@ -15,7 +15,7 @@ const ReportTable = (props) => (
       {props.report.measures.map((measure) => {
         return (
           <tr key={measure._id} >
-            <td>
+            <td style={{ borderRight: '3px solid #ddd' }} >
               {Measures.getName(measure._id)}
             </td>
           </tr>

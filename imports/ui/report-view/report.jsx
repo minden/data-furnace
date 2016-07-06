@@ -7,7 +7,7 @@ import ReportTable from './table/table.jsx';
 import Filters from './filters/filters.jsx';
 
 const reportHeader = (reportId, reportName) => (
-  <div>
+  <div className="panel-title" >
     {reportName}
     <Button
       className="glyphicon glyphicon-remove pull-right"
@@ -23,11 +23,14 @@ const Report = (props) => {
   }
 
   return (
-    <Panel
-      style={{ overflow: 'auto' }}
-      header={reportHeader(props.report._id, props.report.name)}
-    >
-      <div
+    <div>
+      {/*  Not using react panel to be able to only display panel-heading and no panel-body */}
+      <div className="panel panel-default">
+        <div className="panel-heading" >
+          {reportHeader(props.report._id, props.report.name)}
+        </div>
+      </div>
+      <Panel
         className="report-table-wrapper"
         onDrop={(ev) => Reports.addToTable(
           props.report._id,
@@ -38,9 +41,8 @@ const Report = (props) => {
       >
         <h4>Table</h4>
         <ReportTable report={props.report} />
-      </div>
-      <hr />
-      <div
+      </Panel>
+      <Panel
         className="filters-wrapper"
         onDrop={(ev) => Reports.filters.add(
           props.report._id,
@@ -51,8 +53,8 @@ const Report = (props) => {
       >
         <h4>Filters</h4>
         <Filters report={props.report} />
-      </div>
-    </Panel>
+      </Panel>
+    </div>
   );
 };
 

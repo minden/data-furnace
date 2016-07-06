@@ -33,13 +33,13 @@ describe('ElementRows', () => {
       rows.find('tr').should.have.length(2);
     });
 
-    it('returns five cells in the first row', () => {
-      rows.find('tr').at(0).find('td').should.have.length(5);
+    it('returns three cells in the first row', () => {
+      rows.find('tr').at(0).find('td').should.have.length(3);
     });
 
-    it('returns seven cells in the second row', () => {
+    it('returns five cells in the second row', () => {
       // Hotfix to count cells. Duplicated cells are ignored otherwise.
-      rows.find('tr').at(1).html().match(/<td/g).should.have.length(7);
+      rows.find('tr').at(1).html().match(/<td/g).should.have.length(5);
     });
   });
 });

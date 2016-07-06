@@ -11,6 +11,8 @@ const ElementRows = (reportId, elements) => {
     const element = elements[i];
     rows.push(
       <tr
+        style={lastRowStyle(i === elements.length -1)}
+        className="element-row"
         draggable
         onDragStart={(ev) => {
           ev.dataTransfer.setData('text/id', element._id);
@@ -30,11 +32,8 @@ const ElementRows = (reportId, elements) => {
           ev.preventDefault(); ev.dataTransfer.dropEffect = 'move';
         }}
       >
-        <td />
-        <td>
+        <td style={{ borderRight: '3px solid #ddd' }}>
           {Elements.getName(element._id)}
-        </td>
-        <td>
           <ElementCharacteristicFilter
             element={element}
             reportId={reportId}
@@ -87,6 +86,12 @@ const repeatArray = (array, times) => {
     });
   }
   return result;
+};
+
+const lastRowStyle = (isLastChild) => {
+  if (isLastChild) {
+    return { borderBottom: '3px solid #ddd' };
+  }
 };
 
 export default ElementRows;
