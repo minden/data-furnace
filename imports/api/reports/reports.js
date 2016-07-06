@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import Elements from '../elements/elements.js';
 
-const Reports = { elements: {}, measures: {} };
+const Reports = { elements: {}, measures: {}, filters: {} };
 
 Reports.collection = new Meteor.Collection('Reports');
 
@@ -13,7 +13,7 @@ if (Meteor.isServer) {
 }
 
 Reports.add = () => {
-  return Reports.collection.insert({ name: 'Report', elements: [], measures: [] });
+  return Reports.collection.insert({ name: 'Report', elements: [], measures: [], filters: [] });
 };
 
 Reports.remove = (reportId) => {
@@ -73,5 +73,46 @@ Reports.measures.add = (reportId, measureId) => {
     { $addToSet: { measures: { _id: measureId } } }
   );
 };
+
+Reports.filters.add = (reportId, type, _id) => {
+  const update = { $addToSet: { filters: { _id, type } } };
+
+  if (type === 'element') {
+    update.$addToSet.filters.favCharacteristicIds = [];
+  }
+
+  Reports.collection.update(
+    reportId,
+    update
+  );
+};
+
+Reports.filters.remove = (reportId, _id) => {
+  Reports.collection.update(
+    reportId,
+    { $pull: { filters: { _id } } }
+  );
+};
+
+Meteor.methods({
+  'Reports.filters.toggleCharacteristic': (reportId, filterId, characteristicId, isPresent) => {
+    check(reportId, String);
+    check(filterId, String);
+    check(characteristicId, String);
+    check(isPresent, Boolean);
+
+    if (isPresent) {
+      Reports.collection.update(
+        { _id: reportId, 'filters._id': filterId },
+        { $pull: { 'filters.$.favCharacteristicIds': characteristicId } }
+      );
+    } else {
+      Reports.collection.update(
+        { _id: reportId, 'filters._id': filterId },
+        { $push: { 'filters.$.favCharacteristicIds': characteristicId } }
+      );
+    }
+  },
+});
 
 export default Reports;
