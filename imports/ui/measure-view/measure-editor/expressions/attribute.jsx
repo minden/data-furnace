@@ -8,7 +8,7 @@ import InplaceEdit from '../../../components/inplace-edit.jsx';
 const Attribute = (props) => {
   const type = Measures.Expressions.types.get(props.expression.typeName);
   return (
-    <Button className={type.icon} key={props.expression._id}>
+    <Button style={props.buttonStyle} className={type.icon} key={props.expression._id}>
       <InplaceEdit
         text={props.expression.name}
         onChange={(name) =>
@@ -26,6 +26,7 @@ const Attribute = (props) => {
 Attribute.propTypes = {
   measure: PropTypes.object.isRequired,
   expression: PropTypes.object.isRequired,
+  buttonStyle: PropTypes.object.isRequired,
 };
 
 export default Attribute;

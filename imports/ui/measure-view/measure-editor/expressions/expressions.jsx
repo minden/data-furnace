@@ -10,15 +10,17 @@ const Expression = { attribute, measure, operator, func };
 const Expressions = (props) => {
   return (
     <ButtonToolbar>
-      <Button className="fa fa-balance-scale">{props.measure.name}</Button>
-      <Button className="fa">=</Button>
-      <ButtonToolbar id="expressions">
-        {props.measure.expressions.map((expression) => {
-          return Expression[expression.typeName]({ measure: props.measure, expression });
-        })}
-      </ButtonToolbar>
+      <Button style={buttonStyle} className="fa fa-balance-scale">{props.measure.name}</Button>
+      <Button style={buttonStyle} className="fa">=</Button>
+      {props.measure.expressions.map((expression) => {
+        return Expression[expression.typeName]({ measure: props.measure, expression, buttonStyle });
+      })}
     </ButtonToolbar>
   );
+};
+
+const buttonStyle = {
+  border: 'none',
 };
 
 Expressions.propTypes = {

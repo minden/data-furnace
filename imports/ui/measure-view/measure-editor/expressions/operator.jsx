@@ -16,6 +16,7 @@ const Operator = (props) => {
 
   return (
     <DropdownButton
+      style={props.buttonStyle}
       id={props.expression._id}
       className={icon}
       key={props.expression._id}
@@ -44,6 +45,7 @@ const Operator = (props) => {
 Operator.propTypes = {
   measure: PropTypes.object.isRequired,
   expression: PropTypes.object.isRequired,
+  buttonStyle: PropTypes.object.isRequired,
 };
 
 export default Operator;
