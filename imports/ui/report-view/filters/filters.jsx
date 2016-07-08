@@ -16,9 +16,9 @@ const Filters = (props) => {
     <ListGroup>
       {props.report.filters.map((filter) => {
         if (filter.type === 'element') {
-          return (<ElementFilter filter={filter} reportId={props.report._id} />);
+          return (<ElementFilter key={filter._id} filter={filter} reportId={props.report._id} />);
         }
-        return (<MeasureFilter filter={filter} reportId={props.report._id} />);
+        return (<MeasureFilter key={filter._id} filter={filter} reportId={props.report._id} />);
       })}
     </ListGroup>
   );
