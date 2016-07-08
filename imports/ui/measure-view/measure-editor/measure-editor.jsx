@@ -6,20 +6,40 @@ import Expressions from './expressions/expressions.jsx';
 import header from './header.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 
-const MeasureEditor = (props) => {
-  if (!props.measure) {
-    return null;
+class MeasureEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cursor: { afterExpressionId: undefined },
+    };
+    this.setCursor = this.setCursor.bind(this);
   }
 
-  return (
-    <Panel
-      header={header({ measure: props.measure })}
-      footer={toolbox({ measureId: props.measure._id })}
-    >
-      <Expressions measure={props.measure} />
-    </Panel>
-  );
-};
+  setCursor(cursor) {
+    this.setState({ cursor });
+  }
+
+  render() {
+    if (!this.props.measure) {
+      return null;
+    }
+
+    return (
+      <Panel
+        header={header({ measure: this.props.measure })}
+        footer={toolbox({
+          measureId: this.props.measure._id, cursor: this.state.cursor, setCursor: this.setCursor,
+        })}
+      >
+        <Expressions
+          measure={this.props.measure}
+          cursor={this.state.cursor}
+          setCursor={this.setCursor}
+        />
+      </Panel>
+    );
+  }
+}
 
 MeasureEditor.propTypes = {
   measure: PropTypes.object,

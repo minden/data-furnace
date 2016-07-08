@@ -10,10 +10,18 @@ const Expression = { attribute, measure, operator, func };
 const Expressions = (props) => {
   return (
     <ButtonToolbar>
-      <Button style={buttonStyle} className="fa fa-balance-scale">{props.measure.name}</Button>
+      <Button style={buttonStyle} className="fa fa-balance-scale"> {props.measure.name}</Button>
       <Button style={buttonStyle} className="fa">=</Button>
       {props.measure.expressions.map((expression) => {
-        return Expression[expression.typeName]({ measure: props.measure, expression, buttonStyle });
+        return Expression[expression.typeName](
+          {
+            measure: props.measure,
+            setCursor: props.setCursor,
+            cursor: props.cursor,
+            expression,
+            buttonStyle,
+          }
+        );
       })}
     </ButtonToolbar>
   );
@@ -25,6 +33,9 @@ const buttonStyle = {
 
 Expressions.propTypes = {
   measure: PropTypes.object.isRequired,
+  cursor: PropTypes.object.isRequired,
+  setCursor: PropTypes.func.isRequired,
 };
 
+export { Expression };
 export default Expressions;
