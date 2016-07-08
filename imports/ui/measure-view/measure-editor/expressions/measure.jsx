@@ -14,6 +14,7 @@ const measure = (props) => {
   const measures = Measures.collection.find({}).fetch();
   return (
     <DropdownButton
+      style={props.buttonStyle}
       id={props.expression._id}
       className={type.icon}
       key={props.expression._id}
@@ -37,6 +38,7 @@ const measure = (props) => {
 measure.propTypes = {
   measure: PropTypes.object.isRequired,
   expression: PropTypes.object.isRequired,
+  buttonStyle: PropTypes.object.isRequired,
 };
 
 export default measure;
