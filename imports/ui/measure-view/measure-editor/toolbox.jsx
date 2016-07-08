@@ -32,7 +32,7 @@ const Toolbox = (props) => {
       <Button
         className="fa fa-trash"
         style={{ marginLeft: '5px' }}
-        onClick={() => Measures.Expressions.removeLast(props.measureId)}
+        onClick={() => removeExpressionBeforeCursor(props.measureId, props.cursor, props.setCursor)}
       />
     </div>
   );
@@ -40,6 +40,26 @@ const Toolbox = (props) => {
 
 Toolbox.propTypes = {
   measureId: PropTypes.string.isRequired,
+  cursor: PropTypes.object.isRequired,
+  setCursor: PropTypes.func.isRequired,
+};
+
+const removeExpressionBeforeCursor = (measureId, cursor, setCursor) => {
+  const expressions = Measures.collection.findOne(measureId).expressions;
+
+  if (expressions.length > 1) {
+    const indexOfExpression =
+      expressions.findIndex((expression) => expression._id === cursor.afterExpressionId);
+    let newExpressionId;
+    if (indexOfExpression === 0) {
+      newExpressionId = expressions[indexOfExpression + 1]._id;
+    } else {
+      newExpressionId = expressions[indexOfExpression - 1]._id;
+    }
+    setCursor({ afterExpressionId: newExpressionId });
+  }
+
+  Measures.Expressions.remove(measureId, cursor.afterExpressionId);
 };
 
 export default Toolbox;
