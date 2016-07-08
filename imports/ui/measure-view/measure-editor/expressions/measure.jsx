@@ -25,6 +25,7 @@ const measure = (props) => {
         props.expression._id,
         measureId
       )}
+      noCaret
     >
       {measures.map((measureItem) => {
         return (
