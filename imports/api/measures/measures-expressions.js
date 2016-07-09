@@ -33,14 +33,17 @@ Expressions.types.get = (typeName) => {
   return Expressions.types.find((type) => type.name === typeName);
 };
 
-Expressions.add = (measureId, typeName) => {
+Expressions.addBehindExpression = (measureId, typeName, behindExpressionId) => {
   const expressionId = Random.id();
+  const newExpression = { _id: expressionId, typeName, name: '' };
 
-  Measures.collection.update(
-    measureId,
-    { $push: { expressions: { _id: expressionId, typeName, name: '' } } }
+  const expressions = Measures.collection.findOne(measureId).expressions;
+  const behindExpressionIndex = expressions.findIndex(
+    (expression) => expression._id === behindExpressionId
   );
+  expressions.splice(behindExpressionIndex + 1, 0, newExpression);
 
+  Measures.collection.update(measureId, { $set: { expressions } });
   return expressionId;
 };
 

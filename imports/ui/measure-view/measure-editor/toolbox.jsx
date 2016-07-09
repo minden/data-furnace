@@ -23,7 +23,9 @@ const Toolbox = (props) => {
             <Button
               disabled={isDisabled(props.measureId, type.name)}
               key={type.name}
-              onClick={() => Measures.Expressions.add(props.measureId, type.name)}
+              onClick={() =>
+                addBehindCursor(props.measureId, type.name, props.cursor, props.setCursor)
+              }
               className={type.icon}
             > {type.name}</Button>
             );
@@ -42,6 +44,13 @@ Toolbox.propTypes = {
   measureId: PropTypes.string.isRequired,
   cursor: PropTypes.object.isRequired,
   setCursor: PropTypes.func.isRequired,
+};
+
+const addBehindCursor = (measureId, typeName, cursor, setCursor) => {
+  const newExpressionId = Measures.Expressions.addBehindExpression(
+    measureId, typeName, cursor.afterExpressionId
+  );
+  setCursor({ afterExpressionId: newExpressionId });
 };
 
 const removeExpressionBeforeCursor = (measureId, cursor, setCursor) => {
