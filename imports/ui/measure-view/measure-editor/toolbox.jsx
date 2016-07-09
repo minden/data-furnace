@@ -2,16 +2,13 @@ import React, { PropTypes } from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import Measures from '../../../api/measures/measures.js';
 
-const isDisabled = (measureId, typeName) => {
-  const measure = Measures.collection.findOne(measureId);
-
-  if (measure.expressions.length === 0) {
-    return typeName === 'operator';
+const isDisabled = (measureId, cursor, typeName) => {
+  if (cursor.expressionIdBefore) {
+    const expression = Measures.Expressions.get(measureId, cursor.expressionIdBefore);
+    const type = Measures.Expressions.types.get(expression.typeName);
+    return type.possibleFollowers.indexOf(typeName) === -1;
   }
-
-  const lastExpressionTypeName = measure.expressions.pop().typeName;
-  const type = Measures.Expressions.types.get(lastExpressionTypeName);
-  return type.possibleFollowers.indexOf(typeName) === -1;
+  return typeName === 'operator';
 };
 
 const Toolbox = (props) => {
@@ -21,7 +18,7 @@ const Toolbox = (props) => {
         {Measures.Expressions.types.map((type) => {
           return (
             <Button
-              disabled={isDisabled(props.measureId, type.name)}
+              disabled={isDisabled(props.measureId, props.cursor, type.name)}
               key={type.name}
               onClick={() =>
                 addBehindCursor(props.measureId, type.name, props.cursor, props.setCursor)
