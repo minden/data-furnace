@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 import { Button } from 'react-bootstrap';
 
 const CursorPlaceholder = (props) => (
-  <Button onClick={() => props.setCursor({ afterExpressionId: props.expressionId })} >
+  <Button onClick={() => props.setCursor({ expressionIdBefore: props.expressionId })} >
     {isActive(props.cursor, props.expressionId)}
   </Button>
 );
 
 const isActive = (cursor, expressionId) => {
-  if (cursor.afterExpressionId === expressionId) return '|';
+  if (cursor.expressionIdBefore === expressionId) return '|';
 };
 
 CursorPlaceholder.propTypes = {

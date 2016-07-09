@@ -7,24 +7,40 @@ const Expressions = {};
 Expressions.types = [
   {
     name: 'attribute',
+    uIName: 'Attribute',
     icon: 'fa fa-tag',
     possibleFollowers: ['operator'],
   },
   {
     name: 'measure',
+    uIName: 'Measure',
     icon: 'fa fa-balance-scale',
     possibleFollowers: ['operator'],
   },
   {
     name: 'operator',
+    uIName: 'Operator',
     icon: 'fa fa-calculator',
     characteristics: [{ name: '+' }, { name: '-' }, { name: '*' }, { name: '/' }],
-    possibleFollowers: ['attribute', 'measure', 'func'],
+    possibleFollowers: ['attribute', 'measure', 'func', 'openingBracket', 'closingBracket'],
   },
   {
     name: 'func',
+    uIName: 'Function',
     icon: 'fa fa-code',
     characteristics: [{ name: 'sum' }, { name: 'count' }],
+    possibleFollowers: ['operator'],
+  },
+  {
+    name: 'openingBracket',
+    uIName: '(',
+    icon: 'fa',
+    possibleFollowers: ['operator'],
+  },
+  {
+    name: 'closingBracket',
+    uIName: ')',
+    icon: 'fa',
     possibleFollowers: ['operator'],
   },
 ];

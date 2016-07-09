@@ -27,7 +27,9 @@ const Toolbox = (props) => {
                 addBehindCursor(props.measureId, type.name, props.cursor, props.setCursor)
               }
               className={type.icon}
-            > {type.name}</Button>
+            >
+              &nbsp;{type.uIName}
+            </Button>
             );
         })}
       </ButtonGroup>
@@ -47,10 +49,20 @@ Toolbox.propTypes = {
 };
 
 const addBehindCursor = (measureId, typeName, cursor, setCursor) => {
-  const newExpressionId = Measures.Expressions.addBehindExpression(
-    measureId, typeName, cursor.afterExpressionId
+  let newCursorPosition = Measures.Expressions.addBehindExpression(
+    measureId, typeName, cursor.expressionIdBefore
   );
-  setCursor({ afterExpressionId: newExpressionId });
+
+  if (typeName === 'func') {
+    const openingBracketId = Measures.Expressions.addBehindExpression(
+      measureId, 'openingBracket', newCursorPosition
+    );
+    newCursorPosition = Measures.Expressions.addBehindExpression(
+      measureId, 'closingBracket', openingBracketId
+    );
+  }
+
+  setCursor({ expressionIdBefore: newCursorPosition });
 };
 
 const removeExpressionBeforeCursor = (measureId, cursor, setCursor) => {
@@ -58,17 +70,17 @@ const removeExpressionBeforeCursor = (measureId, cursor, setCursor) => {
 
   if (expressions.length > 1) {
     const indexOfExpression =
-      expressions.findIndex((expression) => expression._id === cursor.afterExpressionId);
+      expressions.findIndex((expression) => expression._id === cursor.expressionIdBefore);
     let newExpressionId;
     if (indexOfExpression === 0) {
       newExpressionId = expressions[indexOfExpression + 1]._id;
     } else {
       newExpressionId = expressions[indexOfExpression - 1]._id;
     }
-    setCursor({ afterExpressionId: newExpressionId });
+    setCursor({ expressionIdBefore: newExpressionId });
   }
 
-  Measures.Expressions.remove(measureId, cursor.afterExpressionId);
+  Measures.Expressions.remove(measureId, cursor.expressionIdBefore);
 };
 
 export default Toolbox;
