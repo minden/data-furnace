@@ -10,7 +10,7 @@ class MeasureEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cursor: { afterExpressionId: undefined },
+      cursor: { expressionIdBefore: undefined },
     };
     this.setCursor = this.setCursor.bind(this);
   }

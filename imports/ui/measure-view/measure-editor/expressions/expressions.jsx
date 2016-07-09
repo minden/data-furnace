@@ -4,8 +4,10 @@ import attribute from './attribute.jsx';
 import measure from './measure.jsx';
 import operator from './operator.jsx';
 import func from './func.jsx';
+import openingBracket from './opening-bracket.jsx';
+import closingBracket from './closing-bracket.jsx';
 
-const Expression = { attribute, measure, operator, func };
+const Expression = { attribute, measure, operator, func, openingBracket, closingBracket };
 
 const Expressions = (props) => {
   return (

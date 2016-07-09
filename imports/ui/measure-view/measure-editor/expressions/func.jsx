@@ -1,13 +1,11 @@
 import { Meteor } from 'meteor/meteor';
 import React, { PropTypes } from 'react';
-import { DropdownButton, MenuItem, Button } from 'react-bootstrap';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 import Measures from '../../../../api/measures/measures.js';
-import { Expression } from './expressions.jsx';
 import CursorPlaceholder from './cursor-placeholder.jsx';
 
 const Func = (props) => {
   const type = Measures.Expressions.types.get(props.expression.typeName);
-  const children = Measures.Expressions.getChildren(props.measure._id, props.expression._id);
 
   let icon;
   if (props.expression.name) {
@@ -41,13 +39,6 @@ const Func = (props) => {
           </MenuItem>
         ))}
       </DropdownButton>
-      <Button style={props.buttonStyle} className="fa" >(</Button>
-      {children.map((child) => {
-        return Expression[child.typeName](
-          { measure: props.measure, child, buttonStyle: props.buttonStyle }
-        );
-      })}
-      <Button style={props.buttonStyle} className="fa" >)</Button>
       <CursorPlaceholder
         cursor={props.cursor}
         setCursor={props.setCursor}
