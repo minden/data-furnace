@@ -28,7 +28,6 @@ const Operator = (props) => {
           props.expression._id,
           name
         )}
-        onClick={() => props.setSelectedExpressionId(props.expression._id)}
         noCaret
       >
         {type.characteristics.map((characteristic) => {
