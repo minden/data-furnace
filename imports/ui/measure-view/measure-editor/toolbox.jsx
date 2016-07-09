@@ -75,6 +75,8 @@ const removeExpressionBeforeCursor = (measureId, cursor, setCursor) => {
       newExpressionId = expressions[indexOfExpression - 1]._id;
     }
     setCursor({ expressionIdBefore: newExpressionId });
+  } else {
+    setCursor({ expressionIdBefore: undefined });
   }
 
   Measures.Expressions.remove(measureId, cursor.expressionIdBefore);
