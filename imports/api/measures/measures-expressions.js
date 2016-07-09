@@ -29,19 +29,19 @@ Expressions.types = [
     uIName: 'Function',
     icon: 'fa fa-code',
     characteristics: [{ name: 'sum' }, { name: 'count' }],
-    possibleFollowers: ['operator'],
+    possibleFollowers: ['openingBracket', 'closingBracket'],
   },
   {
     name: 'openingBracket',
     uIName: '(',
     icon: 'fa',
-    possibleFollowers: ['operator'],
+    possibleFollowers: ['attribute', 'measure', 'func', 'openingBracket', 'closingBracket'],
   },
   {
     name: 'closingBracket',
     uIName: ')',
     icon: 'fa',
-    possibleFollowers: ['operator'],
+    possibleFollowers: ['attribute', 'measure', 'func', 'openingBracket', 'closingBracket'],
   },
 ];
 
