@@ -22,7 +22,7 @@ describe('ElementCharacteristicFilter', () => {
   });
 
   it('shows a filter glyphicon', () => {
-    filter.find('span').hasClass('glyphicon glyphicon-filter').should.be.true;
+    filter.find('span').hasClass('glyphicon-filter').should.be.true;
   });
 
   describe('the popover', () => {
