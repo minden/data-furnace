@@ -58,4 +58,3 @@ Func.propTypes = {
 };
 
 export default Func;
-
