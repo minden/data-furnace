@@ -17,7 +17,8 @@ const ElementCharacteristicFilter = (props) => {
               return (
                 <Checkbox
                   checked={isPresent(characteristic, props.element.favCharacteristicIds)}
-                  onClick={() => Meteor.call('Reports.toggleCharacteristic',
+                  onChange={() => Meteor.call(
+                    'Reports.toggleCharacteristic',
                     props.reportId,
                     props.element._id,
                     characteristic._id,
@@ -31,7 +32,7 @@ const ElementCharacteristicFilter = (props) => {
             })}
           </FormGroup>
         </Popover>
-        }
+      }
     >
       <Glyphicon className="pull-right" glyph="filter" />
     </OverlayTrigger>
