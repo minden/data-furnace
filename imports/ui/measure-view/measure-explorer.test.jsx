@@ -31,7 +31,7 @@ if (Meteor.isClient) {
     });
 
     before((done) => {
-      resetDatabase(null, done);
+      resetDatabase(null, () => done());
     });
 
     after(() => {
