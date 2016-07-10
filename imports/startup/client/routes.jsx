@@ -10,7 +10,7 @@ import App from '../../ui/app.jsx';
 
 export const getRoutes = () => (
   <Router history={browserHistory}>
-    <Redirect from="/" to="/measure-view" />
+    <Redirect from="/" to="/structure-view" />
     <Route path="/" component={App}>
       <Route path="/structure-view" component={StructureView} />
       <Route path="/measure-view" component={MeasureView} />
