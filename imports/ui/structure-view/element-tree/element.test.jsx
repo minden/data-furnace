@@ -47,6 +47,9 @@ if (Meteor.isClient) {
     describe('when adding a child child element', () => {
       before((done) => {
         childChildElementId = Elements.add(childElementId, 'hierarchyLevel');
+        $('span.glyphicon-chevron-right').click();
+        $('span.glyphicon-chevron-right').click();
+        $('span.glyphicon-chevron-right').click();
         const interval = setInterval(() => {
           if ($('.element .element .element').length > 0) {
             clearInterval(interval);

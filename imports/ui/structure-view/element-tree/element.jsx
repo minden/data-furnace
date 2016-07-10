@@ -11,7 +11,7 @@ class Element extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      childrenVisible: true,
+      childrenVisible: false,
       buttonsVisible: false,
     };
   }
