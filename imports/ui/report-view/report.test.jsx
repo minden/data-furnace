@@ -48,7 +48,6 @@ describe('Report', () => {
           },
         },
       };
-      console.log(report.find('.panel .report-table-wrapper').html());
       report.find('.panel .report-table-wrapper').simulate('drop', sampleEvent);
     });
 
