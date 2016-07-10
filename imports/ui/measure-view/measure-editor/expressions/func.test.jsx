@@ -34,14 +34,19 @@ if (Meteor.isClient) {
       document.body.appendChild(testEnvironment);
 
       measureId = Measures.add();
-      expressionId = Measures.Expressions.add(measureId, 'func');
+      expressionId = Measures.Expressions.addBehindExpression(measureId, 'func');
 
       measure = Measures.collection.findOne(measureId);
       expression = measure.expressions.find(
         (expressionEntity) => expressionEntity._id === expressionId);
 
       render(
-        <Func measure={measure} expression={expression} />,
+        <Func
+          measure={measure}
+          expression={expression}
+          cursor={{ expressionIdBefore: undefined }}
+          setCursor={() => {}}
+        />,
         document.getElementById('test-environment')
       );
       expressionComponent = $('#test-environment button.fa-code');

@@ -75,11 +75,6 @@ Expressions.get = (measureId, expressionId) => {
   return measure.expressions.find((expression) => expression._id === expressionId);
 };
 
-Expressions.getChildren = (measureId, parentId) => {
-  const measure = Measures.collection.findOne(measureId);
-  return measure.expressions.filter((expression) => expression.parentId === parentId);
-};
-
 Meteor.methods({
   'Measures.Expressions.setName': (measureId, expressionId, name) => {
     check(measureId, String);
