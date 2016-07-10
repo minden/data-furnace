@@ -31,6 +31,8 @@ const Expressions = (props) => {
 
 const buttonStyle = {
   border: 'none',
+  paddingLeft: '6px',
+  paddingRight: '6px',
 };
 
 Expressions.propTypes = {
