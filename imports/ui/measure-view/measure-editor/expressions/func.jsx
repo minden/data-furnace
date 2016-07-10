@@ -20,6 +20,7 @@ const Func = (props) => {
     >
       <DropdownButton
         style={props.buttonStyle}
+        id={props.expression._id}
         className={icon}
         title={props.expression.name}
         noCaret
