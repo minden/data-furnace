@@ -60,7 +60,7 @@ describe('Report', () => {
     let elementId;
 
     before(() => {
-      elementId = Elements.add(null, 'hierarchy');
+      elementId = Elements.add(null, 'hierarchyLevel');
       const sampleEvent = {
         dataTransfer: {
           getData: (input) => {

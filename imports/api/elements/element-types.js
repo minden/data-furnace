@@ -5,14 +5,14 @@ const types = [
     possibleChildren: [],
   },
   {
-    humanName: 'Hierarchy',
-    name: 'hierarchy',
-    possibleChildren: ['hierarchy', 'referenceObject'],
+    humanName: 'Hierarchy level',
+    name: 'hierarchyLevel',
+    possibleChildren: ['hierarchyLevel', 'referenceObject'],
   },
   {
     humanName: 'Dimension',
     name: 'dimension',
-    possibleChildren: ['referenceObject', 'hierarchy'],
+    possibleChildren: ['referenceObject', 'hierarchyLevel'],
   },
 ];
 

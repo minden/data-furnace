@@ -13,7 +13,7 @@ describe('ElementCharacteristicFilter', () => {
   let reportId;
 
   before(() => {
-    const elementId = Elements.add(undefined, 'hierarchy');
+    const elementId = Elements.add(undefined, 'hierarchyLevel');
     Elements.characteristics.add(elementId, '2016');
     reportId = Reports.add();
     Reports.addToTable(reportId, 'element', elementId);

@@ -22,8 +22,8 @@ if (Meteor.isClient) {
       testEnvironment.setAttribute('id', 'test-environment');
       document.body.appendChild(testEnvironment);
 
-      elementId = Elements.add(undefined, 'hierarchy');
-      childElementId = Elements.add(elementId, 'hierarchy');
+      elementId = Elements.add(undefined, 'hierarchyLevel');
+      childElementId = Elements.add(elementId, 'hierarchyLevel');
       element = Elements.collection.findOne(elementId);
 
       render(<Element key={elementId} element={element} setSelectedElementId={() => {}} />,
@@ -46,7 +46,7 @@ if (Meteor.isClient) {
 
     describe('when adding a child child element', () => {
       before((done) => {
-        childChildElementId = Elements.add(childElementId, 'hierarchy');
+        childChildElementId = Elements.add(childElementId, 'hierarchyLevel');
         const interval = setInterval(() => {
           if ($('.element .element .element').length > 0) {
             clearInterval(interval);
