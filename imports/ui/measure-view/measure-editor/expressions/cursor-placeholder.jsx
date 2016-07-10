@@ -9,17 +9,11 @@ class CursorPlaceholder extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.shouldCursorFlash();
-  }
+  componentDidMount() { this.shouldCursorFlash(); }
 
-  componentDidUpdate() {
-    this.shouldCursorFlash();
-  }
+  componentDidUpdate() { this.shouldCursorFlash(); }
 
-  componentWillUnMount() {
-    this.shouldCursorFlash();
-  }
+  componentWillUnMount() { this.shouldCursorFlash(); }
 
   shouldCursorFlash() {
     if (this.isActive()) {
@@ -47,6 +41,8 @@ class CursorPlaceholder extends React.Component {
       backgroundColor: 'white',
       cursor: 'text',
       outline: 'none',
+      paddingLeft: '6px',
+      paddingRight: '6px',
     };
   }
 
