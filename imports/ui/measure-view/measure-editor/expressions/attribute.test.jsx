@@ -29,14 +29,19 @@ if (Meteor.isClient) {
       document.body.appendChild(testEnvironment);
 
       measureId = Measures.add();
-      expressionId = Measures.Expressions.add(measureId, 'attribute');
+      expressionId = Measures.Expressions.addBehindExpression(measureId, 'attribute');
 
       measure = Measures.collection.findOne(measureId);
       expression = measure.expressions.find(
         (expressionEntity) => expressionEntity._id === expressionId);
 
       render(
-        <Attribute measure={measure} expression={expression} />,
+        <Attribute
+          measure={measure}
+          expression={expression}
+          cursor={{ expressionIdBefore: undefined }}
+          setCursor={() => {}}
+        />,
         document.getElementById('test-environment')
       );
       expressionComponent = $('#test-environment .inplace-edit-textfield');

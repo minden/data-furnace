@@ -1,5 +1,6 @@
 /* eslint-env mocha */
 
+import { mount } from 'enzyme';
 import $ from 'jquery';
 import Toolbox from './toolbox.jsx';
 import Measures from '../../../api/measures/measures.js';
@@ -29,6 +30,8 @@ if (Meteor.isClient) {
       render(
         <Toolbox
           measureId={measureId}
+          cursor={{ expressionIdBefore: undefined }}
+          setCursor={() => {}}
         />,
         document.getElementById('test-environment')
       );
@@ -100,11 +103,19 @@ if (Meteor.isClient) {
     });
 
     describe('click on delete button', () => {
+      let toolboxComponent;
       before(() => {
         Measures.collection.update(measureId, { expressions: [
           { _id: '1234', typeName: 'func', name: '' }, { _id: '2234', typeName: 'func', name: '' },
         ] });
-        $('#test-environment .fa.fa-trash').click();
+        toolboxComponent = mount(
+          <Toolbox
+            measureId={measureId}
+            cursor={{ expressionIdBefore: '1234' }}
+            setCursor={() => {}}
+          />
+        );
+        toolboxComponent.find('button.fa-trash').simulate('click');
       });
 
       it('removes the last expression from the measure', () => {

@@ -20,6 +20,10 @@ if (Meteor.isServer) {
             type.name.should.exist;
           });
 
+          it('has a UI name', () => {
+            type.uIName.should.exist;
+          });
+
           it('should have an icon', () => {
             type.icon.should.exist;
           });
@@ -44,33 +48,41 @@ if (Meteor.isServer) {
     });
   });
 
-  describe('Expressions.add', () => {
+  describe('Expressions.addBehindExpression', () => {
     let measureId;
+    let firstExpressionId;
 
     before(() => {
       resetDatabase();
       measureId = Measures.add();
-      Expressions.add(measureId, 'attribute');
+      firstExpressionId = Expressions.addBehindExpression(measureId, 'attribute');
     });
 
     it('should insert an Expression into the expressions array of a measure', () => {
       Measures.collection.findOne(measureId).expressions[0].typeName.should.equal('attribute');
     });
+
+    it('inserts an Expression behind the provided ExpressionId', () => {
+      const secondExpressionId =
+        Expressions.addBehindExpression(measureId, 'attribute', firstExpressionId);
+      Measures.collection.findOne(measureId).expressions[1]._id.should.equal(secondExpressionId);
+    });
   });
 
-  describe('Expressions.removeLast', () => {
+  describe('Expressions.remove', () => {
     let measureId;
+    let firstExpressionId;
 
     before(() => {
       resetDatabase();
       measureId = Measures.add();
-      Expressions.add(measureId, 'operator');
-      Expressions.add(measureId, 'attribute');
-      Expressions.removeLast(measureId);
+      firstExpressionId = Expressions.addBehindExpression(measureId, 'operator');
+      Expressions.addBehindExpression(measureId, 'attribute');
+      Expressions.remove(measureId, firstExpressionId);
     });
 
-    it('should remove the last element from the expressions array of the measure', () => {
-      Measures.collection.findOne(measureId).expressions[0].typeName.should.equal('operator');
+    it('removes the expression', () => {
+      Measures.collection.findOne(measureId).expressions[0].typeName.should.equal('attribute');
       Measures.collection.findOne(measureId).expressions.length.should.equal(1);
     });
   });
@@ -83,7 +95,7 @@ if (Meteor.isServer) {
     before(() => {
       resetDatabase();
       measureId = Measures.add();
-      expressionId = Expressions.add(measureId, 'operator');
+      expressionId = Expressions.addBehindExpression(measureId, 'operator');
       Meteor.call('Measures.Expressions.setName', measureId, expressionId, newExpressionName);
     });
 
@@ -100,7 +112,7 @@ if (Meteor.isServer) {
     before(() => {
       resetDatabase();
       measureId = Measures.add();
-      expressionId = Expressions.add(measureId, 'operator');
+      expressionId = Expressions.addBehindExpression(measureId, 'operator');
       Meteor.call(
         'Measures.Expressions.setMeasureId',
         measureId,

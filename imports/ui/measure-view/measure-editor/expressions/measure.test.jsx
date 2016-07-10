@@ -36,14 +36,19 @@ if (Meteor.isClient) {
 
       measureId = Measures.add();
       measure2Id = Measures.add();
-      expressionId = Measures.Expressions.add(measureId, 'measure');
+      expressionId = Measures.Expressions.addBehindExpression(measureId, 'measure');
 
       measure = Measures.collection.findOne(measureId);
       expression = measure.expressions.find(
         (expressionEntity) => expressionEntity._id === expressionId);
 
       render(
-        <Measure measure={measure} expression={expression} />,
+        <Measure
+          measure={measure}
+          expression={expression}
+          cursor={{ expressionIdBefore: undefined }}
+          setCursor={() => {}}
+        />,
         document.getElementById('test-environment')
       );
       expressionComponent = $('#test-environment .dropdown-toggle.fa-balance-scale');
