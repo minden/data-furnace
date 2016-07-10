@@ -5,7 +5,7 @@ class CursorPlaceholder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      on: false,
+      active: false,
     };
   }
 
@@ -19,13 +19,13 @@ class CursorPlaceholder extends React.Component {
     if (this.isActive()) {
       if (this.cursorInterval) return;
       this.cursorInterval = setInterval(() => {
-        this.setState({ on: !this.state.on });
+        this.setState({ active: !this.state.active });
       }, 800);
     } else {
       if (this.cursorInterval) {
         clearInterval(this.cursorInterval);
         this.cursorInterval = undefined;
-        this.setState({ on: false });
+        this.setState({ active: false });
       }
     }
   }
@@ -36,7 +36,7 @@ class CursorPlaceholder extends React.Component {
 
   cursorStyle() {
     return {
-      color: (this.state.on ? 'black' : 'white'),
+      color: (this.state.active ? 'black' : 'white'),
       border: 'none',
       backgroundColor: 'white',
       cursor: 'text',
