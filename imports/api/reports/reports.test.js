@@ -89,6 +89,15 @@ describe('Reports', () => {
       Meteor.call('Reports.toggleCharacteristic', reportId, elementId, characteristicId, true);
     });
 
+    before((done) => {
+      const interval = Meteor.setInterval(() => {
+        if (Reports.collection.findOne(reportId)) {
+          Meteor.clearInterval(interval);
+          done();
+        }
+      });
+    });
+
     it('removes the characteristic from the report element', () => {
       const report = Reports.collection.findOne(reportId);
       const element = report.elements.find((elem) => elem._id === elementId);
