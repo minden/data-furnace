@@ -3,6 +3,7 @@
 import $ from 'jquery';
 import Attribute from './attribute.jsx';
 import Measures from '../../../../api/measures/measures.js';
+import subscribeAndWait from '../../../../helpers/subscribe-and-wait.js';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import { Meteor } from 'meteor/meteor';
@@ -12,7 +13,7 @@ import { should } from 'chai';
 should();
 
 if (Meteor.isClient) {
-  describe('Expression.attribute', () => {
+  describe.only('Expression.attribute', () => {
     let measureId;
     let measure;
     let expressionId;
@@ -20,7 +21,9 @@ if (Meteor.isClient) {
     let expressionComponent;
 
     before((done) => {
-      resetDatabase(null, done);
+      subscribeAndWait(['measures'], () => {
+        resetDatabase(null, done);
+      });
     });
 
     before(() => {
