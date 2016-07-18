@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import MeasureExplorer from './measure-explorer.jsx';
 import MeasureEditor from './measure-editor/measure-editor.jsx';
+import { createContainer } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
 
 class MeasureView extends React.Component {
   constructor(props) {
@@ -17,6 +19,7 @@ class MeasureView extends React.Component {
   }
 
   render() {
+    if (!this.props.ready) return null;
     return (
       <div id="measure-view" className="container">
         <Row>
@@ -37,4 +40,14 @@ class MeasureView extends React.Component {
   }
 }
 
-export default MeasureView;
+MeasureView.propTypes = {
+  ready: PropTypes.bool.isRequired,
+};
+
+export default createContainer(() => {
+  const measureHandle = Meteor.subscribe('measures');
+
+  return {
+    ready: measureHandle.ready(),
+  };
+}, MeasureView);

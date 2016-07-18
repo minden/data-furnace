@@ -10,8 +10,14 @@ describe('MeasureView', () => {
   if (Meteor.isServer) return;
   let view;
 
-  before(() => {
+  before((done) => {
     view = mount(<MeasureView />);
+    const interval = setInterval(() => {
+      if (view.find('MeasureView').props().ready) {
+        clearInterval(interval);
+        done();
+      }
+    });
   });
 
   it('contains the measure explorer', () => {
@@ -20,10 +26,5 @@ describe('MeasureView', () => {
 
   it('contains the measure editor', () => {
     view.find(MeasureEditor).should.have.length(1);
-  });
-
-  it('sets the selected measure state on setSelectedMeasureId function call', () => {
-    view.instance().setSelectedMeasureId('1');
-    view.state('selectedMeasureId').should.equal('1');
   });
 });

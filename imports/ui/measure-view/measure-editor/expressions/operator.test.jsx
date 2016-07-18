@@ -8,6 +8,7 @@ import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 import { resetDatabase } from 'meteor/xolvio:cleaner';
 import { should } from 'chai';
+import subscribeAndWait from '../../../../helpers/subscribe-and-wait.js';
 should();
 
 if (Meteor.isClient) {
@@ -17,6 +18,10 @@ if (Meteor.isClient) {
     let expressionId;
     let expression;
     let expressionComponent;
+
+    before((done) => {
+      subscribeAndWait(['measures'], done);
+    });
 
     before((done) => {
       resetDatabase();
