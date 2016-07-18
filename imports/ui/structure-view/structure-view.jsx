@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ElementTree from './element-tree/element-tree.jsx';
 import ElementDetails from './element-details/element-details.jsx';
+import { createContainer } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
 
 class StructureView extends React.Component {
   constructor(props) {
@@ -16,6 +18,7 @@ class StructureView extends React.Component {
   }
 
   render() {
+    if (!this.props.ready) return null;
     return (
       <div id="structure-view" className="container">
         <div className="row">
@@ -37,4 +40,14 @@ class StructureView extends React.Component {
   }
 }
 
-export default StructureView;
+StructureView.propTypes = {
+  ready: PropTypes.bool.isRequired,
+};
+
+export default createContainer(() => {
+  const elementHandler = Meteor.subscribe('elements');
+
+  return {
+    ready: elementHandler.ready(),
+  };
+}, StructureView);

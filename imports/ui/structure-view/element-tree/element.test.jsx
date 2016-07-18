@@ -8,6 +8,7 @@ import TestUtils from 'react-addons-test-utils';
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 import { should, expect } from 'chai';
+import subscribeAndWait from '../../../helpers/subscribe-and-wait.js';
 should();
 
 if (Meteor.isClient) {
@@ -17,6 +18,10 @@ if (Meteor.isClient) {
   let childChildElementId;
 
   describe('Element.jsx', () => {
+    before((done) => {
+      subscribeAndWait(['elements'], done);
+    });
+
     before(() => {
       const testEnvironment = document.createElement('div');
       testEnvironment.setAttribute('id', 'test-environment');
