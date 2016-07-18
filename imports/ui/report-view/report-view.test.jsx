@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { Meteor } from 'meteor/meteor';
 import ReportView from './report-view.jsx';
 import Report from './report.jsx';
@@ -11,8 +11,15 @@ describe('ReportView', () => {
   if (Meteor.isServer) return;
   let reportView;
 
-  before(() => {
-    reportView = shallow(<ReportView />);
+  before((done) => {
+    reportView = mount(<ReportView />);
+
+    const interval = setInterval(() => {
+      if (reportView.find('ReportView').props().ready) {
+        clearInterval(interval);
+        done();
+      }
+    });
   });
 
   it('should have one ElementTree component', () => {
