@@ -13,7 +13,7 @@ import { should } from 'chai';
 should();
 
 if (Meteor.isClient) {
-  describe.only('Expression.attribute', () => {
+  describe('Expression.attribute', () => {
     let measureId;
     let measure;
     let expressionId;
