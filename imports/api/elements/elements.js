@@ -11,6 +11,12 @@ Meteor.Elements = Elements;
 
 Elements.collection = new Meteor.Collection('Elements');
 
+if (Meteor.isServer) {
+  Meteor.publish('elements', () => {
+    return Elements.collection.find();
+  });
+}
+
 Elements.add = function add(parentId, typeName) {
   const elementId = Elements.collection.insert({
     characteristics: [],
