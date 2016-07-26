@@ -58,8 +58,15 @@ if (Meteor.isServer) {
       firstExpressionId = Expressions.addBehindExpression(measureId, 'attribute');
     });
 
-    it('should insert an Expression into the expressions array of a measure', () => {
-      Measures.collection.findOne(measureId).expressions[0].typeName.should.equal('attribute');
+    it('should insert an Expression into the expressions array of a measure', (done) => {
+      let measure;
+      Meteor.setInterval(() => {
+        measure = Measures.collection.findOne(measureId);
+        if (measure) {
+          measure.expressions[0].typeName.should.equal('attribute');
+          done();
+        }
+      }, 100);
     });
 
     it('inserts an Expression behind the provided ExpressionId', () => {

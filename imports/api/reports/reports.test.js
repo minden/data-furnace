@@ -95,7 +95,7 @@ describe('Reports', () => {
           clearInterval(interval);
           done();
         }
-      });
+      }, 100);
     });
 
     it('removes the characteristic from the report element', () => {
