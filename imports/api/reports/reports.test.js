@@ -92,7 +92,7 @@ describe('Reports', () => {
     before((done) => {
       const interval = Meteor.setInterval(() => {
         if (Reports.collection.findOne(reportId)) {
-          Meteor.clearInterval(interval);
+          clearInterval(interval);
           done();
         }
       });
