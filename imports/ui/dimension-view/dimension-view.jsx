@@ -25,20 +25,6 @@ class DimensionView extends React.Component {
       <div id="dimension-view" className="container">
         <div className="row">
           <div className="col-md-8">
-            {/*  Not using react panel to be able to only display panel-heading
-              and no panel-body */}
-            <div className="panel panel-default">
-              <div className="panel-heading" >
-                <div className="panel-title">
-                  Business Objects
-                  <Button
-                    className="glyphicon glyphicon-plus pull-right"
-                    style={{ padding: '0px', border: '0px', backgroundColor: 'transparent' }}
-                    onClick={() => Elements.add(undefined, 'businessObject')}
-                  />
-                </div>
-              </div>
-            </div>
             {this.props.businessObjects.map((businessObject) => (
               <ElementTree
                 setSelectedElementId={this.setSelectedElementId}
@@ -47,6 +33,11 @@ class DimensionView extends React.Component {
                 businessObject={businessObject}
               />
             ))}
+            <div className="text-center">
+              <Button onClick={() => Elements.add(undefined, 'businessObject')}>
+                <i className="fa fa-plus"> Add new Business Object</i>
+              </Button>
+            </div>
           </div>
           <div className="col-md-4">
             <ElementDetails
