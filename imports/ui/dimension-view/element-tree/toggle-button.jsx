@@ -16,7 +16,7 @@ const TreeToggler = (props) => {
     <span
       className={togglerClasses()}
       onClick={props.toggleChildrenVisible}
-      style={{ paddingRight: '10px' }}
+      style={{ paddingRight: '10px', cursor: 'pointer' }}
     ></span>
   );
 };
