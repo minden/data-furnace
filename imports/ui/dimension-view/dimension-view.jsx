@@ -30,21 +30,21 @@ class DimensionView extends React.Component {
             <div className="panel panel-default">
               <div className="panel-heading" >
                 <div className="panel-title">
-                  Reference Objects
+                  Business Objects
                   <Button
                     className="glyphicon glyphicon-plus pull-right"
                     style={{ padding: '0px', border: '0px', backgroundColor: 'transparent' }}
-                    onClick={() => Elements.add(undefined, 'referenceObject')}
+                    onClick={() => Elements.add(undefined, 'businessObject')}
                   />
                 </div>
               </div>
             </div>
-            {this.props.referenceObjects.map((referenceObject) => (
+            {this.props.businessObjects.map((businessObject) => (
               <ElementTree
                 setSelectedElementId={this.setSelectedElementId}
                 selectedElementId={this.state.selectedElementId}
-                key={referenceObject._id}
-                referenceObject={referenceObject}
+                key={businessObject._id}
+                businessObject={businessObject}
               />
             ))}
           </div>
@@ -62,7 +62,7 @@ class DimensionView extends React.Component {
 
 DimensionView.propTypes = {
   ready: PropTypes.bool.isRequired,
-  referenceObjects: PropTypes.array.isRequired,
+  businessObjects: PropTypes.array.isRequired,
 };
 
 export default createContainer(() => {
@@ -70,6 +70,6 @@ export default createContainer(() => {
 
   return {
     ready: elementHandler.ready(),
-    referenceObjects: Elements.collection.find({ typeName: 'referenceObject' }).fetch(),
+    businessObjects: Elements.collection.find({ typeName: 'businessObject' }).fetch(),
   };
 }, DimensionView);

@@ -12,11 +12,11 @@ const ReportView = (props) => {
   return (
     <div>
       <Col md={2}>
-        {props.referenceObjects.map((referenceObject) => (
+        {props.businessObjects.map((businessObject) => (
           <ElementTree
-            referenceObject={referenceObject}
+            businessObject={businessObject}
             setSelectedElementId={() => {}}
-            key={referenceObject._id}
+            key={businessObject._id}
             readOnly
             draggable
           />
@@ -34,7 +34,7 @@ const ReportView = (props) => {
 
 ReportView.propTypes = {
   ready: PropTypes.bool.isRequired,
-  referenceObjects: PropTypes.array.isRequired,
+  businessObjects: PropTypes.array.isRequired,
 };
 
 export default createContainer(() => {
@@ -44,6 +44,6 @@ export default createContainer(() => {
 
   return {
     ready: elementHandle.ready() && measureHandle.ready() && reportHandle.ready(),
-    referenceObjects: Elements.collection.find({ typeName: 'referenceObject' }).fetch(),
+    businessObjects: Elements.collection.find({ typeName: 'businessObject' }).fetch(),
   };
 }, ReportView);

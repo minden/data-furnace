@@ -114,7 +114,7 @@ describe('Reports', () => {
       reportId = Reports.add();
       elementOneId = Elements.add(undefined, 'dimension');
       Reports.addToTable(reportId, 'element', elementOneId);
-      elementTwoId = Elements.add(undefined, 'referenceObject');
+      elementTwoId = Elements.add(undefined, 'businessObject');
       Reports.addToTable(reportId, 'element', elementTwoId);
       Reports.elements.swap(reportId, elementOneId, elementTwoId);
     });

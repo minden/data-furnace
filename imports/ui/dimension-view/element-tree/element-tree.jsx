@@ -5,17 +5,17 @@ import Element from './element.jsx';
 import { Button, Panel } from 'react-bootstrap';
 import InplaceEdit from '../../components/inplace-edit.jsx';
 
-const elementTreeHeader = (referenceObject, readOnly) => (
+const elementTreeHeader = (businessObject, readOnly) => (
   <div>
     <InplaceEdit
-      onChange={(text) => Elements.setName(referenceObject._id, text)}
-      text={referenceObject.name}
+      onChange={(text) => Elements.setName(businessObject._id, text)}
+      text={businessObject.name}
     />
     <div className="pull-right">
       {!readOnly && <Button
         className="glyphicon glyphicon-plus pull-right"
         style={{ padding: '0px', border: '0px', backgroundColor: 'transparent' }}
-        onClick={() => Elements.add(referenceObject._id, 'dimension')}
+        onClick={() => Elements.add(businessObject._id, 'dimension')}
       />}
     </div>
   </div>
@@ -23,7 +23,7 @@ const elementTreeHeader = (referenceObject, readOnly) => (
 
 const ElementTree = (props) => (
   <div className="element-tree">
-    <Panel header={elementTreeHeader(props.referenceObject, props.readOnly)}>
+    <Panel header={elementTreeHeader(props.businessObject, props.readOnly)}>
       <div id="elements">
         {props.elements.map((element) => {
           return (
@@ -48,13 +48,13 @@ ElementTree.propTypes = {
   selectedElementId: PropTypes.string,
   readOnly: PropTypes.bool,
   draggable: PropTypes.bool,
-  referenceObject: PropTypes.object.isRequired,
+  businessObject: PropTypes.object.isRequired,
 };
 
 export default createContainer((props) => {
   return {
     elements: Elements.collection.find(
-      { parentId: props.referenceObject._id, typeName: 'dimension' }
+      { parentId: props.businessObject._id, typeName: 'dimension' }
     ).fetch(),
   };
 }, ElementTree);

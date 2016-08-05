@@ -62,8 +62,8 @@ if (Meteor.isServer) {
   });
 
   describe('Elements.types.nameToHumanName', () => {
-    it('should return "Reference object" on "referenceObject"', () => {
-      Elements.types.nameToHumanName('referenceObject').should.equal('Reference object');
+    it('should return "Business object" on "businessObject"', () => {
+      Elements.types.nameToHumanName('businessObject').should.equal('Business Object');
     });
   });
 }

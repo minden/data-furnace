@@ -13,7 +13,7 @@ describe('ReportView', () => {
   let reportView;
 
   before((done) => {
-    Elements.add(undefined, 'referenceObject');
+    Elements.add(undefined, 'businessObject');
     reportView = mount(<ReportView />);
 
     const interval = setInterval(() => {

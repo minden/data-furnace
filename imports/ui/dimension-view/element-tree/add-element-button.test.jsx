@@ -52,7 +52,7 @@ if (Meteor.isClient) {
           amountAfter = Elements.collection.find().count();
         });
 
-        it('should create a new referenceObject element in the database', () => {
+        it('should create a new businessObject element in the database', () => {
           amountBefore.should.equal(amountAfter - 1);
         });
       });
