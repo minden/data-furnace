@@ -4,14 +4,16 @@ import { Meteor } from 'meteor/meteor';
 import ReportView from './report-view.jsx';
 import Report from './report.jsx';
 import MeasureExplorer from '../measure-view/measure-explorer.jsx';
-import ElementTree from '../structure-view/element-tree/element-tree.jsx';
+import ElementTree from '../dimension-view/element-tree/element-tree.jsx';
 import React from 'react';
+import Elements from '../../api/elements/elements.js';
 
 describe('ReportView', () => {
   if (Meteor.isServer) return;
   let reportView;
 
   before((done) => {
+    Elements.add(undefined, 'referenceObject');
     reportView = mount(<ReportView />);
 
     const interval = setInterval(() => {

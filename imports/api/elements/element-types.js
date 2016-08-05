@@ -5,14 +5,19 @@ const types = [
     possibleChildren: [],
   },
   {
-    humanName: 'Hierarchy level',
-    name: 'hierarchyLevel',
-    possibleChildren: ['hierarchyLevel', 'referenceObject'],
+    humanName: 'Dimension Level',
+    name: 'dimensionLevel',
+    possibleChildren: ['dimensionLevel', 'attribute'],
   },
   {
     humanName: 'Dimension',
     name: 'dimension',
-    possibleChildren: ['referenceObject', 'hierarchyLevel'],
+    possibleChildren: ['referenceObject', 'dimensionLevel'],
+  },
+  {
+    humanName: 'Attribute',
+    name: 'attribute',
+    possibleChildren: [],
   },
 ];
 

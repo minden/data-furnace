@@ -26,11 +26,11 @@ export default class MainNavBar extends React.Component {
         <Nav>
           <NavItem
             style={{ color: 'white' }}
-            active={this.isActive('structure-view')}
-            onClick={() => this.goTo('/structure-view')}
+            active={this.isActive('dimension-view')}
+            onClick={() => this.goTo('/dimension-view')}
           >
             <i className="fa fa-cube"></i> &nbsp;
-            Structure View
+            Dimension View
           </NavItem>
           <NavItem
             style={{ color: 'white' }}

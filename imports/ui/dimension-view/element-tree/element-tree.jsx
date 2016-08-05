@@ -2,21 +2,28 @@ import React, { PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import Elements from '../../../api/elements/elements.js';
 import Element from './element.jsx';
-import AddElementButton from './add-element-button.jsx';
-import { Panel } from 'react-bootstrap';
+import { Button, Panel } from 'react-bootstrap';
+import InplaceEdit from '../../components/inplace-edit.jsx';
 
-const elementTreeHeader = (readOnly) => (
+const elementTreeHeader = (referenceObject, readOnly) => (
   <div>
-    Elements
+    <InplaceEdit
+      onChange={(text) => Elements.setName(referenceObject._id, text)}
+      text={referenceObject.name}
+    />
     <div className="pull-right">
-      {!readOnly && <AddElementButton possibleTypeNames={['dimension']} />}
+      {!readOnly && <Button
+        className="glyphicon glyphicon-plus pull-right"
+        style={{ padding: '0px', border: '0px', backgroundColor: 'transparent' }}
+        onClick={() => Elements.add(referenceObject._id, 'dimension')}
+      />}
     </div>
   </div>
 );
 
 const ElementTree = (props) => (
-  <div id="element-tree">
-    <Panel header={elementTreeHeader(props.readOnly)}>
+  <div className="element-tree">
+    <Panel header={elementTreeHeader(props.referenceObject, props.readOnly)}>
       <div id="elements">
         {props.elements.map((element) => {
           return (
@@ -41,10 +48,13 @@ ElementTree.propTypes = {
   selectedElementId: PropTypes.string,
   readOnly: PropTypes.bool,
   draggable: PropTypes.bool,
+  referenceObject: PropTypes.object.isRequired,
 };
 
-export default createContainer(() => {
+export default createContainer((props) => {
   return {
-    elements: Elements.collection.find({ parentId: { $exists: false } }).fetch(),
+    elements: Elements.collection.find(
+      { parentId: props.referenceObject._id, typeName: 'dimension' }
+    ).fetch(),
   };
 }, ElementTree);

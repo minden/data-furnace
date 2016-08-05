@@ -20,7 +20,7 @@ if (Meteor.isServer) {
 
   describe('Elements.add', () => {
     it('should insert an element into the MongoDB', () => {
-      const element = { parentId: null, typeName: 'hierarchyLevel' };
+      const element = { parentId: null, typeName: 'dimensionLevel' };
       element._id = Elements.add(element.parentId, element.typeName);
       const elementFromDB = Elements.collection.findOne(element._id);
       elementFromDB.typeName.should.equal(element.typeName);
@@ -31,7 +31,7 @@ if (Meteor.isServer) {
     let elementId;
 
     before(() => {
-      elementId = Elements.add(undefined, 'hierarchyLevel');
+      elementId = Elements.add(undefined, 'dimensionLevel');
       Elements.remove(elementId, undefined);
     });
 

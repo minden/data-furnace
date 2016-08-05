@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
+import Elements from '../../api/elements/elements.js';
 import { Col } from 'react-bootstrap';
 import MeasureExplorer from '../measure-view/measure-explorer.jsx';
-import ElementTree from '../structure-view/element-tree/element-tree.jsx';
+import ElementTree from '../dimension-view/element-tree/element-tree.jsx';
 import Report from './report.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
@@ -11,7 +12,15 @@ const ReportView = (props) => {
   return (
     <div>
       <Col md={2}>
-        <ElementTree setSelectedElementId={() => {}} readOnly draggable />
+        {props.referenceObjects.map((referenceObject) => (
+          <ElementTree
+            referenceObject={referenceObject}
+            setSelectedElementId={() => {}}
+            key={referenceObject._id}
+            readOnly
+            draggable
+          />
+        ))}
       </Col>
       <Col md={8}>
         <Report />
@@ -25,6 +34,7 @@ const ReportView = (props) => {
 
 ReportView.propTypes = {
   ready: PropTypes.bool.isRequired,
+  referenceObjects: PropTypes.array.isRequired,
 };
 
 export default createContainer(() => {
@@ -34,5 +44,6 @@ export default createContainer(() => {
 
   return {
     ready: elementHandle.ready() && measureHandle.ready() && reportHandle.ready(),
+    referenceObjects: Elements.collection.find({ typeName: 'referenceObject' }).fetch(),
   };
 }, ReportView);

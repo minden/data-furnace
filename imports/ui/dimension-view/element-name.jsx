@@ -2,10 +2,6 @@ import React from 'react';
 import Elements from '../../api/elements/elements.js';
 import InplaceEdit from '../components/inplace-edit.jsx';
 
-const setName = (elementId, text) => {
-  Elements.setName(elementId, text);
-};
-
 const elementName = (name) => {
   if (name.length === 0) {
     return 'name';
@@ -25,7 +21,7 @@ const ElementName = (props) => (
     }
     {!props.readOnly &&
       <InplaceEdit
-        onChange={(text) => setName(props.elementId, text)}
+        onChange={(text) => Elements.setName(props.elementId, text)}
         text={elementName(props.elementName)}
       />
     }

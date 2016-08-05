@@ -48,7 +48,7 @@ if (Meteor.isClient) {
 
         before(() => {
           amountBefore = Elements.collection.find().count();
-          $('a:contains("Hierarchy")')[0].click();
+          $('a:contains("Dimension Level")')[0].click();
           amountAfter = Elements.collection.find().count();
         });
 
