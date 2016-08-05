@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Elements from '../../api/elements/elements.js';
+import Reports from '../../api/reports/reports.js';
 import { Col } from 'react-bootstrap';
 import MeasureExplorer from '../measure-view/measure-explorer.jsx';
 import ElementTree from '../dimension-view/element-tree/element-tree.jsx';
@@ -23,7 +24,9 @@ const ReportView = (props) => {
         ))}
       </Col>
       <Col md={8}>
-        <Report />
+        {props.reports.map((report) => (
+          <Report report={report} key={report._id} />
+        ))}
       </Col>
       <Col md={2}>
         <MeasureExplorer setSelectedMeasureId={() => {}} readOnly draggable />
@@ -35,6 +38,7 @@ const ReportView = (props) => {
 ReportView.propTypes = {
   ready: PropTypes.bool.isRequired,
   businessObjects: PropTypes.array.isRequired,
+  reports: PropTypes.array.isRequired,
 };
 
 export default createContainer(() => {
@@ -45,5 +49,6 @@ export default createContainer(() => {
   return {
     ready: elementHandle.ready() && measureHandle.ready() && reportHandle.ready(),
     businessObjects: Elements.collection.find({ typeName: 'businessObject' }).fetch(),
+    reports: Reports.collection.find().fetch(),
   };
 }, ReportView);

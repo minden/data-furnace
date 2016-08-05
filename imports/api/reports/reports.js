@@ -20,6 +20,10 @@ Reports.remove = (reportId) => {
   Reports.collection.remove(reportId);
 };
 
+Reports.setName = (reportId, name) => {
+  Reports.collection.update({ _id: reportId }, { $set: { name } });
+};
+
 Reports.addToTable = (reportId, type, id) => {
   if (type === 'measure') {
     Reports.measures.add(reportId, id);
