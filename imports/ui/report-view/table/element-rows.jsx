@@ -34,7 +34,11 @@ const ElementRows = (reportId, elements) => {
         }}
       >
         <td style={{ borderRight: '3px solid #ddd' }}>
-          {Elements.getName(element._id)}&nbsp;
+          <ElementCharacteristicFilter
+            element={element}
+            reportId={reportId}
+          />
+          &nbsp;{Elements.getName(element._id)}
           <Button
             className="glyphicon glyphicon-trash pull-right"
             style={
@@ -42,10 +46,6 @@ const ElementRows = (reportId, elements) => {
                 backgroundColor: 'transparent', color: '#DE4646' }
             }
             onClick={() => Reports.elements.remove(reportId, element._id)}
-          />
-          <ElementCharacteristicFilter
-            element={element}
-            reportId={reportId}
           />
         </td>
         {characteristicsCells(reportId, elements, element, i)}
