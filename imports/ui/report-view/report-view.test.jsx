@@ -7,6 +7,7 @@ import MeasureExplorer from '../measure-view/measure-explorer.jsx';
 import ElementTree from '../dimension-view/element-tree/element-tree.jsx';
 import React from 'react';
 import Elements from '../../api/elements/elements.js';
+import Reports from '../../api/reports/reports.js';
 
 describe('ReportView', () => {
   if (Meteor.isServer) return;
@@ -14,6 +15,7 @@ describe('ReportView', () => {
 
   before((done) => {
     Elements.add(undefined, 'businessObject');
+    Reports.add();
     reportView = mount(<ReportView />);
 
     const interval = setInterval(() => {
