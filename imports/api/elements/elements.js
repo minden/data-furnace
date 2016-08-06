@@ -36,6 +36,13 @@ Elements.add = function add(parentId, typeName) {
 
 Elements.remove = function remove(elementId, parentId) {
   Elements.collection.update({ _id: parentId }, { $pull: { childIds: elementId } });
+  removeChildren(elementId);
+  Elements.collection.remove(elementId);
+};
+
+const removeChildren = (elementId) => {
+  const childIds = Elements.collection.findOne(elementId).childIds;
+  childIds.forEach((childId) => removeChildren(childId));
   Elements.collection.remove(elementId);
 };
 

@@ -3,44 +3,49 @@ import { createContainer } from 'meteor/react-meteor-data';
 import Elements from '../../../api/elements/elements.js';
 import Element from './element.jsx';
 import { Button, Panel } from 'react-bootstrap';
-import InplaceEdit from '../../components/inplace-edit.jsx';
+import header from './header.jsx';
 
-const elementTreeHeader = (businessObject, readOnly) => (
-  <div>
-    <InplaceEdit
-      onChange={(text) => Elements.setName(businessObject._id, text)}
-      text={businessObject.name}
-    />
-    <div className="pull-right">
-      {!readOnly && <Button
-        className="glyphicon glyphicon-plus pull-right"
-        style={{ padding: '0px', border: '0px', backgroundColor: 'transparent' }}
-        onClick={() => Elements.add(businessObject._id, 'dimension')}
-      />}
-    </div>
-  </div>
-);
+class ElementTree extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      addDimensionButtonVisible: false,
+    };
+  }
 
-const ElementTree = (props) => (
-  <div className="element-tree">
-    <Panel header={elementTreeHeader(props.businessObject, props.readOnly)}>
-      <div id="elements">
-        {props.elements.map((element) => {
-          return (
-            <Element
-              setSelectedElementId={props.setSelectedElementId}
-              selectedElementId={props.selectedElementId}
-              key={element._id}
-              element={element}
-              readOnly={props.readOnly}
-              draggable={props.draggable}
-            />
-            );
-        })}
-      </div>
-    </Panel>
-  </div>
-);
+  render() {
+    return (
+      <Panel
+        className="element-tree"
+        onMouseEnter={() => this.setState({ addDimensionButtonVisible: true })}
+        onMouseLeave={() => this.setState({ addDimensionButtonVisible: false })}
+        header={header(this.props.businessObject, this.props.readOnly)}
+      >
+        <div id="elements">
+          {this.props.elements.map((element) => {
+            return (
+              <Element
+                setSelectedElementId={this.props.setSelectedElementId}
+                selectedElementId={this.props.selectedElementId}
+                key={element._id}
+                element={element}
+                readOnly={this.props.readOnly}
+                draggable={this.props.draggable}
+              />
+              );
+          })}
+          {this.state.addDimensionButtonVisible &&
+            <div className="text-center" style={{ marginTop: '10px' }} >
+              <Button onClick={() => Elements.add(this.props.businessObject._id, 'dimension')}>
+                <i className="fa fa-plus"> Add new Dimension</i>
+              </Button>
+            </div>
+          }
+        </div>
+      </Panel>
+    );
+  }
+}
 
 ElementTree.propTypes = {
   elements: PropTypes.array.isRequired,
