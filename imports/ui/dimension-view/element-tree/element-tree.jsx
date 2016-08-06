@@ -34,7 +34,7 @@ class ElementTree extends React.Component {
               />
               );
           })}
-          {this.state.addDimensionButtonVisible &&
+          {this.state.addDimensionButtonVisible && !this.props.readOnly &&
             <div className="text-center" style={{ marginTop: '10px' }} >
               <Button onClick={() => Elements.add(this.props.businessObject._id, 'dimension')}>
                 <i className="fa fa-plus"> Add new Dimension</i>
