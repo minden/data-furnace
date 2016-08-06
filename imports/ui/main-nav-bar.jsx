@@ -19,7 +19,10 @@ export default class MainNavBar extends React.Component {
     return (
       <Navbar>
         <Navbar.Header>
-          <Navbar.Brand style={{ color: '#DE4646' }}>
+          <Navbar.Brand
+            style={{ color: '#DE4646', cursor: 'pointer' }}
+            onClick={() => this.goTo('/')}
+          >
             <i className="fa fa-fire"></i> &nbsp;DataFurnace
           </Navbar.Brand>
         </Navbar.Header>
