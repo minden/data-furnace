@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, PageHeader, Grid } from 'react-bootstrap';
+import { Jumbotron, Grid } from 'react-bootstrap';
 
 const LandingPage = () => {
   return (
