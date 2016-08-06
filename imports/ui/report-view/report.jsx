@@ -16,8 +16,9 @@ const Report = (props) => (
             text={props.report.name}
           />
           <Button
-            className="glyphicon glyphicon-remove pull-right"
-            style={{ padding: '0px', border: '0px', backgroundColor: 'transparent' }}
+            className="glyphicon glyphicon-trash pull-right"
+            style={{ padding: '0px', border: '0px', color: '#DE4646',
+              backgroundColor: 'transparent' }}
             onClick={() => Reports.remove(props.report._id)}
           />
         </div>
