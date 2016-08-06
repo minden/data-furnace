@@ -20,6 +20,10 @@ Measures.add = () => {
   });
 };
 
+Measures.remove = (measureId) => {
+  Measures.collection.remove(measureId);
+};
+
 Measures.getName = (measureId) => {
   return Measures.collection.findOne(measureId).name;
 };
