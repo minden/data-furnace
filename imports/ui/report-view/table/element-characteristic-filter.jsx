@@ -34,7 +34,7 @@ const ElementCharacteristicFilter = (props) => {
         </Popover>
       }
     >
-      <Glyphicon className="pull-right" glyph="filter" />
+      <Glyphicon className="" glyph="filter" style={{cursor: 'pointer'}} />
     </OverlayTrigger>
   );
 };

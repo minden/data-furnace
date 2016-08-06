@@ -61,6 +61,13 @@ Reports.elements.add = (reportId, elementId, characteristics) => {
   );
 };
 
+Reports.elements.remove = (reportId, elementId) => {
+  Reports.collection.update(
+    reportId,
+    { $pull: { elements: { _id: elementId } } }
+  );
+};
+
 Reports.elements.swap = (reportId, elementId1, elementId2) => {
   const elements = Reports.collection.findOne(reportId).elements;
   const indexElement1 = elements.findIndex((element) => element._id === elementId1);
@@ -75,6 +82,13 @@ Reports.measures.add = (reportId, measureId) => {
   Reports.collection.update(
     reportId,
     { $addToSet: { measures: { _id: measureId } } }
+  );
+};
+
+Reports.measures.remove = (reportId, measureId) => {
+  Reports.collection.update(
+    reportId,
+    { $pull: { measures: { _id: measureId } } }
   );
 };
 

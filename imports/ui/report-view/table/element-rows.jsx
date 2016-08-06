@@ -3,6 +3,7 @@ import React from 'react';
 import Reports from '../../../api/reports/reports.js';
 import Elements from '../../../api/elements/elements.js';
 import ElementCharacteristicFilter from './element-characteristic-filter.jsx';
+import { Button } from 'react-bootstrap';
 
 const ElementRows = (reportId, elements) => {
   if (elements.length === 0) return;
@@ -33,7 +34,15 @@ const ElementRows = (reportId, elements) => {
         }}
       >
         <td style={{ borderRight: '3px solid #ddd' }}>
-          {Elements.getName(element._id)}
+          {Elements.getName(element._id)}&nbsp;
+          <Button
+            className="glyphicon glyphicon-trash pull-right"
+            style={
+              { padding: '0px', border: '0px',
+                backgroundColor: 'transparent', color: '#DE4646' }
+            }
+            onClick={() => Reports.elements.remove(reportId, element._id)}
+          />
           <ElementCharacteristicFilter
             element={element}
             reportId={reportId}

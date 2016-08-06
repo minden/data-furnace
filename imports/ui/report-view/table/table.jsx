@@ -1,16 +1,17 @@
 import React, { PropTypes } from 'react';
-import { Alert, Table } from 'react-bootstrap';
+import { Alert, Table, Button } from 'react-bootstrap';
 import Measures from '../../../api/measures/measures.js';
+import Reports from '../../../api/reports/reports.js';
 import elementRows from './element-rows.jsx';
 
 const ReportTable = (props) => {
   if (props.report.elements.length === 0 && props.report.measures.length === 0) {
     return (
-    <Alert bsStyle="warning">
-      <strong>There are no elements or measures!</strong>
-      &nbsp;Drag them from the left or right into this panel.
-    </Alert>
-    )
+      <Alert bsStyle="warning">
+        <strong>There are no elements or measures!</strong>
+        &nbsp;Drag them from the left or right into this panel.
+      </Alert>
+    );
   }
   return (
     <Table
@@ -26,13 +27,21 @@ const ReportTable = (props) => {
             <tr key={measure._id} >
               <td style={{ borderRight: '3px solid #ddd' }} >
                 {Measures.getName(measure._id)}
+                <Button
+                  className="glyphicon glyphicon-trash pull-right"
+                  style={
+                    { padding: '0px', border: '0px',
+                      backgroundColor: 'transparent', color: '#DE4646' }
+                  }
+                  onClick={() => Reports.measures.remove(props.report._id, measure._id)}
+                />
               </td>
             </tr>
             );
         })}
       </tbody>
     </Table>
-  )
+  );
 };
 
 ReportTable.propTypes = {
