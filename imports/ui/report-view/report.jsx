@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
-import { Panel, Button } from 'react-bootstrap';
+import { Panel } from 'react-bootstrap';
 import Reports from '../../api/reports/reports.js';
 import ReportTable from './table/table.jsx';
 import Filters from './filters/filters.jsx';
 import InplaceEdit from '../components/inplace-edit.jsx';
+import RemoveButton from '../components/remove-button.jsx';
 
 const Report = (props) => (
   <div>
@@ -15,12 +16,7 @@ const Report = (props) => (
             onChange={(name) => Reports.setName(props.report._id, name)}
             text={props.report.name}
           />
-          <Button
-            className="glyphicon glyphicon-trash pull-right"
-            style={{ padding: '0px', border: '0px', color: '#DE4646',
-              backgroundColor: 'transparent' }}
-            onClick={() => Reports.remove(props.report._id)}
-          />
+          <RemoveButton onClick={() => Reports.remove(props.report._id)} />
         </div>
       </div>
     </div>

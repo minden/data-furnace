@@ -1,7 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import React, { PropTypes } from 'react';
-import { ListGroup, ListGroupItem, Glyphicon, Button } from 'react-bootstrap';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import InplaceEdit from '../../../components/inplace-edit.jsx';
+import RemoveButton from '../../../components/remove-button.jsx';
 import Elements from '../../../../api/elements/elements.js';
 
 const List = (props) => (
@@ -19,13 +20,9 @@ const List = (props) => (
             )
           }
         />
-        <Button
-          className="pull-right"
+        <RemoveButton
           onClick={() => Elements.characteristics.remove(props.element._id, characteristic._id)}
-          style={{ color: '#DE4646', border: 'none', padding: '0px' }}
-        >
-          <Glyphicon className="pull-right" glyph="trash" />
-        </Button>
+        />
       </ListGroupItem>
       ))
     }

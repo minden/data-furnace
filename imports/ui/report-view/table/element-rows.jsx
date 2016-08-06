@@ -4,6 +4,7 @@ import Reports from '../../../api/reports/reports.js';
 import Elements from '../../../api/elements/elements.js';
 import ElementCharacteristicFilter from './element-characteristic-filter.jsx';
 import { Button } from 'react-bootstrap';
+import RemoveButton from '../../components/remove-button.jsx';
 
 const ElementRows = (reportId, elements) => {
   if (elements.length === 0) return;
@@ -39,14 +40,7 @@ const ElementRows = (reportId, elements) => {
             reportId={reportId}
           />
           &nbsp;{Elements.getName(element._id)}
-          <Button
-            className="glyphicon glyphicon-trash pull-right"
-            style={
-              { padding: '0px', border: '0px',
-                backgroundColor: 'transparent', color: '#DE4646' }
-            }
-            onClick={() => Reports.elements.remove(reportId, element._id)}
-          />
+          <RemoveButton onClick={() => Reports.elements.remove(reportId, element._id)} />
         </td>
         {characteristicsCells(reportId, elements, element, i)}
       </tr>

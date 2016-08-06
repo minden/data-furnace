@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import Reports from '../../../api/reports/reports.js';
-import { Glyphicon, Button } from 'react-bootstrap';
+import RemoveButton from '../../components/remove-button.jsx';
 
 const getIcon = (type) => {
   if (type === 'element') {
@@ -13,13 +13,9 @@ const Header = (props) => {
   return (
     <div>
       <i className={getIcon(props.type)}> {props.name}</i>
-      <Button
-        className="pull-right"
+      <RemoveButton
         onClick={() => Reports.filters.remove(props.reportId, props._id)}
-        style={{ color: '#DE4646', border: 'none', padding: '0px' }}
-      >
-        <Glyphicon className="pull-right" glyph="trash" />
-      </Button>
+      />
     </div>
   );
 };
