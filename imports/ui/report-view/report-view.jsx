@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Elements from '../../api/elements/elements.js';
 import Reports from '../../api/reports/reports.js';
 import { Col, Button } from 'react-bootstrap';
-import MeasureExplorer from '../measure-view/measure-explorer.jsx';
+import MeasureExplorer from './measure-explorer.jsx';
 import ElementTree from '../dimension-view/element-tree/element-tree.jsx';
 import Report from './report.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
@@ -34,7 +34,7 @@ const ReportView = (props) => {
         </div>
       </Col>
       <Col md={2}>
-        <MeasureExplorer setSelectedMeasureId={() => {}} readOnly draggable />
+        <MeasureExplorer />
       </Col>
     </div>
   );

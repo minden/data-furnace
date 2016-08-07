@@ -2,18 +2,15 @@ import React, { PropTypes } from 'react';
 import Measures from '../../api/measures/measures.js';
 import { Button, Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { createContainer } from 'meteor/react-meteor-data';
-import InplaceEdit from '../components/inplace-edit.jsx';
 
-const panelHeader = (readOnly) => (
+const panelHeader = () => (
   <div>
     Measures
-    {!readOnly &&
-      <Button
-        className="glyphicon glyphicon-plus pull-right"
-        style={{ padding: '0px', border: '0px', backgroundColor: 'transparent' }}
-        onClick={() => Measures.add()}
-      />
-    }
+    <Button
+      className="glyphicon glyphicon-plus pull-right"
+      style={{ padding: '0px', border: '0px', backgroundColor: 'transparent' }}
+      onClick={() => Measures.add()}
+    />
   </div>
 );
 
@@ -25,28 +22,11 @@ const MeasureExplorer = (props) => (
           <ListGroupItem
             active={props.selectedMeasureId === measure._id}
             key={measure._id}
-            onDragStart={(ev) => {
-              ev.dataTransfer.setData('text/id', measure._id);
-              ev.dataTransfer.setData('text/type', 'measure');
-            }}
-            draggable={props.draggable}
+            onClick={() => props.setSelectedMeasureId(measure._id)}
           >
-            <div onClick={() => props.setSelectedMeasureId(measure._id)} >
-              <InplaceEdit
-                text={measure.name}
-                onChange={(name) => Measures.setName(measure._id, name)}
-              />
-              {!props.readOnly &&
-                <Button
-                  className="glyphicon glyphicon-trash pull-right"
-                  style={{ padding: '0px', border: '0px', backgroundColor:
-                    'transparent', color: '#DE4646' }}
-                  onClick={() => Measures.remove(measure._id)}
-                />
-              }
-            </div>
+            {measure.name}
           </ListGroupItem>
-          );
+        );
       })}
     </ListGroup>
   </Panel>

@@ -12,7 +12,7 @@ const types = [
   {
     humanName: 'Dimension',
     name: 'dimension',
-    possibleChildren: ['businessObject', 'dimensionLevel'],
+    possibleChildren: ['dimensionLevel'],
   },
   {
     humanName: 'Attribute',
