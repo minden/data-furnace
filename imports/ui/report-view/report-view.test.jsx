@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { Meteor } from 'meteor/meteor';
 import ReportView from './report-view.jsx';
 import Report from './report.jsx';
-import MeasureExplorer from '../measure-view/measure-explorer.jsx';
+import MeasureExplorer from './measure-explorer.jsx';
 import ElementTree from '../dimension-view/element-tree/element-tree.jsx';
 import React from 'react';
 import Elements from '../../api/elements/elements.js';

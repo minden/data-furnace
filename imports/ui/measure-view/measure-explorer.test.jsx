@@ -62,7 +62,7 @@ describe('Measure explorer', () => {
   describe('the measure list', () => {
     before(() => {
       Measures.add();
-      measureExplorer.find('.list-group div').first().simulate('click');
+      measureExplorer.find('.list-group-item').first().simulate('click');
     });
 
     it('calls the setSelectedElementId() function, when measure is clicked', () => {
