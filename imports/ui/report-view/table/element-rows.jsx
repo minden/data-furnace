@@ -40,7 +40,11 @@ const ElementRows = (reportId, elements) => {
             reportId={reportId}
           />
           &nbsp;{Elements.getName(element._id)}
-          <RemoveButton onClick={() => Reports.elements.remove(reportId, element._id)} />
+          <RemoveButton
+            onClick={() => Reports.elements.remove(reportId, element._id)}
+            name={Elements.getName(element._id)}
+            type="element"
+          />
         </td>
         {characteristicsCells(reportId, elements, element, i)}
       </tr>

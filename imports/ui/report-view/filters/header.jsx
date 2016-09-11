@@ -15,6 +15,8 @@ const Header = (props) => {
       <i className={getIcon(props.type)}> {props.name}</i>
       <RemoveButton
         onClick={() => Reports.filters.remove(props.reportId, props._id)}
+        name={props.name}
+        type={props.type}
       />
     </div>
   );

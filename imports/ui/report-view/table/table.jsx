@@ -30,6 +30,8 @@ const ReportTable = (props) => {
                 {Measures.getName(measure._id)}
                 <RemoveButton
                   onClick={() => Reports.measures.remove(props.report._id, measure._id)}
+                  name={Measures.getName(measure._id)}
+                  type="measure"
                 />
               </td>
             </tr>

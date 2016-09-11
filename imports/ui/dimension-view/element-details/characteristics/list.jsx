@@ -22,6 +22,8 @@ const List = (props) => (
         />
         <RemoveButton
           onClick={() => Elements.characteristics.remove(props.element._id, characteristic._id)}
+          name={characteristic.value}
+          type="characteristic"
         />
       </ListGroupItem>
       ))

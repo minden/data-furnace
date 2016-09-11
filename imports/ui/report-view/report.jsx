@@ -16,7 +16,11 @@ const Report = (props) => (
             onChange={(name) => Reports.setName(props.report._id, name)}
             text={props.report.name}
           />
-          <RemoveButton onClick={() => Reports.remove(props.report._id)} />
+          <RemoveButton
+            onClick={() => Reports.remove(props.report._id)}
+            name={props.report.name}
+            type="report"
+          />
         </div>
       </div>
     </div>

@@ -9,7 +9,11 @@ const MeasureDetailsHeader = (props) => (
       text={props.measure.name}
       onChange={(name) => Measures.setName(props.measure._id, name)}
     />
-    <RemoveButton onClick={() => Measures.remove(props.measure._id)} />
+    <RemoveButton
+      onClick={() => Measures.remove(props.measure._id)}
+      name={props.measure.name}
+      type="measure"
+    />
   </div>
 );
 

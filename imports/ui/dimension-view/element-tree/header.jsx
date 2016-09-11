@@ -11,7 +11,11 @@ const Header = (businessObject, readOnly) => (
     />
     <div className="pull-right">
       {!readOnly &&
-        <RemoveButton onClick={() => Elements.remove(businessObject._id, undefined)} />
+        <RemoveButton
+          onClick={() => Elements.remove(businessObject._id, undefined)}
+          name={businessObject.name}
+          type="Business Object"
+        />
       }
     </div>
   </div>

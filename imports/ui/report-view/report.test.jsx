@@ -1,12 +1,12 @@
 /* eslint-env mocha */
-import { mount } from 'enzyme';
+import Elements from '../../api/elements/elements.js';
+import Measures from '../../api/measures/measures.js';
+import React from 'react';
+import ReportTable from './table/table.jsx';
+import Reports from '../../api/reports/reports.js';
 import { Meteor } from 'meteor/meteor';
 import { ReportWithoutContainer } from './report.jsx';
-import ReportTable from './table/table.jsx';
-import React from 'react';
-import Reports from '../../api/reports/reports.js';
-import Measures from '../../api/measures/measures.js';
-import Elements from '../../api/elements/elements.js';
+import { mount } from 'enzyme';
 
 describe('Report', () => {
   if (Meteor.isServer) return;
@@ -86,16 +86,6 @@ describe('Report', () => {
 
     it('should contain a Button', () => {
       report.find('.panel-title button').should.have.length(1);
-    });
-
-    it('removes the report when clicking the button', (done) => {
-      report.find('.panel-title button').simulate('click');
-      const interval = setInterval(() => {
-        if (Reports.collection.find(reportId).count() === 0) {
-          clearInterval(interval);
-          done();
-        }
-      });
     });
   });
 });
