@@ -12,6 +12,12 @@ Expressions.types = [
     possibleFollowers: ['operator'],
   },
   {
+    name: 'constant',
+    uIName: 'Constant',
+    icon: 'fa fa-hashtag',
+    possibleFollowers: ['operator'],
+  },
+  {
     name: 'measure',
     uIName: 'Measure',
     icon: 'fa fa-balance-scale',
@@ -22,7 +28,9 @@ Expressions.types = [
     uIName: 'Operator',
     icon: 'fa fa-calculator',
     characteristics: [{ name: '+' }, { name: '-' }, { name: '*' }, { name: '/' }],
-    possibleFollowers: ['attribute', 'measure', 'func', 'openingBracket', 'closingBracket'],
+    possibleFollowers: [
+      'attribute', 'constant', 'measure', 'func', 'openingBracket', 'closingBracket',
+    ],
   },
   {
     name: 'func',
