@@ -36,7 +36,7 @@ Expressions.types = [
     name: 'func',
     uIName: 'Function',
     icon: 'fa fa-code',
-    characteristics: [{ name: 'sum' }, { name: 'count' }],
+    characteristics: [{ name: 'contains' }, { name: 'isEmpty' }],
     possibleFollowers: ['openingBracket', 'closingBracket'],
   },
   {
