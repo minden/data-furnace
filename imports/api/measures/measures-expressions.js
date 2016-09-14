@@ -27,7 +27,13 @@ Expressions.types = [
     name: 'operator',
     uIName: 'Operator',
     icon: 'fa fa-calculator',
-    characteristics: [{ name: '+' }, { name: '-' }, { name: '*' }, { name: '/' }],
+    characteristics: [
+      { name: '+' },
+      { name: '-' },
+      { name: '*' },
+      { name: '/' },
+      { name: ',' },
+    ],
     possibleFollowers: [
       'attribute', 'constant', 'measure', 'func', 'openingBracket', 'closingBracket',
     ],
@@ -36,7 +42,13 @@ Expressions.types = [
     name: 'func',
     uIName: 'Function',
     icon: 'fa fa-code',
-    characteristics: [{ name: 'contains' }, { name: 'isEmpty' }],
+    characteristics: [
+      { name: 'contains' },
+      { name: 'isEmpty' },
+      { name: 'not' },
+      { name: 'and' },
+      { name: 'or' },
+    ],
     possibleFollowers: ['openingBracket', 'closingBracket'],
   },
   {
